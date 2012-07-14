@@ -8,7 +8,7 @@
 
 #import "puutenViewController.h"
 #import "UProfile.h"
-#import "UProfileViewController.h"
+#import "WBViewController.h"
 
 @interface NSDictionary(JSONCategories)
 +(NSDictionary*)dictionaryWithContentsOfJSONURLString:(NSString*)urlAddress;
@@ -83,7 +83,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    UProfileViewController *uProfileController = segue.destinationViewController;
+    WBViewController *uProfileController = segue.destinationViewController;
     UProfile *profile = [[UProfile alloc] initWithUserID: self.userID];
     
     uProfileController.uProfile = profile;

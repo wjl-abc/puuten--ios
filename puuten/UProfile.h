@@ -12,5 +12,7 @@
 @property (assign) int userID;
 
 - (id)initWithUserID:(int)userID;
+- (NSString *)replaceUnicode:(NSString *)unicodeStr;
+
 
 @end

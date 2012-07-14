@@ -28,10 +28,9 @@
 		FC1A760A15AE8CBB0066970D /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A760015AE8CBB0066970D /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC1A760B15AE8CBB0066970D /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A760215AE8CBB0066970D /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC1A760E15AE8CCC0066970D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A760D15AE8CCC0066970D /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FCB6FE1115AEF63E00DFE2E2 /* UProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6FE1015AEF63E00DFE2E2 /* UProfileViewController.m */; };
+		FCB6FE1115AEF63E00DFE2E2 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6FE1015AEF63E00DFE2E2 /* WBViewController.m */; };
 		FCB6FE1615AEF68100DFE2E2 /* UProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6FE1515AEF68100DFE2E2 /* UProfile.m */; };
-		FCD703D515B021F50049C5C4 /* WB.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD703D415B021F50049C5C4 /* WB.m */; };
-		FCD703DA15B022D10049C5C4 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD703D915B022D10049C5C4 /* WBViewController.m */; };
+		FCD7044015B042ED0049C5C4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD7043F15B042ED0049C5C4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,14 +84,11 @@
 		FCAE73CA15AFE0A4002E0DD3 /* SBJsonParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		FCAE73CB15AFE0A4002E0DD3 /* SBJsonWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		FCAE73CC15AFE0A4002E0DD3 /* SBJsonWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		FCB6FE0F15AEF63E00DFE2E2 /* UProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UProfileViewController.h; path = puuten/UProfileViewController.h; sourceTree = "<group>"; };
-		FCB6FE1015AEF63E00DFE2E2 /* UProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UProfileViewController.m; path = puuten/UProfileViewController.m; sourceTree = "<group>"; };
+		FCB6FE0F15AEF63E00DFE2E2 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBViewController.h; path = puuten/WBViewController.h; sourceTree = "<group>"; };
+		FCB6FE1015AEF63E00DFE2E2 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBViewController.m; path = puuten/WBViewController.m; sourceTree = "<group>"; };
 		FCB6FE1415AEF68100DFE2E2 /* UProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UProfile.h; sourceTree = "<group>"; };
 		FCB6FE1515AEF68100DFE2E2 /* UProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UProfile.m; sourceTree = "<group>"; };
-		FCD703D315B021F50049C5C4 /* WB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WB.h; sourceTree = "<group>"; };
-		FCD703D415B021F50049C5C4 /* WB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WB.m; sourceTree = "<group>"; };
-		FCD703D815B022D10049C5C4 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
-		FCD703D915B022D10049C5C4 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
+		FCD7043F15B042ED0049C5C4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD7044015B042ED0049C5C4 /* CoreLocation.framework in Frameworks */,
 				FC1A75EE15AE8C480066970D /* MobileCoreServices.framework in Frameworks */,
 				FC1A75EC15AE8C3B0066970D /* SystemConfiguration.framework in Frameworks */,
 				FC1A75EA15AE8C210066970D /* CFNetwork.framework in Frameworks */,
@@ -137,6 +134,7 @@
 		FC1A75C915AE8A960066970D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCD7043F15B042ED0049C5C4 /* CoreLocation.framework */,
 				FC1A75ED15AE8C480066970D /* MobileCoreServices.framework */,
 				FC1A75EB15AE8C3B0066970D /* SystemConfiguration.framework */,
 				FC1A75E915AE8C210066970D /* CFNetwork.framework */,
@@ -224,8 +222,6 @@
 			children = (
 				FCB6FE1415AEF68100DFE2E2 /* UProfile.h */,
 				FCB6FE1515AEF68100DFE2E2 /* UProfile.m */,
-				FCD703D315B021F50049C5C4 /* WB.h */,
-				FCD703D415B021F50049C5C4 /* WB.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -233,10 +229,8 @@
 		FCD703D715B022910049C5C4 /* contoller */ = {
 			isa = PBXGroup;
 			children = (
-				FCB6FE0F15AEF63E00DFE2E2 /* UProfileViewController.h */,
-				FCB6FE1015AEF63E00DFE2E2 /* UProfileViewController.m */,
-				FCD703D815B022D10049C5C4 /* WBViewController.h */,
-				FCD703D915B022D10049C5C4 /* WBViewController.m */,
+				FCB6FE0F15AEF63E00DFE2E2 /* WBViewController.h */,
+				FCB6FE1015AEF63E00DFE2E2 /* WBViewController.m */,
 			);
 			name = contoller;
 			sourceTree = "<group>";
@@ -316,10 +310,8 @@
 				FC1A760A15AE8CBB0066970D /* ASIInputStream.m in Sources */,
 				FC1A760B15AE8CBB0066970D /* ASINetworkQueue.m in Sources */,
 				FC1A760E15AE8CCC0066970D /* Reachability.m in Sources */,
-				FCB6FE1115AEF63E00DFE2E2 /* UProfileViewController.m in Sources */,
+				FCB6FE1115AEF63E00DFE2E2 /* WBViewController.m in Sources */,
 				FCB6FE1615AEF68100DFE2E2 /* UProfile.m in Sources */,
-				FCD703D515B021F50049C5C4 /* WB.m in Sources */,
-				FCD703DA15B022D10049C5C4 /* WBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
