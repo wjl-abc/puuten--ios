@@ -50,10 +50,10 @@
 - (void)setUProfile:(UProfile *)uProfile{
     if (_uProfile !=uProfile) {
         _uProfile = uProfile;
-        [self configureView];
+        //[self configureView];
     }
 }
-
+/*
 - (void)configureView{
     
     if (self.uProfile){
@@ -61,32 +61,16 @@
         self.about.text = @"qqqqqqq";
         
     }
-}
+}*/
 
 - (void)new_conf:(NSData *)responseData{
     NSError* error;
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
     NSString* name = [json objectForKey:@"name"];
-    NSString* about = [json objectForKey:@"about"];
+    NSString* about = [json objectForKey:@"body"];
     self.name.text = name; 
     self.about.text = about;
 }
-
-- (NSString *)replaceUnicode:(NSString *)unicodeStr {  
-    
-    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];  
-    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];   
-    NSString *tempStr3 = [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];  
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];  
-    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData  
-                                                                                 mutabilityOption:NSPropertyListImmutable   
-                                                                                           format:NULL  
-                                                                                 errorDescription:NULL];  
-                          
-                          //NSLog(@"Output = %@", returnStr);  
-                          
-                          return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n" withString:@"\n"];  
-                          } 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -116,10 +100,16 @@
     
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
-        NSString *newString = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
-        //NSString *responseString = [request responseString];
-        NSString *newer = [newString];
-        NSLog(@"%@", newString);
+        [self new_conf:responseData];
+        /*
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSString *name = [json objectForKey:@"name"];
+        NSLog(@"name:%@", name);
+        NSString *body = [json objectForKey:@"body"];
+        NSLog(@"body:%@", body);
+        */
+        
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];

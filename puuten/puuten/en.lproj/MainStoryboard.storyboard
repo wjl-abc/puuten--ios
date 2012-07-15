@@ -120,6 +120,13 @@
         </scene>
     </scenes>
     <classes>
+        <class className="WBViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="about" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="puutenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/puutenViewController.h"/>
             <relationships>
