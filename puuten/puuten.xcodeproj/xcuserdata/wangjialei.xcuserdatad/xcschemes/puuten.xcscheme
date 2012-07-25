@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FC1A75C515AE8A950066970D"
+               BlueprintIdentifier = "FCF7DAD115C012AA005A6586"
                BuildableName = "puuten.app"
                BlueprintName = "puuten"
                ReferencedContainer = "container:puuten.xcodeproj">
@@ -31,7 +31,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC1A75C515AE8A950066970D"
+            BlueprintIdentifier = "FCF7DAD115C012AA005A6586"
             BuildableName = "puuten.app"
             BlueprintName = "puuten"
             ReferencedContainer = "container:puuten.xcodeproj">
@@ -50,7 +50,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC1A75C515AE8A950066970D"
+            BlueprintIdentifier = "FCF7DAD115C012AA005A6586"
             BuildableName = "puuten.app"
             BlueprintName = "puuten"
             ReferencedContainer = "container:puuten.xcodeproj">
@@ -68,7 +68,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC1A75C515AE8A950066970D"
+            BlueprintIdentifier = "FCF7DAD115C012AA005A6586"
             BuildableName = "puuten.app"
             BlueprintName = "puuten"
             ReferencedContainer = "container:puuten.xcodeproj">

@@ -2,17 +2,17 @@
 //  main.m
 //  puuten
 //
-//  Created by wang jialei on 12-7-12.
+//  Created by wang jialei on 12-7-25.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "puutenAppDelegate.h"
+#import "AppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([puutenAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
