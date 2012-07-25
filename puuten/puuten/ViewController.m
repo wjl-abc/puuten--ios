@@ -13,7 +13,6 @@
 @end
 
 @implementation ViewController
-@synthesize imgView;
 @synthesize login_or_not;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -26,27 +25,148 @@
     }
 }
 
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - View lifecycle
+
+- (void)loadInternetData {
+    NSURL *nsURL = [[NSURL alloc] initWithString:URL];
+    NSURL *libURL = [NSURL URLWithString:@"/home/event_lib/" relativeToURL:nsURL];
+    ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
+    __weak ASIFormDataRequest *request = _request;
+    [request setPostValue:@"ios" forKey:@"mobile"];
+    [request setCompletionBlock:^{
+        NSData *responseData = [request responseData];
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        arrayData = json;
+        [self dataSourceDidLoad];
+    }];
+    [request setFailedBlock:^{
+        [self dataSourceDidError];
+    }];
+    
+    [request startAsynchronous];
+    /*
+    // Request
+    NSString *URLPath = [NSString stringWithFormat:@"http://imgur.com/gallery.json"];
+    NSURL *nsURL = [NSURL URLWithString:URLPath];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsURL];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
+        
+        if (!error && responseCode == 200) {
+            id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            if (res && [res isKindOfClass:[NSDictionary class]]) {
+                
+                [arrayData addObjectsFromArray:[res objectForKey:@"gallery"]];
+                //arrayData = [[res objectForKey:@"gallery"] retain];
+                //NSLog(@"arr == %@",arrayData);
+                [self dataSourceDidLoad];
+            } else {
+                [self dataSourceDidError];
+                
+                //NSLog(@"arr dataSourceDidError == %@",arrayData);
+            }
+        } else {
+            [self dataSourceDidError];
+            //NSLog(@"dataSourceDidError == %@",arrayData);
+        }
+    }];
+    */
+}
+
+- (void)dataSourceDidLoad {
+    [waterFlow reloadData];
+}
+
+- (void)dataSourceDidError {
+    [waterFlow reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    NSURL *nsURL = [[NSURL alloc] initWithString:@"http://www.fishjava.com/img/4a0575fc/1a988e79469680d572368.jpg"];
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nsURL];
-    [request setCompletionBlock:^{
-        UIImage *image = [[UIImage alloc] initWithData:[request responseData]];
-        self.imgView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        [self.imgView setImage:image];
+	
+}
+
+-(void)loadMore{
+    
+    [arrayData addObjectsFromArray:arrayData];
+    [waterFlow reloadData];
+}
+
+#pragma mark WaterFlowViewDataSource
+- (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
+    
+    return 3;
+}
+
+- (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView{
+    
+    return [arrayData count];
+}
+
+- (UIView *)waterFlowView:(WaterFlowView *)waterFlowView cellForRowAtIndexPath:(IndexPath *)indexPath{
+    
+    ImageViewCell *view = [[ImageViewCell alloc] initWithIdentifier:nil];
+    
+    return view;
+}
+
+
+-(void)waterFlowView:(WaterFlowView *)waterFlowView  relayoutCellSubview:(UIView *)view withIndexPath:(IndexPath *)indexPath{
+    
+    //arrIndex是某个数据在总数组中的索引
+    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    
+    
+    NSDictionary *object = [arrayData objectAtIndex:arrIndex];
+    
+    //NSURL *nsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
+    NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
+    ImageViewCell *imageViewCell = (ImageViewCell *)view;
+    imageViewCell.indexPath = indexPath;
+    imageViewCell.columnCount = waterFlowView.columnCount;
+    [imageViewCell relayoutViews];
+    [(ImageViewCell *)view setImageWithURL:nsURL];
+}
+
+
+#pragma mark WaterFlowViewDelegate
+- (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath{
+    /*
+    int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
+    NSDictionary *dict = [arrayData objectAtIndex:arrIndex];
+    
+    float width = 0.0f;
+    float height = 0.0f;
+    if (dict) {
         
-    }];
-    [request setFailedBlock:^{
-        NSLog(@"%@", @"ppppp");
-    }];
-    [request startAsynchronous];
+        width = [[dict objectForKey:@"width"] floatValue]; 
+        height = [[dict objectForKey:@"height"] floatValue];
+    }
+    
+    return waterFlowView.cellWidth * (height/width);
+     */
+    return waterFlowView.cellWidth*2;
+}
+
+- (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{
+    
+    NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
 }
 
 - (void)viewDidUnload
 {
-    [self setImgView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -54,6 +174,19 @@
 {
     if (!login_or_not) {
         [self performSegueWithIdentifier:@"login" sender:self];
+    }
+    else {
+        arrayData = [[NSMutableArray alloc] init];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
+        
+        waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];
+        waterFlow.waterFlowViewDelegate = self;
+        waterFlow.waterFlowViewDatasource = self;
+        waterFlow.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:waterFlow];
+        //[waterFlow release];
+        
+        [self loadInternetData];
     }
     [super viewDidAppear:animated];
 }

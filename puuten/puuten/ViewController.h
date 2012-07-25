@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WaterFlowView.h"
+#import "ImageViewCell.h"
 
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@interface ViewController : UIViewController<WaterFlowViewDelegate, WaterFlowViewDataSource>
+{
+    NSMutableArray *arrayData;
+    WaterFlowView  *waterFlow;
+}
+
+- (void)dataSourceDidLoad;
+- (void)dataSourceDidError;
 
 @end
