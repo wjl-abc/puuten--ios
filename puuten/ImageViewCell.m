@@ -15,6 +15,7 @@
 #define IMAGEVIEWBG [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]
 
 @implementation ImageViewCell
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,15 +42,23 @@
 	return self;
 }
 
--(void)setImageWithURL:(NSURL *)imageUrl{
+-(void)setImageWithURL:(NSURL *)imageUrl withWB_ID:(int)wb_id withDelegate:(id)Delegate{
 
     [imageView setImageWithURL:imageUrl];
-    
+    WB_ID = wb_id;
+    delegate = Delegate;
 }
 
--(void)setImage:(UIImage *)image{
+-(void)setImage:(UIImage *)image withWB_ID:(int)wb_id{
 
     imageView.image = image;
+    WB_ID = wb_id;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"Select image's id is %d", WB_ID);
+    //[self.delegate imageViewCell:self clickedCell:WB_ID];
+    [self.delegate imageViewCell:self clickedCell:WB_ID];
 }
 
 //保持图片上下左右有固定间距

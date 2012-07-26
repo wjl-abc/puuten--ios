@@ -484,6 +484,7 @@
 				FCF7DAF215C012AA005A6586 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

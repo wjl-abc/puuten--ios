@@ -11,13 +11,20 @@
 #import "WaterFlowViewCell.h"
 #import "UIImageView+WebCache.h"
 
+@class ImageViewCell;
+@protocol ImageViewCellDelegate <NSObject>
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id;
+@end
+
 @interface ImageViewCell : WaterFlowViewCell
 {
     UIImageView *imageView;
+    int WB_ID;
 }
-
--(void)setImageWithURL:(NSURL *)imageUrl;
--(void)setImage:(UIImage *)image;
+@property (nonatomic, assign) id <ImageViewCellDelegate> delegate;
+-(void)setImageWithURL:(NSURL *)imageUrl withWB_ID:(int)wb_id withDelegate:(id)Delegate;
+-(void)setImage:(UIImage *)image withWB_ID:(int)wb_id;
 -(void)relayoutViews;
 
 @end

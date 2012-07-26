@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "LoginViewController.h"
-@interface ViewController () <LoginViewControllerDelegate>
+#import "ImageViewCell.h"
+@interface ViewController () <LoginViewControllerDelegate, ImageViewCellDelegate>
 @property (assign) BOOL login_or_not;
 @end
 
@@ -17,11 +18,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier hasPrefix:@"login"]) {
+    if ([segue.identifier isEqualToString:@"login"]) {
         LoginViewController *login = (LoginViewController *)segue.destinationViewController;
         //login.email = @"email";
         //login.password = @"password";
         login.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"detail"]){
     }
 }
 
@@ -133,11 +136,12 @@
     
     //NSURL *nsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
     NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
+    int wb_id = [[object objectForKey:@"wb_id"] intValue];
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
     [imageViewCell relayoutViews];
-    [(ImageViewCell *)view setImageWithURL:nsURL];
+    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withDelegate:self];
 }
 
 
@@ -201,6 +205,13 @@
 {
     self.login_or_not = YES;
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imageViewCell:(ImageViewCell *)sender 
+          clickedCell:(int)cell_id
+{
+    selected_cell = cell_id;
+    [self performSegueWithIdentifier:@"detail" sender:self];
 }
 
 @end

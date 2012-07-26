@@ -14,6 +14,7 @@
 {
     NSMutableArray *arrayData;
     WaterFlowView  *waterFlow;
+    int selected_cell;
 }
 
 - (void)dataSourceDidLoad;
