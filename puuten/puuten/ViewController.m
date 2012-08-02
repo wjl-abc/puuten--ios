@@ -147,10 +147,11 @@
 
 #pragma mark WaterFlowViewDelegate
 - (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath{
-    /*
+    
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     NSDictionary *dict = [arrayData objectAtIndex:arrIndex];
-    
+    float height_width_ratio = [[dict objectForKey:@"ratio"] floatValue];
+    /*
     float width = 0.0f;
     float height = 0.0f;
     if (dict) {
@@ -160,8 +161,8 @@
     }
     
     return waterFlowView.cellWidth * (height/width);
-     */
-    return waterFlowView.cellWidth*2;
+    */ 
+    return waterFlowView.cellWidth*height_width_ratio;
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{

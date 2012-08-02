@@ -56,7 +56,6 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Select image's id is %d", WB_ID);
     //[self.delegate imageViewCell:self clickedCell:WB_ID];
     [self.delegate imageViewCell:self clickedCell:WB_ID];
 }
