@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
-#define URL @"http://localhost:8000"
+#import "Constance.h"
+//#define URL @"http://localhost:8000"
 
 @class LoginViewController;
 @protocol LoginViewControllerDelegate <NSObject>

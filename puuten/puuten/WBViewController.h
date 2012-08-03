@@ -1,25 +1,19 @@
 //
-//  UProfileViewController.h
+//  WBViewController.h
 //  puuten
 //
-//  Created by wang jialei on 12-7-12.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by wang jialei on 12-8-3.
+//
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-@class UProfile;
-
-@interface WBViewController : UIViewController<CLLocationManagerDelegate>{
-    CLLocationManager *locationManager;
-    CLLocation *startLocation;
-}
-@property (strong,nonatomic) UProfile *uProfile;
-@property (strong,nonatomic) CLLocationManager *locationManager;
-@property (strong,nonatomic) CLLocation *startLocation;
-@property (weak, nonatomic) NSString *lat;
-@property (weak, nonatomic) NSString *lng;
+#import "BSHeader.h"
+@interface WBViewController : UIViewController
+@property (assign, nonatomic) int wb_id;
 @property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UITextView *about;
+@property (weak, nonatomic) IBOutlet UITextView *bodyField;
+@property (weak, nonatomic) IBOutlet BSHeader *bsheader;
+@property (assign, nonatomic) NSString *name_string;
+@property (assign, nonatomic) NSString *url_string;
 
 @end

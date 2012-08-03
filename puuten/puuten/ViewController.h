@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WaterFlowView.h"
 #import "ImageViewCell.h"
+#import "Constance.h"
 
 @interface ViewController : UIViewController<WaterFlowViewDelegate, WaterFlowViewDataSource>
 {

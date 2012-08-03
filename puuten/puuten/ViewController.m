@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "ImageViewCell.h"
+#import "WBViewController.h"
+#import "BSHeader.h"
 @interface ViewController () <LoginViewControllerDelegate, ImageViewCellDelegate>
 @property (assign) BOOL login_or_not;
 @end
@@ -25,6 +27,15 @@
         login.delegate = self;
     }
     if ([segue.identifier isEqualToString:@"detail"]){
+        WBViewController *wb = (WBViewController *)segue.destinationViewController;
+        wb.wb_id=selected_cell;
+        //BSHeader *bs = [[BSHeader alloc] init];
+        wb.name_string = @"mmmmm";
+        wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
+        //wb.bsheader.name = @"mmmmm";
+        //wb.bsheader.avatar_url = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
+        //[wb.view addSubview:bs];
+        
     }
 }
 
@@ -56,35 +67,7 @@
     }];
     
     [request startAsynchronous];
-    /*
-    // Request
-    NSString *URLPath = [NSString stringWithFormat:@"http://imgur.com/gallery.json"];
-    NSURL *nsURL = [NSURL URLWithString:URLPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsURL];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
-        
-        if (!error && responseCode == 200) {
-            id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            if (res && [res isKindOfClass:[NSDictionary class]]) {
-                
-                [arrayData addObjectsFromArray:[res objectForKey:@"gallery"]];
-                //arrayData = [[res objectForKey:@"gallery"] retain];
-                //NSLog(@"arr == %@",arrayData);
-                [self dataSourceDidLoad];
-            } else {
-                [self dataSourceDidError];
-                
-                //NSLog(@"arr dataSourceDidError == %@",arrayData);
-            }
-        } else {
-            [self dataSourceDidError];
-            //NSLog(@"dataSourceDidError == %@",arrayData);
-        }
-    }];
-    */
+   
 }
 
 - (void)dataSourceDidLoad {

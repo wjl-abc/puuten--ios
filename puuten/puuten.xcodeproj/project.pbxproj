@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
+		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
 		FCF7DAD915C012AA005A6586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD815C012AA005A6586 /* Foundation.framework */; };
 		FCF7DADB15C012AA005A6586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DADA15C012AA005A6586 /* CoreGraphics.framework */; };
@@ -45,6 +47,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC3E1E5F15CB950E00E185D5 /* BSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeader.h; sourceTree = "<group>"; };
+		FC3E1E6015CB950E00E185D5 /* BSHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeader.m; sourceTree = "<group>"; };
+		FC3E1E6215CB960800E185D5 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
+		FC3E1E6315CB960800E185D5 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
+		FC3E1E6515CB97AE00E185D5 /* Constance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constance.h; sourceTree = "<group>"; };
 		FCF7DAD215C012AA005A6586 /* puuten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puuten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7DAD615C012AA005A6586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCF7DAD815C012AA005A6586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,9 +140,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC3E1E5D15CB94F300E185D5 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				FC3E1E5F15CB950E00E185D5 /* BSHeader.h */,
+				FC3E1E6015CB950E00E185D5 /* BSHeader.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		FCF7DAC715C012A9005A6586 = {
 			isa = PBXGroup;
 			children = (
+				FC3E1E5D15CB94F300E185D5 /* models */,
 				FCF7DB2A15C0246D005A6586 /* support */,
 				FCF7DAF315C012F1005A6586 /* ASIHTTPRequest */,
 				FCF7DADC15C012AA005A6586 /* puuten */,
@@ -178,6 +195,8 @@
 				FCF7DADD15C012AA005A6586 /* Supporting Files */,
 				FCF7DB1B15C0156A005A6586 /* LoginViewController.h */,
 				FCF7DB1C15C0156A005A6586 /* LoginViewController.m */,
+				FC3E1E6215CB960800E185D5 /* WBViewController.h */,
+				FC3E1E6315CB960800E185D5 /* WBViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -229,6 +248,7 @@
 				FCF7DB4C15C026DD005A6586 /* EGORefreshTableHeaderView */,
 				FCF7DB4215C025ED005A6586 /* WaterFlowLib */,
 				FCF7DB2D15C024CB005A6586 /* OpenLibrary */,
+				FC3E1E6515CB97AE00E185D5 /* Constance.h */,
 			);
 			name = support;
 			sourceTree = "<group>";
@@ -373,6 +393,8 @@
 				FCF7DB4B15C02640005A6586 /* WaterFlowViewCell.m in Sources */,
 				FCF7DB5115C02724005A6586 /* EGORefreshTableHeaderView.m in Sources */,
 				FCF7DB5515C027AE005A6586 /* LoadingMoreFooterView.m in Sources */,
+				FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */,
+				FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
