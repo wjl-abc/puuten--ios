@@ -30,8 +30,8 @@
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
         //BSHeader *bs = [[BSHeader alloc] init];
-        wb.name_string = @"mmmmm";
-        wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
+        //wb.name_string = @"mmmmm";
+        //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
         //wb.bsheader.name = @"mmmmm";
         //wb.bsheader.avatar_url = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
         //[wb.view addSubview:bs];
@@ -117,7 +117,6 @@
     
     NSDictionary *object = [arrayData objectAtIndex:arrIndex];
     
-    //NSURL *nsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
     NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
     int wb_id = [[object objectForKey:@"wb_id"] intValue];
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
@@ -134,17 +133,6 @@
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     NSDictionary *dict = [arrayData objectAtIndex:arrIndex];
     float height_width_ratio = [[dict objectForKey:@"ratio"] floatValue];
-    /*
-    float width = 0.0f;
-    float height = 0.0f;
-    if (dict) {
-        
-        width = [[dict objectForKey:@"width"] floatValue]; 
-        height = [[dict objectForKey:@"height"] floatValue];
-    }
-    
-    return waterFlowView.cellWidth * (height/width);
-    */ 
     return waterFlowView.cellWidth*height_width_ratio;
 }
 

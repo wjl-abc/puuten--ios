@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BSHeader.h"
-@interface WBViewController : UIViewController
+@interface WBViewController : UIViewController<BSHeaderDelegate>
 @property (assign, nonatomic) int wb_id;
+@property (weak, nonatomic) NSDictionary *bsdata;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UITextView *bodyField;
-@property (weak, nonatomic) IBOutlet BSHeader *bsheader;
-@property (assign, nonatomic) NSString *name_string;
-@property (assign, nonatomic) NSString *url_string;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+
 
 @end
