@@ -9,6 +9,7 @@
 #import "WBViewController.h"
 #import "ASIFormDataRequest.h"
 #import "Constance.h"
+#import "BSViewController.h"
 @interface WBViewController ()
 
 @end
@@ -19,18 +20,21 @@
 @synthesize avatar=_avatar;
 @synthesize bsdata;
 @synthesize wb_id=_wb_id;
+@synthesize bs_id;
 
 - (void)setWb_id:(int)wb_id
 {
     _wb_id = wb_id;
 }
-/*
-- (void)setAvatar:(UIImageView *)avatar
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"%@", @"mmmmmm");
-    _avatar = avatar;
+    if ([segue.identifier isEqualToString:@"bsdetails"]) {
+        BSViewController *bs = (BSViewController *)segue.destinationViewController;
+        bs.bs_id = bs_id;
+    }
 }
- */
 
 - (void)loadData{
     NSString *wb_url_string = [NSString stringWithFormat:@"/business/wb/%d/", _wb_id];
@@ -43,14 +47,11 @@
         NSData *responseData = [request responseData];
         NSError* error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        //arrayData = json;
-        NSLog(@"%@", [json objectForKey:@"name"]);
-        NSLog(@"%@", [json objectForKey:@"body"]);
         bsdata = json;
         name.text = [bsdata objectForKey:@"name"];
         bodyField.text = [bsdata objectForKey:@"body"];
+        bs_id = [[bsdata objectForKey:@"bs_id"] intValue];
         NSURL *imageURL = [NSURL URLWithString:[bsdata objectForKey:@"avatar_url"]];
-        NSLog(@"%@", imageURL);
         NSData* data = [[NSData alloc] initWithContentsOfURL:imageURL];
         _avatar.image = [UIImage imageWithData:data];
     }];
@@ -72,6 +73,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%d", bs_id);
     [super viewDidLoad];
 }
 
@@ -103,4 +105,7 @@
     avatar_url = [bsdata objectForKey:@"avatar_url"];
 }
 
+- (IBAction)click:(id)sender {
+    [self performSegueWithIdentifier:@"bsdetails" sender:self];
+}
 @end

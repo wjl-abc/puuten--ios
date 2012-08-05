@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */; };
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
 		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
+		FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
 		FC3E1E5F15CB950E00E185D5 /* BSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeader.h; sourceTree = "<group>"; };
 		FC3E1E6015CB950E00E185D5 /* BSHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeader.m; sourceTree = "<group>"; };
 		FC3E1E6215CB960800E185D5 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				FCF7DB1C15C0156A005A6586 /* LoginViewController.m */,
 				FC3E1E6215CB960800E185D5 /* WBViewController.h */,
 				FC3E1E6315CB960800E185D5 /* WBViewController.m */,
+				FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */,
+				FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				FCF7DB5515C027AE005A6586 /* LoadingMoreFooterView.m in Sources */,
 				FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */,
 				FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */,
+				FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
