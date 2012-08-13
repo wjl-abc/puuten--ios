@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "ImageViewCell.h"
-#import "WBViewController.h"
+#import "WBGroupViewController.h"
 #import "BSHeader.h"
 @interface ViewController () <LoginViewControllerDelegate, ImageViewCellDelegate>
 @property (assign) BOOL login_or_not;
@@ -27,8 +27,9 @@
         login.delegate = self;
     }
     if ([segue.identifier isEqualToString:@"detail"]){
-        WBViewController *wb = (WBViewController *)segue.destinationViewController;
-        wb.wb_id=selected_cell;
+        //WBViewController *wb = (WBViewController *)segue.destinationViewController;
+        //WBGroupViewController *wb = (WBGroupViewController *)segue.destinationViewController;
+        //wb.wb_id=selected_cell;
         //BSHeader *bs = [[BSHeader alloc] init];
         //wb.name_string = @"mmmmm";
         //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
@@ -183,7 +184,11 @@
           clickedCell:(int)cell_id
 {
     selected_cell = cell_id;
-    [self performSegueWithIdentifier:@"detail" sender:self];
+    NSLog(@"the relavent cell id is %i", selected_cell);
+    WBGroupViewController *wb = [[WBGroupViewController alloc] initWithNibName:@"WBGroupViewController" bundle:nil];
+    wb.wb_id = cell_id;
+    [self presentModalViewController:wb animated:YES];
+    //[self performSegueWithIdentifier:@"detail" sender:self];
 }
 
 @end

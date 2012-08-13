@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zhk-cx-AUh">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="V4x-fa-NSq">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YCp-nm-sLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="zhk-cx-AUh" customClass="WBViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NYT-zY-fDU">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="WK4-jJ-XeJ">
+                                <rect key="frame" x="20" y="20" width="115" height="130"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tNh-kr-XRN">
+                                <rect key="frame" x="143" y="20" width="132" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ZXZ-8r-Tju">
+                                <rect key="frame" x="20" y="158" width="280" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="avatar" destination="WK4-jJ-XeJ" id="4hg-60-VVy"/>
+                        <outlet property="bodyField" destination="ZXZ-8r-Tju" id="vTj-sn-wzs"/>
+                        <outlet property="name" destination="tNh-kr-XRN" id="PkE-YL-KZ1"/>
+                        <segue destination="sdg-Ao-LEB" kind="modal" identifier="bsdetails" id="XnA-tF-geg"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="30" y="26"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8SG-dk-pKg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vco-gO-uHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="sdg-Ao-LEB" customClass="BSViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2dI-rq-ll5" customClass="BSHeader">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="lfQ-I3-J4R">
+                                <rect key="frame" x="20" y="20" width="112" height="115"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="l8q-j9-cZK">
+                                <rect key="frame" x="140" y="20" width="150" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="09o-eL-cq0">
+                                <rect key="frame" x="20" y="165" width="280" height="174"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LWd-ip-qBs">
+                                <rect key="frame" x="140" y="56" width="151" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="avatar" destination="lfQ-I3-J4R" id="3Zc-e1-Z1I"/>
+                        <outlet property="introduction" destination="09o-eL-cq0" id="A7S-Kq-xOX"/>
+                        <outlet property="name" destination="l8q-j9-cZK" id="0Uz-dY-xVz"/>
+                        <outlet property="tags" destination="LWd-ip-qBs" id="NXc-Ss-gzB"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="480" y="26"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

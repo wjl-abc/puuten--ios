@@ -2,7 +2,7 @@
 //  WBViewController.h
 //  puuten
 //
-//  Created by wang jialei on 12-8-3.
+//  Created by wang jialei on 12-8-12.
 //
 //
 
@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *bodyField;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 
-- (IBAction)click:(id)sender;
+//- (IBAction)click:(id)sender;
 
 @end

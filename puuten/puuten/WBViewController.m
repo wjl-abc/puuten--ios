@@ -2,14 +2,14 @@
 //  WBViewController.m
 //  puuten
 //
-//  Created by wang jialei on 12-8-3.
+//  Created by wang jialei on 12-8-12.
 //
 //
 
 #import "WBViewController.h"
 #import "ASIFormDataRequest.h"
 #import "Constance.h"
-#import "BSViewController.h"
+//#import "BSViewController.h"
 @interface WBViewController ()
 
 @end
@@ -27,14 +27,14 @@
     _wb_id = wb_id;
 }
 
-
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"bsdetails"]) {
         BSViewController *bs = (BSViewController *)segue.destinationViewController;
         bs.bs_id = bs_id;
     }
-}
+}*/
 
 - (void)loadData{
     NSString *wb_url_string = [NSString stringWithFormat:@"/business/wb/%d/", _wb_id];
@@ -51,6 +51,7 @@
         name.text = [bsdata objectForKey:@"name"];
         bodyField.text = [bsdata objectForKey:@"body"];
         bs_id = [[bsdata objectForKey:@"bs_id"] intValue];
+        NSLog(@"%d", bs_id);
         NSURL *imageURL = [NSURL URLWithString:[bsdata objectForKey:@"avatar_url"]];
         NSData* data = [[NSData alloc] initWithContentsOfURL:imageURL];
         _avatar.image = [UIImage imageWithData:data];
@@ -73,7 +74,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"%d", bs_id);
+    //NSLog(@"%d", bs_id);
     [super viewDidLoad];
 }
 
@@ -89,6 +90,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self loadData];
+    NSLog(@"THE BS_ID is %i", bs_id);
     [super viewDidAppear:animated];
 }
 
@@ -105,7 +107,5 @@
     avatar_url = [bsdata objectForKey:@"avatar_url"];
 }
 
-- (IBAction)click:(id)sender {
-    [self performSegueWithIdentifier:@"bsdetails" sender:self];
-}
+
 @end

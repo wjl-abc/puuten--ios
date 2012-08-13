@@ -2,7 +2,7 @@
 //  BSViewController.m
 //  puuten
 //
-//  Created by wang jialei on 12-8-5.
+//  Created by wang jialei on 12-8-13.
 //
 //
 

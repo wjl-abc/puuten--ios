@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */; };
+		FC0423EC15D8AE6100DEE57E /* WBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0423EA15D8AE6100DEE57E /* WBCommentViewController.m */; };
+		FC0423ED15D8AE6100DEE57E /* WBCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0423EB15D8AE6100DEE57E /* WBCommentViewController.xib */; };
+		FC19CC6315D7EA5E0053E942 /* WBGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19CC6115D7EA5E0053E942 /* WBGroupViewController.m */; };
+		FC19CC6415D7EA5E0053E942 /* WBGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC19CC6215D7EA5E0053E942 /* WBGroupViewController.xib */; };
+		FC19CC6815D7EBA00053E942 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC19CC6715D7EBA00053E942 /* WBViewController.m */; };
+		FC19CC6A15D7EBBD0053E942 /* WBStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC19CC6915D7EBBD0053E942 /* WBStoryboard.storyboard */; };
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
-		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
+		FCEBAEAE15D80E33001A3181 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBAEAD15D80E33001A3181 /* BSViewController.m */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
 		FCF7DAD915C012AA005A6586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD815C012AA005A6586 /* Foundation.framework */; };
 		FCF7DADB15C012AA005A6586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DADA15C012AA005A6586 /* CoreGraphics.framework */; };
@@ -48,13 +53,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
-		FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
+		FC0423E915D8AE6100DEE57E /* WBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCommentViewController.h; sourceTree = "<group>"; };
+		FC0423EA15D8AE6100DEE57E /* WBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCommentViewController.m; sourceTree = "<group>"; };
+		FC0423EB15D8AE6100DEE57E /* WBCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBCommentViewController.xib; sourceTree = "<group>"; };
+		FC19CC6015D7EA5E0053E942 /* WBGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGroupViewController.h; sourceTree = "<group>"; };
+		FC19CC6115D7EA5E0053E942 /* WBGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBGroupViewController.m; sourceTree = "<group>"; };
+		FC19CC6215D7EA5E0053E942 /* WBGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBGroupViewController.xib; sourceTree = "<group>"; };
+		FC19CC6615D7EBA00053E942 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
+		FC19CC6715D7EBA00053E942 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
+		FC19CC6915D7EBBD0053E942 /* WBStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WBStoryboard.storyboard; sourceTree = "<group>"; };
 		FC3E1E5F15CB950E00E185D5 /* BSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeader.h; sourceTree = "<group>"; };
 		FC3E1E6015CB950E00E185D5 /* BSHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHeader.m; sourceTree = "<group>"; };
-		FC3E1E6215CB960800E185D5 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
-		FC3E1E6315CB960800E185D5 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
 		FC3E1E6515CB97AE00E185D5 /* Constance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constance.h; sourceTree = "<group>"; };
+		FCEBAEAC15D80E33001A3181 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
+		FCEBAEAD15D80E33001A3181 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
 		FCF7DAD215C012AA005A6586 /* puuten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puuten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7DAD615C012AA005A6586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCF7DAD815C012AA005A6586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,10 +210,17 @@
 				FCF7DADD15C012AA005A6586 /* Supporting Files */,
 				FCF7DB1B15C0156A005A6586 /* LoginViewController.h */,
 				FCF7DB1C15C0156A005A6586 /* LoginViewController.m */,
-				FC3E1E6215CB960800E185D5 /* WBViewController.h */,
-				FC3E1E6315CB960800E185D5 /* WBViewController.m */,
-				FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */,
-				FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */,
+				FC19CC6015D7EA5E0053E942 /* WBGroupViewController.h */,
+				FC19CC6115D7EA5E0053E942 /* WBGroupViewController.m */,
+				FC19CC6215D7EA5E0053E942 /* WBGroupViewController.xib */,
+				FC19CC6615D7EBA00053E942 /* WBViewController.h */,
+				FC19CC6715D7EBA00053E942 /* WBViewController.m */,
+				FC19CC6915D7EBBD0053E942 /* WBStoryboard.storyboard */,
+				FCEBAEAC15D80E33001A3181 /* BSViewController.h */,
+				FCEBAEAD15D80E33001A3181 /* BSViewController.m */,
+				FC0423E915D8AE6100DEE57E /* WBCommentViewController.h */,
+				FC0423EA15D8AE6100DEE57E /* WBCommentViewController.m */,
+				FC0423EB15D8AE6100DEE57E /* WBCommentViewController.xib */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -366,6 +385,9 @@
 				FCF7DB3C15C02562005A6586 /* LICENSE in Resources */,
 				FCF7DB3D15C02562005A6586 /* README.md in Resources */,
 				FCF7DB5015C02724005A6586 /* blueArrow.png in Resources */,
+				FC19CC6415D7EA5E0053E942 /* WBGroupViewController.xib in Resources */,
+				FC19CC6A15D7EBBD0053E942 /* WBStoryboard.storyboard in Resources */,
+				FC0423ED15D8AE6100DEE57E /* WBCommentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,8 +421,10 @@
 				FCF7DB5115C02724005A6586 /* EGORefreshTableHeaderView.m in Sources */,
 				FCF7DB5515C027AE005A6586 /* LoadingMoreFooterView.m in Sources */,
 				FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */,
-				FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */,
-				FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */,
+				FC19CC6315D7EA5E0053E942 /* WBGroupViewController.m in Sources */,
+				FC19CC6815D7EBA00053E942 /* WBViewController.m in Sources */,
+				FCEBAEAE15D80E33001A3181 /* BSViewController.m in Sources */,
+				FC0423EC15D8AE6100DEE57E /* WBCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
