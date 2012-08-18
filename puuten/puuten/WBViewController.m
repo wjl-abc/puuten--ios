@@ -73,8 +73,8 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"%d", bs_id);
     [super viewDidLoad];
+    self.view.frame= CGRectMake(0, 0, 300, 400);
 }
 
 - (void)viewDidUnload

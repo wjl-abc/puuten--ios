@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC03895815DA6B32004B998B /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC03895715DA6B31004B998B /* FriendsViewController.m */; };
+		FC03895C15DA6C47004B998B /* FriendsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC03895B15DA6C47004B998B /* FriendsTableCell.m */; };
 		FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */; };
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
 		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
+		FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC449D2F15DE52A000B0BF90 /* LibViewController.m */; };
+		FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */; };
+		FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */; };
+		FCE2AE3315DA0C62000FD85B /* WBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */; };
+		FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467015DEB301006EAF2E /* concrete_wall_3.png */; };
+		FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467715DEB8A1006EAF2E /* capture-button.png */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
 		FCF7DAD915C012AA005A6586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD815C012AA005A6586 /* Foundation.framework */; };
 		FCF7DADB15C012AA005A6586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DADA15C012AA005A6586 /* CoreGraphics.framework */; };
@@ -48,6 +56,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC03895615DA6B31004B998B /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		FC03895715DA6B31004B998B /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		FC03895A15DA6C47004B998B /* FriendsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableCell.h; sourceTree = "<group>"; };
+		FC03895B15DA6C47004B998B /* FriendsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableCell.m; sourceTree = "<group>"; };
 		FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
 		FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
 		FC3E1E5F15CB950E00E185D5 /* BSHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHeader.h; sourceTree = "<group>"; };
@@ -55,6 +67,14 @@
 		FC3E1E6215CB960800E185D5 /* WBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
 		FC3E1E6315CB960800E185D5 /* WBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
 		FC3E1E6515CB97AE00E185D5 /* Constance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constance.h; sourceTree = "<group>"; };
+		FC449D2E15DE52A000B0BF90 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
+		FC449D2F15DE52A000B0BF90 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
+		FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_check.png; sourceTree = "<group>"; };
+		FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_checked.png; sourceTree = "<group>"; };
+		FCE2AE3115DA0C62000FD85B /* WBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCommentViewController.h; sourceTree = "<group>"; };
+		FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCommentViewController.m; sourceTree = "<group>"; };
+		FCEC467015DEB301006EAF2E /* concrete_wall_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall_3.png; sourceTree = "<group>"; };
+		FCEC467715DEB8A1006EAF2E /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button.png"; sourceTree = "<group>"; };
 		FCF7DAD215C012AA005A6586 /* puuten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puuten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7DAD615C012AA005A6586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCF7DAD815C012AA005A6586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,12 +172,22 @@
 			name = models;
 			sourceTree = "<group>";
 		};
+		FC61F8EC15DBB35E000E3178 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				FCEC467715DEB8A1006EAF2E /* capture-button.png */,
+				FCEC467015DEB301006EAF2E /* concrete_wall_3.png */,
+				FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */,
+				FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		FCF7DAC715C012A9005A6586 = {
 			isa = PBXGroup;
 			children = (
 				FC3E1E5D15CB94F300E185D5 /* models */,
 				FCF7DB2A15C0246D005A6586 /* support */,
-				FCF7DAF315C012F1005A6586 /* ASIHTTPRequest */,
 				FCF7DADC15C012AA005A6586 /* puuten */,
 				FCF7DAD515C012AA005A6586 /* Frameworks */,
 				FCF7DAD315C012AA005A6586 /* Products */,
@@ -202,6 +232,14 @@
 				FC3E1E6315CB960800E185D5 /* WBViewController.m */,
 				FC0A0CA815CE6CE400AC80F6 /* BSViewController.h */,
 				FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */,
+				FCE2AE3115DA0C62000FD85B /* WBCommentViewController.h */,
+				FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */,
+				FC03895615DA6B31004B998B /* FriendsViewController.h */,
+				FC03895715DA6B31004B998B /* FriendsViewController.m */,
+				FC03895A15DA6C47004B998B /* FriendsTableCell.h */,
+				FC03895B15DA6C47004B998B /* FriendsTableCell.m */,
+				FC449D2E15DE52A000B0BF90 /* LibViewController.h */,
+				FC449D2F15DE52A000B0BF90 /* LibViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -249,6 +287,8 @@
 		FCF7DB2A15C0246D005A6586 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				FC61F8EC15DBB35E000E3178 /* images */,
+				FCF7DAF315C012F1005A6586 /* ASIHTTPRequest */,
 				FCF7DB5215C02793005A6586 /* LoadingMoreFooterView */,
 				FCF7DB4C15C026DD005A6586 /* EGORefreshTableHeaderView */,
 				FCF7DB4215C025ED005A6586 /* WaterFlowLib */,
@@ -366,6 +406,10 @@
 				FCF7DB3C15C02562005A6586 /* LICENSE in Resources */,
 				FCF7DB3D15C02562005A6586 /* README.md in Resources */,
 				FCF7DB5015C02724005A6586 /* blueArrow.png in Resources */,
+				FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */,
+				FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */,
+				FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */,
+				FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +445,10 @@
 				FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */,
 				FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */,
 				FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */,
+				FCE2AE3315DA0C62000FD85B /* WBCommentViewController.m in Sources */,
+				FC03895815DA6B32004B998B /* FriendsViewController.m in Sources */,
+				FC03895C15DA6C47004B998B /* FriendsTableCell.m in Sources */,
+				FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

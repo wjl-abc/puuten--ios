@@ -1,41 +1,29 @@
 //
-//  ViewController.m
+//  LibViewController.m
 //  puuten
 //
-//  Created by wang jialei on 12-7-25.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by wang jialei on 12-8-17.
+//
 //
 
-#import "ViewController.h"
+#import "LibViewController.h"
 #import "LoginViewController.h"
 #import "ImageViewCell.h"
 #import "WBViewController.h"
 #import "BSHeader.h"
-@interface ViewController () <LoginViewControllerDelegate, ImageViewCellDelegate>
-@property (assign) BOOL login_or_not;
+
+@interface LibViewController ()
+
 @end
 
-@implementation ViewController
-@synthesize login_or_not;
+@implementation LibViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"login"]) {
-        LoginViewController *login = (LoginViewController *)segue.destinationViewController;
-        //login.email = @"email";
-        //login.password = @"password";
-        login.delegate = self;
-    }
-    if ([segue.identifier isEqualToString:@"detail"]){
+    
+    if ([segue.identifier isEqualToString:@"details"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
-        //BSHeader *bs = [[BSHeader alloc] init];
-        //wb.name_string = @"mmmmm";
-        //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
-        //wb.bsheader.name = @"mmmmm";
-        //wb.bsheader.avatar_url = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
-        //[wb.view addSubview:bs];
-        
     }
 }
 
@@ -68,7 +56,7 @@
     }];
     
     [request startAsynchronous];
-   
+    
 }
 
 - (void)dataSourceDidLoad {
@@ -94,7 +82,7 @@
 #pragma mark WaterFlowViewDataSource
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
     
-    return 2;
+    return 3;
 }
 
 - (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView{
@@ -123,10 +111,9 @@
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
-    imageViewCell.tt=0;
+    imageViewCell.tt=1;
     [imageViewCell relayoutViews];
-    //[(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:1 withDelegate:self];
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:1 withAvatar:nsURL withName:@"ben1" withPartnerName:@"ben2" withDelegate:self];
+    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 
@@ -136,7 +123,7 @@
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     NSDictionary *dict = [arrayData objectAtIndex:arrIndex];
     float height_width_ratio = [[dict objectForKey:@"ratio"] floatValue];
-    return waterFlowView.cellWidth*height_width_ratio+58;
+    return waterFlowView.cellWidth*height_width_ratio;
 }
 
 - (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{
@@ -151,21 +138,19 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (!login_or_not) {
-        [self performSegueWithIdentifier:@"login" sender:self];
-    }
-    else {
-        arrayData = [[NSMutableArray alloc] init];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
+    arrayData = [[NSMutableArray alloc] init];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
-        waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];
-        waterFlow.waterFlowViewDelegate = self;
-        waterFlow.waterFlowViewDatasource = self;
-        waterFlow.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:waterFlow];
+    waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];
+    waterFlow.waterFlowViewDelegate = self;
+    waterFlow.waterFlowViewDatasource = self;
+    waterFlow.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:waterFlow];
+        //[waterFlow release];
         
-        [self loadInternetData];
-    }
+    [self loadInternetData];
+    
     [super viewDidAppear:animated];
 }
 
@@ -174,18 +159,12 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)loginViewController:(LoginViewController *)sender 
-               login_or_not:(int)userid
-{
-    self.login_or_not = YES;
-    [self dismissModalViewControllerAnimated:YES];
-}
 
-- (void)imageViewCell:(ImageViewCell *)sender 
+- (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id
 {
     selected_cell = cell_id;
-    [self performSegueWithIdentifier:@"detail" sender:self];
+    [self performSegueWithIdentifier:@"details" sender:self];
 }
 
 @end

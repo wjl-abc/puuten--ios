@@ -175,7 +175,6 @@
     [[cell viewWithTag:CELLSUBVIEWTAG] setFrame:cellRect];
     
     [self.waterFlowViewDatasource waterFlowView:self relayoutCellSubview:[cell viewWithTag:CELLSUBVIEWTAG] withIndexPath:_indextPath];
-
     return cell;
 }
 
