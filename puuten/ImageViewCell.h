@@ -41,7 +41,7 @@
               withType:(int)Type
             withAvatar:(NSURL *)avatarUrl
               withName:(NSString *)Name
-       withPartnerName:(NSString *)partnerName
+              withInfo:(NSString *)Info
           withDelegate:(id)Delegate;
 -(void)setImage:(UIImage *)image withWB_ID:(int)wb_id withBS:(NSString *)BSinfo;
 -(void)relayoutViews;

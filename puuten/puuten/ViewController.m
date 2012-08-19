@@ -51,7 +51,7 @@
 
 - (void)loadInternetData {
     NSURL *nsURL = [[NSURL alloc] initWithString:URL];
-    NSURL *libURL = [NSURL URLWithString:@"/home/event_lib/" relativeToURL:nsURL];
+    NSURL *libURL = [NSURL URLWithString:@"/home/" relativeToURL:nsURL];
     ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
     __weak ASIFormDataRequest *request = _request;
     [request setPostValue:@"ios" forKey:@"mobile"];
@@ -120,13 +120,29 @@
     
     NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
     int wb_id = [[object objectForKey:@"wb_id"] intValue];
+    int type = [[object objectForKey:@"type"] intValue];
+    NSString *bsName = [object objectForKey:@"name"];
+    NSString *name = [object objectForKey:@"user_name"];
+    NSString *partnerName = [object objectForKey:@"partner"];
+    NSString *info;
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
     imageViewCell.tt=0;
     [imageViewCell relayoutViews];
-    //[(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:1 withDelegate:self];
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:1 withAvatar:nsURL withName:@"ben1" withPartnerName:@"ben2" withDelegate:self];
+    switch (type) {
+        case 1:
+            info = @"把相关的信息加入了愿望单";
+            break;
+        case 2:
+            info = @"更新了相关的活动专辑";
+            break;
+        case 3:
+            info = [NSString stringWithFormat:@"接受了%@参加相关活动的邀请", partnerName];
+        default:
+            break;
+    }
+    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
 

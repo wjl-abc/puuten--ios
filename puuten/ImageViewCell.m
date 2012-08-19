@@ -103,13 +103,14 @@
               withType:(int)Type
             withAvatar:(NSURL *)avatarUrl
               withName:(NSString *)Name
-       withPartnerName:(NSString *)partnerName
+              withInfo:(NSString *)Info
           withDelegate:(id)Delegate{
     [imageView setImageWithURL:imageUrl];
     WB_ID = wb_id;
     bsName.text = BSinfo;
-    //[avatar setImageWithURL:avatarUrl];
+    [avatar setImageWithURL:avatarUrl];
     name.text = Name;
+    info.text = Info;
     if (!_tt) {
         bsName.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height, imageView.frame.size.width, 12);
         avatar.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height+15, 43, 43);
