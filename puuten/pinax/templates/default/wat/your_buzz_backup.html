@@ -1,0 +1,52 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load theme_tags %}
+{% load extra_tagging_tags %}
+{% load wat_tag %}
+
+{% block head_title %}{% blocktrans %}My Buzz{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <a href="{% url new_buzz %}">{% trans "New Buzz" %}</a>
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="80%">
+        {% for instance in buzzship %}
+            <tr class="{% cycle odd,even %}">
+                <td><b><a href="{{instance.buzz.get_absolute_url}}">{{instance.buzz.title}}</a></b><br />
+                </td>
+                <td><p>{% show_tags_for instance.buzz %}</p></td>
+                <td nowrap>{{ instance.buzz.created_at|date }}</td>
+                <td><p>{% get_applicant_count instance.buzz %}</p></td>
+                {% ifequal instance.buzz.creator request.user %}
+                <td><a href="{% url buzz_admin instance.buzz.id %}">{% trans 'admin' %}</a></td>
+                <td width="50px" align="center">
+                    <a href="{% url buzz_edit instance.id %}">
+                        {% silk "pencil" %}
+                    </a>
+                </td>
+                <td align="right">
+                    <form action="{% url buzzship_destroy instance.id %}" method="POST">
+                        {# @@@ still can't replace this with a silk tag yet #}
+                        <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Post" %}" />
+                        <input type="hidden" name="action" value="delete"/>
+                    </form>
+                </td>                
+                {% endifequal %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        {% for instance in buzzship %}
+            show_marker_b({{instance.buzz.latitude}}, {{instance.buzz.longitude}}, map); 
+        {% endfor %}
+    });
+    </script>
+{% endblock %}

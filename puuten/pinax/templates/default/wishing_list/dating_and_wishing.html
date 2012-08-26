@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load group_tags %}
+{% load extra_tagging_tags %}
+{% load share_tags %}
+{% load event_tags %}
+{% load business_blog_tags %}
+
+{% block body %}
+    {% if wishing_list %}
+        <h2>{% trans  "select his/her wishes you think related to this dating" %}</h2>
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="80%"
+        {% for instance in wishing_list %}
+            <tr class="{% cycle odd,even %}">
+                {% ifequal instance.content_type 1 %}
+                    <td><b><a href="{{instance.shared.get_absolute_url}}">{{instance.shared.title}}</a></b><br /></td>
+                {% endifequal %}
+                {% ifequal instance.content_type 2 %}
+                    <td><b><a href="{% groupurl photo_details group id=instance.shared.id %}"><img src="{{ instance.shared.get_thumbnail_url }}" alt="{{ instance.shared.title }}"/></a></b><br />
+                    </td>
+                {% endifequal %}
+                <td><p>{% show_tags_for instance.shared %}</p></td>
+                {% ifnotequal instance.shared.owner_type 2 %}
+                    <td nowrap>{% trans "related to" %}<a href="{{ instance.shared.author.get_absolute_url }}"> {{instance.shared.author.username}}</a></td>
+                {% endifnotequal %}
+                {% ifequal instance.shared.owner_type 2 %}
+                    <td nowrap>{% trans "related to" %}:{% owner instance.shared %}</a></td>
+                {% endifequal %}
+                <td><input type="checkbox" name="app_id" value={{instance.shared.id}} ></td>
+            </tr>
+        {% endfor %}
+        </table>
+        <form class="uniForm" id="dating and wishes" method="POST" action="">
+            <fieldset class="inlineLabels">
+                <div id="div_id_name" class="ctrlHolder">
+	                <input id="id_name" type="hidden" class="textinput" name="name" maxlength="200" />
+                </div>
+                <div class="form_block">
+                    <input type="hidden" name="action" value="submit" />
+                    <input id= "create" type="submit" value="{% trans "submit" %}" />
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <h2>{% trans "No wishes" %}</h2>
+    {% endif %}
+    
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+            $(":checkbox").click(function(){
+                var str="";
+                $("[name=app_id]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_name").val(str);
+            });
+        });
+    </script>
+    
+    
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load markup_tags %}
+{% load avatar_tags %}
+{% load extra_tagging_tags %}
+
+<div class="blog-post clearfix">
+    <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+    <div class="event-tease">
+        {% if event.tease %}
+             {% with event.tease as body %}
+                {{ body|apply_markup:event.markup }}
+            {% endwith %}
+        {% else %}
+            {% with event.body|truncatewords:"150" as body %}
+                {{ body|apply_markup:event.markup }}
+            {% endwith %}
+        {% endif %}
+    </div>
+    
+    
+</div>

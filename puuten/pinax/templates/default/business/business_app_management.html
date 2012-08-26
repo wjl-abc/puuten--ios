@@ -1,0 +1,112 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Business App Management{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <table cellpadding="5" cellspacing="0" border="0" class="app-list" width="100%">
+        <tr class="{% cycle odd,even %}">
+            {% for instance in app_list %}        
+                <td><b><a>{{instance.name}}</a></b><br /></td>
+                <td nowrap>{{ instance.description }}</td>
+                <td nowrap>{{ instance.url }}</td>    
+                <td width="50px" align="center">
+                    <a href="{% url business_app_edit instance.id %}">
+                        {% silk "pencil" %}
+                    </a>
+                </td>
+                <td align="right">
+                    <form action="{% url business_app_destroy instance.id %}" method="POST">
+                        {# @@@ still can't replace this with a silk tag yet #}
+                        <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete App" %}" />
+                        <input type="hidden" name="action" value="delete"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h3>{% trans "New App" %}</h3>
+    <form class="uniForm" id="new-app" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ app_form|as_uni_form }}
+            <div class="form_block">
+            <input type="hidden" name="action" value="create" />
+            <input type="submit" value="{% trans "create" %}"/>
+            </div>
+        </fieldset>
+    </form>
+    {% if bs_admins %}
+        <h3>活动的临时标签</h3>
+        {% autopaginate tags%}
+            {% for instance in tags %}
+                <table cellpadding="2" cellspacing="0" border="0" class="tags-list" width="50%">
+                <tr class="{% cycle odd,even %}">
+                    <td><a>{{ instance.tag }}</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="tag_id" value="{{ instance.id }}"/>
+                            <input type="hidden" name="action" value="delete_tag"/>
+					        <input type="submit" value="{% trans 'delete tag' %}" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            {% endfor %}
+        {% paginate %}
+        <form method="post" action="">
+            <input type="text" name="tag" />
+            <input type="hidden" name="action" value="add_tag"/>
+		    <input type="submit" value="{% trans 'add tag' %}" />
+        </form>
+        <h3>{% trans "Managers for the business from MicroBlog" %}</h3>
+        {% autopaginate bs_admins %}
+            {% for instance in bs_admins %}
+                <table cellpadding="5" cellspacing="0" border="0" class="members-list" width="50%">
+                <tr class="{% cycle odd,even %}">
+                    <td>{% avatar_user instance.b_s_admin.id 30 %}<a href="{% url profile_detail instance.b_s_admin.id %}">{{ instance.b_s_admin.username }}</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="remove_id" value="{{ instance.b_s_admin.id }}"/>
+                            <input type="hidden" name="action" value="remove"/>
+					        <input type="submit" value="{% trans 'remove him/her' %}" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            {% endfor %}
+        {% paginate %}
+    {% endif %}
+    <h3>{% trans "Search for business admin" %}</h3>
+    
+    <form method="post" action="">
+        <input type="text" name="search" value="{{ search_terms }}" />
+        <input type="hidden" name="action" value="search"/>
+		<input type="submit" value="{% trans 'search' %}" />
+    </form>
+    {% if friends %}
+        <h1>{% trans "Search results:" %}</h1>
+        {% autopaginate friends%}
+        {% for instance in friends %}
+            <table cellpadding="5" cellspacing="0" border="0" class="members-list" width="50%">
+                <tr class="{% cycle odd,even %}">
+                    <td>{% avatar_user instance.id 30 %}<a href="{% url profile_detail instance.id %}">{{ instance.username }}</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="invitation_id" value="{{ instance.id }}"/>
+                            <input type="hidden" name="action" value="invite"/>
+					        <input type="submit" value="{% trans 'invite him/her' %}" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        {% endfor %}
+        {% paginate %}
+    {% else %}
+        <p>{% trans "You have no friend yet." %}</p>
+    {% endif %}
+{% endblock %}

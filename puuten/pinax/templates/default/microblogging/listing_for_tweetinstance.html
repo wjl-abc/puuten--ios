@@ -1,0 +1,38 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load pagination_tags %}
+{% load microblogging_tags %}
+{% load comments_tag %}
+{% load tagging_tags %}
+{% load theme_tags %}
+{% load threadedcommentstags %}
+{% autopaginate tweets %}
+
+{% if tweets %}
+    {% for tweet in tweets %}
+        <div class="tweet" id="t{{ tweet.0.id }}">
+            {% if prefix_sender %}<a href="{% url profile_detail tweet.0.sender_id %}"><b>{{ tweet.0.sender }}</b></a>{% endif %}
+            {% render_tweet_text tweet.0 %}
+            <span class="timesince">{% blocktrans with tweet.sent|timesince as tweet_age %}{{ tweet_age }} ago{% endblocktrans %}</span>
+            <a href="{% url forward_tweet  tweet.0.tweet_id  %}" rel="facebox"><b>{% trans "Forward" %}({{tweet.1}})</b></a>
+            <a href="{% url comment_tweet  tweet.0.tweet_id  %}" rel="facebox"><b>{% trans "Comments" %}({% get_comment_count for tweet.0 as commentcount1 %} {{ commentcount1 }})</b></a>
+         </div>
+         <form action="{% url tweet_destroy tweet.0.id %}" method="POST">
+             {% ifequal tweet.sender request.user %}
+             <div class="form_block">
+                 <input type="hidden" name="action" value="delete" />
+                 <input type="submit" value="{% trans 'delete' %}" />
+             </div>
+             {% endifequal %}
+         </form>
+    {% endfor %}
+{% else %}
+    {% if are_mine %}
+        {% url tweets_you_follow as tweets_url %}
+        <p>{% blocktrans %}You haven't posted any <a href="{{ tweets_url }}">tweets</a> yet.{% endblocktrans %}</p>
+    {% else %}
+        <p>{% blocktrans %}There are currently no tweets to be listed.{% endblocktrans %}</p>
+    {% endif %}
+{% endif %}
+
+{% paginate %}

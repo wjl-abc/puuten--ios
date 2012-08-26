@@ -1,0 +1,281 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 17:41+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: base.html:11
+msgid "E-Mail Addresses"
+msgstr "电子邮箱地址"
+
+#: base.html:12
+msgid "OpenID Associations"
+msgstr "OpenID 关联"
+
+#: base.html:14 password_change.html:5 password_change.html.py:8
+#: password_reset_from_key.html:5 password_reset_from_key.html.py:8
+msgid "Change Password"
+msgstr "修改密码"
+
+#: base.html:16 password_set.html:6 password_set.html.py:9
+msgid "Set Password"
+msgstr "设置密码"
+
+#: base.html:19 password_delete.html:5 password_delete.html.py:8
+msgid "Delete Password"
+msgstr "删除密码"
+
+#: base.html:21 language_change.html:6 language_change.html.py:9
+msgid "Language"
+msgstr "语言"
+
+#: base.html:22 timezone_change.html:6 timezone_change.html.py:9
+msgid "Timezone"
+msgstr "时区"
+
+#: email.html:6 email.html.py:9
+msgid "Account"
+msgstr "账户"
+
+#: email.html:11
+msgid "Email Addresses"
+msgstr "电子邮箱地址"
+
+#: email.html:20
+msgid "verified"
+msgstr "已验证"
+
+#: email.html:22
+msgid "primary"
+msgstr "主要"
+
+#: email.html:29
+msgid "make primary"
+msgstr ""
+
+#: email.html:34
+msgid "unverified"
+msgstr "未验证"
+
+#: email.html:40
+msgid "re-send verification email"
+msgstr "再次发送验证的电子邮件"
+
+#: email.html:50
+msgid "remove"
+msgstr "删除"
+
+#: email.html:57
+msgid "None"
+msgstr "没有"
+
+#: email.html:57
+msgid ""
+"You should really add one so you can receive notifications, reset your "
+"password if you forget it, etc."
+msgstr "您应该添加一个以便接收提醒、忘记密码时重置密码等。"
+
+#: email.html:60
+msgid "Add Email Address"
+msgstr "添加电子邮箱地址"
+
+#: email.html:67
+msgid "add"
+msgstr "添加"
+
+#: language_change.html:11
+msgid "Pinax can be used in your preferred language."
+msgstr "Pinax 可以使用您喜欢的语言。"
+
+#: language_change.html:17
+msgid "Change my language"
+msgstr "更改我的语言"
+
+#: login.html:7
+msgid "Login"
+msgstr "登录"
+
+#: login.html:15 signup.html:14
+msgid "Log In"
+msgstr "登录"
+
+#: login.html:18 password_reset.html:12 password_reset_done.html:11
+msgid "Note"
+msgstr "笔记"
+
+#: login.html:18 password_reset.html:12 password_reset_done.html:11
+#, python-format
+msgid "you are already logged in as %(user)s."
+msgstr "您已经用 %(user)s 登陆。"
+
+#: login.html:22
+#, python-format
+msgid "Don't have an account? <a href=\"%(signup_url)s\">Sign up</a>!"
+msgstr "没有帐号吗？立即 <a href=\"%(signup_url)s\">注册</a>！"
+
+#: login.html:29
+msgid "Forgot password?"
+msgstr "忘记密码？"
+
+#: login.html:33 login.html.py:57
+msgid "Log in &raquo;"
+msgstr ""
+
+#: login.html:38
+msgid "Or sign in with your OpenID"
+msgstr "或者用 OpenID 注册"
+
+#: login.html:62
+#, python-format
+msgid ""
+"If you have any trouble logging in to your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"若您的帐号不能正常登陆，请联系我们 <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>。"
+
+#: logout.html:5
+msgid "Logout"
+msgstr "登出"
+
+#: logout.html:8
+msgid "You've been logged out."
+msgstr "你已经登出"
+
+#: password_change.html:14 password_reset_from_key.html:17
+msgid "change password"
+msgstr "更改密码"
+
+#: password_delete.html:9
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr "您可以删除密码，因为您正在使用 OpenID 登陆本站。"
+
+#: password_delete.html:11
+msgid "delete my password"
+msgstr "删除我的密码"
+
+#: password_delete_done.html:5 password_delete_done.html.py:8
+msgid "Password Deleted"
+msgstr "密码删除"
+
+#: password_delete_done.html:9
+msgid "Your password has been deleted."
+msgstr "您的密码已经被删除"
+
+#: password_reset.html:6 password_reset.html.py:10 password_reset_done.html:5
+#: password_reset_done.html.py:8
+msgid "Password Reset"
+msgstr "密码重新设置"
+
+#: password_reset.html:15
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr "忘记密码了吗？在下面输入您的邮箱地址，密码重置信将发送到您的邮箱中。"
+
+#: password_reset.html:21
+msgid "Reset my password"
+msgstr "重新设置我的密码"
+
+#: password_reset.html:26
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"若不能重置密码，请与我们联系 <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>。"
+
+#: password_reset_done.html:14
+#, python-format
+msgid ""
+"We have sent you an e-mail to <b>%(email)s</b>. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"一封邮件已经发送到 <b>%(email)s</b>。如果您一段时间后仍没收到，请联系我们 <a "
+"href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>。"
+
+#: password_set.html:15
+msgid "set password"
+msgstr "设置密码"
+
+#: signup.html:6
+msgid "Signup"
+msgstr "注册"
+
+#: signup.html:9
+msgid "Sign Up"
+msgstr "注册"
+
+#: signup.html:12
+msgid "You are already logged in."
+msgstr "您已经登录"
+
+#: signup.html:14
+msgid "Already have an account?"
+msgstr "已经有帐号了？"
+
+#: signup.html:20
+msgid "Sign Up &raquo;"
+msgstr "注册&raquo;"
+
+#: signup.html:27
+#, python-format
+msgid ""
+"By clicking \"Sign Up\", you are indicating that you have read and agree to "
+"the <a href=\"%(terms_url)s\">Terms of Use</a> and <a href=\"%(privacy_url)s"
+"\">Privacy Policy</a>."
+msgstr ""
+"点击 \"注册\"，表示您已经读过并且同意 <a href=\"%(terms_url)s\">使用条款</a> "
+"和 <a href=\"%(privacy_url)s\">隐私策略</a>。"
+
+#: signup.html:29
+#, python-format
+msgid ""
+"If you have any trouble creating your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"若不能创建帐号，请与我们联系 <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>。"
+
+#: timezone_change.html:11
+msgid ""
+"Pinax can localize all times into your preferred timezone. Change your "
+"timezone below."
+msgstr "Pinax 可以使用到您期望的时区，请在下面更改您的时区。"
+
+#: timezone_change.html:17
+msgid "Change my timezone"
+msgstr "更改我的时区"
+
+#: verification_sent.html:5 verification_sent.html.py:8
+msgid "Verify your e-mail address"
+msgstr "验证您的电子邮箱地址"
+
+#: verification_sent.html:10
+#, python-format
+msgid ""
+"We have sent you an e-mail to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"一封验证邮件已发送到 <b>%(email)s</b>。点击下面的链接完成注册。若您一段时间后"
+"仍没收到，请联系我们 <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</"
+"a>。"

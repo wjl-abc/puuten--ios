@@ -1,0 +1,118 @@
+{% extends "microblogging/base.html" %}
+
+{% load i18n %}
+{% load microblogging_tags %}
+
+{% load comments_tag %}
+{% load tagging_tags %}
+{% load theme_tags %}
+{% load threadedcommentstags %}
+
+{% block head_title %}{% blocktrans %}Tweets{% endblocktrans %}{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }}" href="/feeds/tweets/only/{{ user.username }}/" />
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }} and friends" href="/feeds/tweets/with_friends/{{ user.username }}/" />
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	$('#div_id_ID').hide();
+            $('p:eq(2)').hide();
+            $('p:eq(3)').hide(); 
+    	    var query = window.location.search;
+            query = query.substring(1);
+            var data = query.split('=');
+            $('#id_ID').val(data[1]);
+            delete_marker();
+            {% for tweet in tweets %}
+    	        add_marker_tweet({{tweet.latitude}}, {{tweet.longitude}},
+    	                        "{{tweet.text}}","{{ tweet.sender.username }}",
+    	        	            "{% url profile_detail tweet.sender_id %}",
+                                "{% url forward_tweet  tweet.id  %}", 
+                                {% get_forward_count for tweet as forwardcount %} {{ forwardcount }},
+                                "{% url comment_tweet  tweet.id  %}",
+                                {% get_comment_count for tweet as commentcount %} {{ commentcount }});
+    	        			
+    	    {% endfor %}
+    	    show_markers();
+     });
+    </script>
+
+    <h1>{% trans "Tweets" %}</h1>
+    
+    {# @@@ can the publish to twitter checkbox actually be part of form and then we can use uni-form #}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    <form method="POST" action="{% url tweets_you_follow %}">
+        <div class="form_block">
+            <input type="hidden" name="next" value="following's tweet" />
+            <input type="submit" value="{% trans 'tweets from all following' %}" />
+        </div>
+    </form>
+    <form method="POST" action="{% url tweets_you_follow %}">
+        <div class="form_block">
+            <input type="hidden" name="next" value="tweets in this area" />
+            <input id="tweets_in_this_area" type="submit" value="{% trans 'tweets in this area' %}" />
+        </div>
+    </form>
+    
+    <p>{% blocktrans with user.followed.count as follow_count and user.followed.count|pluralize:_("person,people") as follow_name %}
+        These are tweets from the {{ follow_count }} {{ follow_name }} you are following (plus your own){% endblocktrans %}:
+    </p>
+    {% if tweets %}
+        {% tweet_listing_for_tweet tweets 1 0 %}
+	{% endif %}
+	<script type="text/javascript">
+        var map = initialize({{lat}},{{lng}},{{scale}});
+		var done = function(data, textStatus){
+			alert(textStatus);
+			if(textStatus=="success") {
+			    var txt = data.responseText;
+				var tweets = JSON.parse(txt);
+				alert(111);
+			}
+			else {}
+		};
+        var get_tweets_in_this_area = function(){
+			var data = get_your_area(map);
+			data["next"] = "tweets in this area";
+			var args = {type:"POST",
+			            url:"",
+			            data:data,
+			            complete:done};
+			$.ajax(args);
+			return false;
+        };
+        $("#tweets_in_this_area").click(get_tweets_in_this_area);
+	</script>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+        $(document).ready(function() {
+            function update_chars_left() {
+                var max_len = 140;
+                var textarea = $('#new_tweet')[0];
+                var tweet_len = textarea.value.length;
+                if (tweet_len >= max_len) {
+                    textarea.value = textarea.value.substring(0, max_len); // truncate
+                    $('#chars_left').html("0");
+                } else {
+                    $('#chars_left').html(max_len - tweet_len);
+                }
+            }
+            $('#new_tweet').keyup(function() {
+                update_chars_left();
+            });
+            update_chars_left();
+            $('#new_tweet').focus();
+            
+        });
+    </script>
+{% endblock %}

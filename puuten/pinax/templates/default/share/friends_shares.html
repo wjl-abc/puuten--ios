@@ -1,0 +1,45 @@
+{% extends "friends_app/base.html" %}
+
+{% load i18n %}
+{% load group_tags %}
+{% load pagination_tags %}
+{% load event_tags %}
+{% load business_blog_tags %}
+
+{% block head_title %}{% blocktrans %}Friends' Shares{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Friends' Shares" %}</h1>
+    {% if object_list %}
+        
+        <table cellpadding="5" cellspacing="0" border="0" class="share-list" width="100%">
+            <th></th>
+            {% for instance in object_list %}
+                <tr class="{% cycle odd,even %}">
+                    <td nowrap><a href="{{ instance.owner.get_absolute_url }}"> {{instance.owner.username}} </a>shared</td>
+                    {% ifequal instance.shared.get_type "image" %}
+                        <td><b><a href="{% groupurl photo_details group id=instance.shared.id %}"><img src="{{ instance.shared.get_thumbnail_url }}" alt="{{ instance.shared.title }}"/></a></b><br />
+                        </td>
+                    {% endifequal %}
+                    {% ifnotequal instance.shared.get_type "image" %}
+                        <td><b><a href="{{ instance.shared.get_absolute_url }}">{{ instance.shared.title }}</a></b><br />
+                        </td>
+                    {% endifnotequal %}
+                    {% ifequal instance.shared.owner_type 2 %}
+                        <td nowrap>{% trans "From" %} {% owner instance.shared %} </td>
+                    {% endifequal %}
+                    {% ifnotequal instance.shared.owner_type 2 %}
+                        <td nowrap>{% trans "From" %}  <a href="{{ instance.shared.author.get_absolute_url }}">  {{instance.shared.author.username}}</a></td>
+                    {% endifnotequal %}
+                </tr>
+            {% endfor %}
+        </table>
+        
+    {% else %}
+        {% trans "No share from friends' yet." %}
+    {% endif %}
+    
+   
+    
+{% endblock %}
+

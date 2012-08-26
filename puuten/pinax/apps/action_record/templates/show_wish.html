@@ -1,0 +1,14 @@
+{% load weibo_tags %}
+
+<div class="wat" id = {{wb.id}}>
+    {% ifequal wb.status "2" %}
+        <a>把<a><a href={{bs.get_absolute_url}}>{{bs.name}}</a><a>的活动加到了自己的愿望单:</a>
+    {% endifequal %}
+    {% ifnotequal wb.status "2" %}
+        <a>把<a><a href={{bs.get_absolute_url}}>{{bs.name}}</a><a>的信息加到了自己的愿望单:</a>
+    {% endifnotequal %}
+    {% only_weibo wb %}
+    <a href="/wat/new/?wb={{wb.id}}&partner={{performer.id}}&dir=event_lib" rel='facebox'>约TA一起去</a> 
+    <a class = "add_wish">我也加入愿望单</a>
+    <a href="">评论或给他建议</a>
+</div>

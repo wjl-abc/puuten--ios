@@ -1,0 +1,30 @@
+{% extends "wearetogether/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% block head_title %}{% blocktrans %}Edit Affair{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% ifequal affair.creator request.user %}
+        <script type="text/javascript">
+            $(document).ready(function(){
+        	    $('#div_id_latitude').hide(); 
+                $('#div_id_longitude').hide();
+                var map = initialize({{affair.latitude}},{{affair.longitude}},10);
+                set_marker($('#id_latitude'), $('#id_longitude'), {{affair.latitude}},{{affair.longitude}}, map);
+              });
+   		</script>
+        <form class="uniForm" id="edit-blog" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ affair_form|as_uni_form }} 
+                <div id="map_canvas" style="width:600px; height:500px"></div>
+                <div class="form_block">
+                <input type="hidden" name="action" value="update" />
+                <input type="submit" value="{% trans "Update" %}"/>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <p>{% trans "You are not the creator of this affair" %}</p>
+    {% endifequal %}
+{% endblock %}

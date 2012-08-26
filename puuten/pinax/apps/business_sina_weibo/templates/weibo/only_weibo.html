@@ -1,0 +1,35 @@
+{% load switchcase %}
+{% load restructuredtext %}
+{% load markup %}
+{% load gravatar %}
+{% load i18n %}
+
+<div class="blog-post clearfix">
+	<div class="blog-post-tease">
+            {% with weibo.sina_text as body %}                
+                    {{ body|safe }}
+            {% endwith %}    
+            {% ifnotequal weibo.thumbnail_pic None %} 
+            	<div>
+            	<a rel="facebox" href="{{ weibo.original_pic }}" ><img src="{{ weibo.thumbnail_pic }}" /></a>
+            	</div>
+            {% endifnotequal %}    
+        {% ifnotequal retweeted_weibo "" %}
+            <div class="blog-post-retweeted">    
+                <div id="{{retweeted_weibo.sina_id}}" class="blog-post clearfix retweeted">
+					<div >{% trans "Retweeted from :" %}<a href="http://www.weibo.com/{{retweeted_weibo.sina_user.idstr}}" target="_blank">@{{retweeted_weibo.sina_user.name}}</a></div>
+		    			<div class="blog-post-tease">
+				            {% with retweeted_weibo.sina_text as body %}                
+				                    {{ body|safe }}
+				            {% endwith %}    
+				            {% ifnotequal retweeted_weibo.thumbnail_pic None %} 
+				            	<div>
+				            	<a rel="facebox" href="{{ retweeted_weibo.original_pic }}" ><img src="{{ retweeted_weibo.thumbnail_pic }}" /></a>
+				            	</div>
+				            {% endifnotequal %}       
+				        </div>
+			      </div>
+    	    </div>
+    	{% endifnotequal %}    
+    </div>   
+</div>

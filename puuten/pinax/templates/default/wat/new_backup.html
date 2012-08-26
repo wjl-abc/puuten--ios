@@ -1,0 +1,77 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load friends_app_tags %}
+{% load avatar_tags %}
+{% load profile_tags %}
+{% load weibo_tags %}
+{% load business_sina_tags %}
+
+{% block head_title %}{% blocktrans %}New Buzz{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <form class="uniForm" id="new_buzz" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ buzz_form|as_uni_form }}
+            <div class="form_block">
+                <input type="hidden" name="action" value="create" />
+                <input id= "create" type="submit" value="{% trans 'create' %}" />
+            </div>
+        </fieldset>
+    </form>
+    {% if attachment.bs %}    
+        <div>
+            <a href="{{attachment.bs.get_absolute_url}}" title="{{attachment.bs.name}}"><img usercard="id={{attachment.bs.sina_id}}" title="{{attachment.bs.name}}" alt="" width="50" height="50" src="{{attachment.bs.avatar}}"></a>
+            <a>{{attachment.bs.name}}</a>
+        </div>
+    {% endif %}
+    {% if attachment.wb %}
+        {% attach_weibo attachment.wb %}
+    {% endif %}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    
+    <script type="text/javascript">
+        var map;
+   	    $(document).ready(function(){
+   	    	$('#div_id_latitude').hide();
+   	        $('#div_id_longitude').hide();
+   	        $('#div_id_reference_bs').hide();
+   	        $('#div_id_reference_wb').hide();
+   	        $('#div_id_reference_wb').after("<input id='id_guest' type='text' class='textinput' name='guest_list' maxlength='200' />")
+   	        $('#id_guest').hide();
+   	        $("#div_id_accessing_mode").after("{% friends_checkbox request.user %}");
+   	        $("#friends_list").hide();
+    	    $('#id_latitude').val({{profile.latitude}});
+    	    $('#id_longitude').val({{profile.longitude}});
+    	    $(":checkbox").click(function(){
+            var str="";
+            $("[name=items]:checkbox:checked").each(function(){
+                str+=$(this).val()+",";
+            })
+            $("#id_guest").val(str);
+        });
+    	    if(parseFloat("{{attachment.bs.latitude}}")){
+    	        map = initialize_b(parseFloat("{{attachment.bs.latitude}}"),parseFloat("{{attachment.bs.longitude}}"), 13);
+    	        show_marker_b(parseFloat("{{attachment.bs.latitude}}"), parseFloat("{{attachment.bs.longitude}}"), map);
+    	        $('#id_latitude').val(parseFloat("{{attachment.bs.latitude}}"));
+    	        $('#id_longitude').val(parseFloat("{{attachment.bs.longitude}}"));
+    	    }
+    	    else{
+    	        map = initialize_b({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+	    	    set_marker_b($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+	    	}
+        });
+        $(function(){
+            $("#id_accessing_mode").bind("change", function(){
+                if($("#id_accessing_mode").val()==2){
+                    alert("mmmmmm");
+//                    $("#friends_list").show();
+                }else{
+                    $("#friends_list").hide();
+                }
+            })
+        })
+    </script>
+{% endblock %}
+

@@ -14,7 +14,7 @@
 @class WaterFlowView;
 
 
-@interface WaterFlowView : UIScrollView<UITableViewDelegate,UITableViewDataSource>{
+@interface WaterFlowView : UIScrollView<UIScrollViewDelegate>{
 
     int _columnCount;   //列数
     int _cellsTotal;    //总的数据项

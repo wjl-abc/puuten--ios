@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 16:28+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: base.html:10 friends_posts.html:7 friends_posts.html.py:11
+msgid "Friends' Blogs"
+msgstr "好友的博文"
+
+#: base.html:11 blogs.html:13 blogs.html.py:33
+msgid "All Blogs"
+msgstr "所有的博文"
+
+#: base.html:12 your_posts.html:21
+msgid "Your Posts"
+msgstr "您的文章"
+
+#: base.html:13 new.html:6
+msgid "Write a Blog Post"
+msgstr "编写博客文章"
+
+#: blog_item.html:20
+msgid "Posted:"
+msgstr "已发布的"
+
+#: blog_item.html:21
+msgid "on"
+msgstr "于"
+
+#: blogs.html:35
+msgid "These are blog posts from everyone:"
+msgstr "所有人的博客文章："
+
+#: blogs.html:52 friends_posts.html:25 your_posts.html:74
+msgid "No blog posts yet."
+msgstr "没有文章"
+
+#: edit.html:6
+msgid "Editing Post"
+msgstr "编辑文章"
+
+#: edit.html:52
+msgid "Update"
+msgstr "更新"
+
+#: edit.html:57
+msgid "You are not the author of this post"
+msgstr "您不是该文章的作者"
+
+#: friends_posts.html:14
+msgid "These are blog posts from your friends:"
+msgstr "您好友的博文："
+
+#: new.html:48
+msgid "create"
+msgstr "创作"
+
+#: post.html:11
+msgid "Blog Post"
+msgstr "博客文章"
+
+#: post.html:40
+msgid "Share"
+msgstr "分享"
+
+#: your_posts.html:11
+msgid "Your Blog Posts"
+msgstr "你的博文"
+
+#: your_posts.html:65
+msgid "Delete Post"
+msgstr "删除文章"

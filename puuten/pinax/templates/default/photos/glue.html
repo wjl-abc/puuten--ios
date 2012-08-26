@@ -1,0 +1,62 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Latest Photos{% endblocktrans %}{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$('#div_id_type').hide();
+        $('#div_id_ID').hide();
+    	var query = window.location.search;
+        query = query.substring(1);
+        var data = query.split('&');
+        $('#id_type').val(data[0]);
+        $('#id_ID').val(data[1]);
+        
+        $(":checkbox").click(function(){
+            var str="";
+            $("[name=items]:checkbox:checked").each(function(){
+                str+=$(this).val()+",";
+            })
+            $("#id_tags").val(str);
+        });
+      });
+      
+    </script>
+    <form class="uniForm" id="edit-profile" method="POST" enctype="multipart/form-data" action="">
+        <fieldset class="inlineLabels">
+            {{ photo_form|as_uni_form }}
+            <div id="div_id_type" class="ctrlHolder"> 	
+	        <label for="id_type">                    
+	            type*
+	        </label> 			
+	        <input id="id_type" type="text" class="textinput" name="type" maxlength="200" /> 		 
+            </div>
+            <div id="div_id_ID" class="ctrlHolder"> 	
+	        <label for="id_ID">                    
+	            ID*
+	        </label> 			
+	        <input id="id_ID" type="text" class="textinput" name="ID" maxlength="200" /> 		 
+            </div>
+            <div id="div_id_relation" class="ctrlHolder"> 	
+	        <label for="id_relation">                    
+	            relation*
+	        </label> 			
+	        <input id="id_relation" type="text" class="textinput" name="relation" maxlength="200" /> 		 
+            </div>
+            <div class="form_block">
+                <input type="hidden" name="action" value="upload" />
+                <input type="submit" value="{% trans "Upload" %}" />
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load microblogging_tags %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }}" href="/feeds/tweets/only/{{ user.username }}/" />
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }} and friends" href="/feeds/tweets/with_friends/{{ user.username }}/" />
+{% endblock %}
+
+{% block body %}    
+    {% ifnotequal tweet.reference super_man %}
+        <div class="tweet" id="t{{ tweet.id }}">
+            <a href="{% url profile_detail tweet.sender %}"><b>{{ tweet.sender }}</b></a>
+            {% render_tweet_text tweet %} <span class="timesince">{{ tweet.sent|timesince }} ago</span></br>
+            {% if reference %}<a href="{% url profile_detail reference.sender %}"><b>{{ reference.sender }}:</b></a>{% render_tweet_text reference %}{% endif %}
+        </div>
+    {% endifnotequal %}
+    {% ifequal tweet.reference super_man %}
+        <div class="tweet" id="t{{ tweet.id }}">
+            <a href="{% url profile_detail tweet.sender %}"><b>{{ tweet.sender }}</b></a>
+            {% render_tweet_text tweet %} <span class="timesince">{{ tweet.sent|timesince }} ago</span></br>
+        </div>
+    {% endifequal %}
+    <a>{% get_comment_count for tweet as commentcount %} {{ commentcount }} Comments</a>
+    <form class="uniForm" method="POST" action="/tweets/forward/{{tweet.id}}/">
+        <fieldset class="inlineLabels">
+            {% ifnotequal tweet.reference super_man %}
+                <div class="ctrlHolder">
+                    <textarea id="id_tweet" rows="10" cols="40" name="tweet" >@{{ tweet.sender }}:{% render_tweet_text tweet %}</textarea>
+                </div>
+                <div id="tags" >
+                    <input type="checkbox" name="items1" value="reponse to"/>{% trans "Comment to" %} {{ tweet.sender.username }}</br>
+                    <input type="checkbox" name="items2" value="reponse to"/>{% trans "Comment to" %} {{ tweet.reference.sender.username }}
+                </div>
+            {% endifnotequal %}
+            {% ifequal tweet.reference super_man %}
+                <div class="ctrlHolder">
+                    <textarea id="id_tweet" rows="10" cols="40" name="tweet" ></textarea>
+                </div>
+                <div id="tags" >
+                    <input type="checkbox" name="items1" value="reponse to"/>{% trans "Comment to" %} {{ tweet.sender.username }}</br>
+                </div>
+            {% endifequal %}
+            <div class="form_block">
+                <input type="hidden" name="next" value="forward" />
+                <input type="submit" value="{% trans "Forward" %}" />
+            </div>
+        </fieldset>
+    </form>
+    <span id="chars_left_facebox"></span> {% trans "chars left." %}
+{% endblock %}
+{% block extra_body %}
+    <script>
+        $(document).ready(function() {
+            function update_chars_left() {
+                var max_len = 140;
+                
+                var textarea = $('#id_tweet')[0];
+                var tweet_len = textarea.value.length;
+                if (tweet_len >= max_len) {
+           
+                    textarea.value = textarea.value.substring(0, max_len); // truncate
+                    $('#chars_left_facebox').html("0");
+                } else {
+                    $('#chars_left_facebox').html(max_len - tweet_len);
+                }
+            }
+            $('#id_tweet').keyup(function() {
+                update_chars_left();
+            });
+            update_chars_left();
+            $('#id_tweet').focus();
+            
+        });
+    </script>
+{% endblock %}

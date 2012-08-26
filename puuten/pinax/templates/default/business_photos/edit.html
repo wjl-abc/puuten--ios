@@ -1,0 +1,32 @@
+{% extends "site_base_business.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load tagging_tags %}
+{% load comments_tag %}
+{% load photo_tags %}
+{% load flagtags %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Editing Photo Details{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <div class="right_panel">
+        {% include "photos/photo_right_panel.html" %}
+    </div>
+    
+    <h1>{% trans "Photo Details" %}</h1>
+    
+    <div class="gallery-photo">
+        <img src="{{ photo_url }}" alt="{{ photo.title }}"/>
+    </div>
+    
+    {% ifequal photo.member request.user %}
+        <form method="POST" action="">
+            {{ photo_form|as_uni_form }}
+            <tr><td></td><td><input type="hidden" name="action" value="update" /><input type="submit" value="update" /></td></tr>
+        </form>
+    {% else %}
+        <p>You are not the author of this photo.</p>
+    {% endifequal %}
+    
+{% endblock %}

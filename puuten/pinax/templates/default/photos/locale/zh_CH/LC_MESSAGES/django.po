@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-19 01:41+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: base.html:11 latest.html:11 latest.html.py:15 upload.html:6
+msgid "Latest Photos"
+msgstr "最新照片"
+
+#: base.html:12 memberphotos.html:11 yourphotos.html:11 yourphotos.html.py:15
+msgid "Your Photos"
+msgstr "你的照片"
+
+#: base.html:13
+msgid "Upload a Photo"
+msgstr "上传照片"
+
+#: details.html:11 details.html.py:20 edit.html:18
+msgid "Photo Details"
+msgstr "照片描述"
+
+#: details.html:34
+msgid "Flag as inappropriate"
+msgstr "不恰当的标记"
+
+#: edit.html:10
+msgid "Editing Photo Details"
+msgstr "编辑照片描述"
+
+#: friends_photos.html:11 friends_photos.html.py:15
+msgid "Friends' Photos"
+msgstr "好友的照片"
+
+#: latest.html:25
+#, python-format
+msgid "Viewed %(view_count)s times"
+msgstr "浏览 %(view_count)s 次"
+
+#: latest.html:31
+msgid "No photos were found."
+msgstr "没有照片"
+
+#: memberphotos.html:15
+msgid "Photos from "
+msgstr "照片来自"
+
+#: photo_right_panel.html:28
+msgid "Get Embed Code"
+msgstr "获取嵌入码"
+
+#: photo_right_panel.html:40
+msgid "Delete Photo"
+msgstr "删除照片"
+
+#: upload.html:14
+msgid "Upload"
+msgstr "上传"

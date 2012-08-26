@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 17:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: base.html:10
+msgid "Your Profile"
+msgstr "您的资料"
+
+#: base.html:11 profiles.html:9
+msgid "All Profiles"
+msgstr "所有的资料"
+
+#: base.html:12
+msgid "Your Post"
+msgstr "你的文章"
+
+#: base.html:13
+msgid "Your Photos"
+msgstr "你的照片"
+
+#: ls.html:3 profile_edit.html:6 profile_edit.html.py:23
+msgid "Edit Profile"
+msgstr "编辑资料"
+
+#: profile.html:16
+#, python-format
+msgid "Profile for %(other_user)s"
+msgstr "%(other_user)s 的资料"
+
+#: profile.html:53
+#, python-format
+msgid "Profile for <span class=\"nickname\">%(other_user)s</span>"
+msgstr "<span class=\"nickname\">%(other_user)s</span> 的资料"
+
+#: profile.html:55
+#, python-format
+msgid "Profile for <span class=\"fn nickname\">%(other_user)s</span>"
+msgstr "<span class=\"fn nickname\">%(other_user)s</span> 资料"
+
+#: profile.html:59 profiles.html:25
+msgid "Name"
+msgstr "名字"
+
+#: profile.html:60
+msgid "About"
+msgstr "关于"
+
+#: profile.html:61
+msgid "Location"
+msgstr "地点"
+
+#: profile.html:62
+msgid "Latitude"
+msgstr "经度"
+
+#: profile.html:63
+msgid "Website"
+msgstr "网站"
+
+#: profile.html:73
+msgid "Followers"
+msgstr "关注你的人"
+
+#: profile.html:74
+msgid "Following"
+msgstr "你关注的人"
+
+#: profile.html:83
+msgid "unfollow"
+msgstr "不围观"
+
+#: profile.html:85
+msgid "follow tweets"
+msgstr "关注微博"
+
+#: profile.html:92
+#, python-format
+msgid "You are friends with %(other_user)s."
+msgstr "你是 %(other_user)s 的好友。"
+
+#: profile.html:92
+msgid "Send a message"
+msgstr "发送消息"
+
+#: profile.html:95
+msgid "remove from friends"
+msgstr "移除好友"
+
+#: profile.html:100
+#, python-format
+msgid "%(other_user)s has requested friendship."
+msgstr "%(other_user)s 请求加为好友。"
+
+#: profile.html:108
+msgid "accept"
+msgstr "接受"
+
+#: profile.html:113
+msgid "decline"
+msgstr "拒绝"
+
+#: profile.html:119
+msgid "Friendship request sent."
+msgstr "已发送好友请求"
+
+#: profile.html:121
+msgid "Add As Friend"
+msgstr "加为好友"
+
+#: profile.html:127
+msgid "invite"
+msgstr "邀请"
+
+#: profile.html:128
+#, python-format
+msgid "%(other_user)s to be a friend."
+msgstr "%(other_user)s 成为好友。"
+
+#: profile.html:149
+#, python-format
+msgid ""
+"<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
+"</a> to add this person as a friend and see their tweets and blog posts."
+msgstr ""
+"<a href=\"%(signup_url)s\">注册</a> 并且 <a href=\"%(login_url)s\">登陆 </a> "
+"以加该人为好友，同时围观他的微博和博文。"
+
+#: profile_right_panel.html:6
+msgid "Your Tribes"
+msgstr "你的圈子"
+
+#: profile_right_panel.html:13
+#, python-format
+msgid "You are not yet a member of any <a href=\"%(tribe_url)s\">tribes</a>."
+msgstr "您没有加入任何 <a href=\"%(tribe_url)s\">圈子</a>。"
+
+#: profile_right_panel.html:17
+msgid "Your Friends"
+msgstr "你的好友"
+
+#: profile_right_panel.html:31
+msgid ""
+"None. You should look at the list of <a href=\"/profiles/\">profiles</a> and "
+"see if there's anyone you know."
+msgstr ""
+"无。您可以查看 <a href=\"/profiles/\">资料</a> 列表，看看列表中有没有熟悉的"
+"人。"
+
+#: profile_right_panel.html:38
+#, python-format
+msgid "%(other_user)s's Tribes"
+msgstr "%(other_user)s 的圈子"
+
+#: profile_right_panel.html:44
+msgid "Not yet a member of any tribes."
+msgstr "没加入任何圈子。"
+
+#: profile_right_panel.html:48
+#, python-format
+msgid "%(other_user)s's Friends"
+msgstr "%(other_user)s 的好友"
+
+#: profiles.html:12
+msgid "Profiles"
+msgstr "资料"
+
+#: profiles.html:23
+msgid "Order by:"
+msgstr "排序"
+
+#: profiles.html:27
+msgid "Date"
+msgstr "日期"
+
+#: profiles.html:37
+msgid "MONTH_DAY_FORMAT"
+msgstr ""
+
+#: your_posts.html:11
+msgid "Your Blog Posts"
+msgstr "您的博文"
+
+#: your_posts.html:21
+msgid "Your Posts"
+msgstr "您的文章"
+
+#: your_posts.html:65
+msgid "Delete Post"
+msgstr "删除文章"
+
+#: your_posts.html:74
+msgid "No blog posts yet."
+msgstr "没有文章"

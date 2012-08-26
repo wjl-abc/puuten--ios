@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-22 21:44+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: accepted.html:13 accepted.html.py:16
+msgid "Your accepted Swaps"
+msgstr "您同意了交易"
+
+#: base.html:10
+msgid "Open Offers"
+msgstr "发起交易"
+
+#: base.html:11 your_offers.html:13 your_offers.html.py:16
+msgid "Your Offers"
+msgstr "您的出价"
+
+#: base.html:12
+msgid "Make an Offer"
+msgstr "发起一个交易"
+
+#: base.html:13
+msgid "Proposed to you"
+msgstr "给您的出价"
+
+#: base.html:14
+msgid "Proposed by you"
+msgstr "您的出价"
+
+#: base.html:15
+msgid "Accepted"
+msgstr "已接受"
+
+#: base.html:16
+msgid "Dead"
+msgstr "已中止"
+
+#: dead.html:13 dead.html.py:16
+msgid "Your dead Swaps"
+msgstr "您已中止的交易"
+
+#: edit_offer.html:6 edit_offer.html.py:9
+msgid "Editing Offer"
+msgstr "编辑交易"
+
+#: edit_offer.html:18
+msgid "update"
+msgstr "更新"
+
+#: new_offer.html:6 new_offer.html.py:9
+msgid "Add a new Offer"
+msgstr "添加一个新交易"
+
+#: new_offer.html:16
+msgid "create"
+msgstr "新建"
+
+#: offer.html:10
+msgid "Offer"
+msgstr "交易"
+
+#: offer.html:38 swap.html:31 swap.html.py:56
+msgid "Edit Offer"
+msgstr "编辑交易"
+
+#: offer.html:42
+msgid "Delete Offer"
+msgstr "删除交易"
+
+#: offer.html:47
+msgid "Cancel Offer"
+msgstr "取消交易"
+
+#: offers.html:14 offers.html.py:52
+msgid "All Open Offers"
+msgstr "所有开放的交易"
+
+#: offers.html:69
+msgid "Propose Swap"
+msgstr "提出交易"
+
+#: propose_swap.html:6 propose_swap.html.py:9
+msgid "Propose a Swap"
+msgstr "提出一个交易"
+
+#: propose_swap.html:29
+msgid "propose"
+msgstr "提出"
+
+#: proposed_by_you.html:8 proposed_by_you.html.py:12
+msgid "Swaps proposed by you"
+msgstr "您所提出的交易"
+
+#: proposed_by_you.html:35
+msgid "Cancel"
+msgstr "取消"
+
+#: proposed_to_you.html:8 proposed_to_you.html.py:11
+msgid "Swaps proposed to you"
+msgstr "提供给您的交易"
+
+#: proposed_to_you.html:34
+msgid "Accept"
+msgstr "接受"
+
+#: proposed_to_you.html:37
+msgid "Reject"
+msgstr "拒绝"
+
+#: swap.html:8 swap.html.py:11
+msgid "Swap"
+msgstr "交易"
+
+#: notification/swaps_acceptance/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has accepted your proposed '<a "
+"href=\"%(swap_url)s\">swap</a>' of %(proposing_offer)s for "
+"%(responding_offer)s.\n"
+msgstr ""
+
+#: notification/swaps_cancellation/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has cancelled their proposed '<a "
+"href=\"%(swap_url)s\">swap</a>' of %(proposing_offer)s for "
+"%(responding_offer)s.\n"
+msgstr ""
+
+#: notification/swaps_comment/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(commenter)s</a> has commented on the swap '<a "
+"href=\"%(swap_url)s\">%(swap)s</a>' in which your offer is involved."
+msgstr ""
+
+#: notification/swaps_conflict/notice.html:1
+#, python-format
+msgid ""
+"\n"
+"One of your offers was involved in a swap  <a href=\"%(losing_swap_url)s\">"
+"%(losing_swap)s</a>\n"
+"that lost a conflict to another swap <a href=\"%(winning_swap_url)s\">"
+"%(winning_swap)s</a>.\n"
+msgstr ""
+
+#: notification/swaps_proposal/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has proposed a '<a href="
+"\"%(swap_url)s\">swap</a>' of %(proposing_offer)s for your "
+"%(responding_offer)s.\n"
+msgstr ""
+
+#: notification/swaps_proposing_offer_changed/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has changed their offer "
+"%(proposing_offer)s in a proposed '<a href=\"%(swap_url)s\">swap</a>' for "
+"your %(responding_offer)s.\n"
+msgstr ""
+
+#: notification/swaps_rejection/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has rejected your proposed '<a "
+"href=\"%(swap_url)s\">swap</a>' of %(proposing_offer)s for "
+"%(responding_offer)s.\n"
+msgstr ""
+
+#: notification/swaps_responding_offer_changed/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has changed their responding "
+"offer %(responding_offer)s to your proposed '<a href=\"%(swap_url)s\">swap</"
+"a>' for %(proposing_offer)s.\n"
+msgstr ""

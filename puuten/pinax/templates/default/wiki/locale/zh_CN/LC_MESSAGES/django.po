@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 18:18+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: base.html:10
+msgid "All Articles"
+msgstr "所有文章"
+
+#: changeset.html:20
+msgid "Markup:"
+msgstr "标记"
+
+#: changeset.html:24
+msgid "Plain Text."
+msgstr "普通文本"
+
+#: edit.html:8 edit.html.py:14
+msgid "Edit Article"
+msgstr "编辑文章"
+
+#: edit.html:20
+msgid "Save Article"
+msgstr "保存文章"
+
+#: history.html:14
+msgid "History for article"
+msgstr "文章历史"
+
+#: history.html:20
+msgid "Date"
+msgstr "日期"
+
+#: history.html:21
+msgid "Editor"
+msgstr "编辑"
+
+#: history.html:22
+msgid "Comment"
+msgstr "评论"
+
+#: history.html:23
+msgid "Revert to..."
+msgstr "回转到..."
+
+#: history.html:29
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: history.html:43
+msgid "Current Revision"
+msgstr "当前版本"
+
+#: history.html:53
+msgid "Revert"
+msgstr "回转"
+
+#: history.html:56
+msgid "No changes in this article"
+msgstr "该文章没有变更"
+
+#: index.html:22
+msgid "MONTH_DAY_FORMAT"
+msgstr ""
+
+#: searchbox.html:11
+msgid "Go"
+msgstr "转到"
+
+#: view.html:17
+msgid "Actions"
+msgstr "操作"
+
+#: view.html:20
+msgid "Edit this article"
+msgstr "编辑这篇文章"
+
+#: view.html:22
+msgid "Editing history"
+msgstr "编辑历史"
+
+#: view.html:26
+msgid "Create this article"
+msgstr "创建这篇文章"
+
+#: view.html:39
+msgid "This article does not exist."
+msgstr "这篇文章不存在"
+
+#: view.html:40
+msgid ">Create it now</a>?"
+msgstr ">立即创建吗</a>？"
+
+#: view.html:52
+msgid "Stop Observing Article"
+msgstr "停止阅读文章"
+
+#: view.html:56
+msgid "Observe Article"
+msgstr "阅读文章"

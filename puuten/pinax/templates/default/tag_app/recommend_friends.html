@@ -1,0 +1,74 @@
+{% load i18n %}
+{% load profile_tags %}
+<div  class="friends">  
+{% if users %}
+	<h2>{% trans "Who you like:" %}</h2>
+	<div id="recmmend_friendsarea" style="display:none">
+	{% for user in users %}
+		{% show_profile user %}
+	{% endfor %} 
+	</div>
+{% else %}
+	<p>No profile were found.</p> 
+{% endif %}
+</div>
+<script type="text/javascript">
+ 
+		function profile_sort(p1,p2)
+		{
+			percent = p2.percent - p1.percent;
+			if(percent == 0)
+				percent = p2.commarea - p1.commarea;
+			return percent;
+		}
+		
+		function common_area(l1,l2,l3,l4,ol1,ol2,ol3,ol4)
+		{
+			return common_section(l1,l2,ol1,ol2)*common_section(l3,l4,ol3,ol4);
+		}
+		
+		function common_section(a,b,c,d)
+		{
+			_cosection = new Array(a,b,c,d);
+			_cosection.sort(number_sort);
+			return _cosection[2]-_cosection[1];
+		}
+		
+		function number_sort(a,b)
+		{
+			return a-b;
+		}
+		
+		$(document).ready(function(){  
+			profiles ={{ recommendprofiles }}; 
+			 
+			mla = {{ mlatitude }};
+			mlo = {{ mlongitude }};
+			mola = {{ motherlati }};
+			molo = {{ motherlong }};
+			
+			
+			for(var j =0; j<profiles.length; j++){
+				i = profiles[j];
+				//alert(i.uname);
+				i.area = (i.uotherlati - i.ulatitude)*(i.uotherlong - i.ulongitude);
+				i.commarea = common_area(mla,mlo,mola,molo, i.uotherlati, i.ulatitude, i.uotherlong, i.ulongitude);
+				i.percent = i.commarea / i.area;
+			}
+			profiles = profiles.sort(profile_sort);
+			var $friendnames = $("#recmmend_friendsarea").children();
+			for(var j =0; j<profiles.length && j<5; j++){
+				for(var m = 0; m < $friendnames.length; m++){
+					var aname = $friendnames[m];
+					//alert(aname);
+					//alert($(aname).text()+profiles[j].uname);
+					if($(aname).text().trim()==profiles[j].uname)
+					{
+						$("#recmmend_friendsarea").parent().append($(aname).html());
+					}
+				}
+			}
+		});
+	
+	
+</script>

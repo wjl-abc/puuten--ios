@@ -1,0 +1,67 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+{% load extra_tagging_tags %}
+{% load wat_tag %}
+{% load weibo_tags %}
+
+{% block head_title %}{% blocktrans %}My Buzz{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1 href="{{bs.get_absolute_url}}">{{bs.name}}</h1>
+    {% only_weibo wb %}
+    {% if buzz_diaries %}
+        <div>
+            {% for instance in buzz_diaries %}
+                <div>
+                    <div class="diary-meta">
+                        <p><a href="{% url profile_detail instance.author.id %}">{{ instance.author.username }}</a> on {{ instance.created_at|date }}:</p> 
+                        <p><a>{{ instance.body }}</a></p>
+                    </div>
+                </div>
+                <form action="{% url buzz_diary_destroy instance.id %}" method="POST">
+                    {% ifequal instance.author request.user %}
+                        <div class="form_block">
+                            <input type="hidden" name="action" value="delete" />
+                            <input type="submit" value="{% trans 'delete' %}" />
+                        </div>
+                    {% endifequal %}
+                </form>
+            {% endfor %}
+        </div>
+    {% endif%}
+    <div class="form-toggle">
+        <p><span id="diary-toggle">{% trans "Add more information to enrich your memory" %}</span></p>
+        <form class="uniForm" id="new_diary" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ diary_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'submit' %}" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <a>{% get_comment_count for buzz as commentcount %} {{ commentcount }} Comments</a>
+    {% comments buzz %}
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#new_diary').hide();
+            $('#diary-toggle').click(function() {
+                $('#new_diary').slideToggle();
+                $('#new_diary').autoscroll();
+                return false;
+            });
+            if ($('#new_diary ul.errorlist').length) {
+                $('#new_diary').show();
+                $('#new_diary ul.errorlist').autoscroll();
+            }
+        });
+    </script>
+{% endblock %}

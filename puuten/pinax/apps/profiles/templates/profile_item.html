@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load humanize %}
+
+<div class="profile clearfix">
+    {# @@@ factor out style into css file #}
+    <div style="float: left;">{% avatar_user user.id 40 %}</div>
+    <div style="padding: 5px; margin-left: 50px;"><a href="{% url profile_detail user.id %}">{{ user }}</a><br />
+        {% if user.get_profile.name %}<b>{% trans "Name" %}</b>: {{ user.get_profile.name }}{% endif %}<br />
+        {% if user.get_profile.about %}<b>{% trans "About" %}</b>: {{ user.get_profile.about }}{% endif %}<br />
+        {% if user.get_profile.location%}<b>{% trans "Location" %}</b>: {{ user.get_profile.location }}{% endif %}<br />
+        {% if user.get_profile.website %}<b>{% trans "Website" %}</b>: <a href="{{ user.get_profile.website }}">{{ user.get_profile.website }}</a>{% endif %}
+    </div>
+    {% if not is_me %}
+        {% if is_friend %}
+            <div>
+                <form id="delete" method="POST" action="{% url toggle_friends user.id %}">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="submit" value="{% trans "Delete him/her from your friends" %}"/>
+                </form>
+            </div>
+        {% else %}
+            <h4>{% trans "Add As Friend" %}</h4>
+            <div class="form-toggle">
+                <p><span class="invite-toggle">{% trans "Invite him/her to be your friend!" %}</span></p>
+                <form class="invite" method="POST" action="{% url toggle_friends user.id %}">
+                    <fieldset class="inlineLabels">
+                        {{ invite_form|as_uni_form }}
+                        <div class="form_block">
+                            <input type="hidden" name="action" value="invite" />
+                            <input type="submit" value="{% trans "Invite" %}" />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

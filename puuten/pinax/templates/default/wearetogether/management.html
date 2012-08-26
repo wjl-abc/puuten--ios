@@ -1,0 +1,62 @@
+{% extends "wearetogether/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Affair Management{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    <h2><a href="">{{affair.theme}}</a></h2>
+    {% ifequal affair.creator request.user %}
+        <a href="{% url affair_edit affair.id %}">{% trans "Edit This Affair" %}</a><br />
+        <form class="uniForm" id="new_dating" method="POST" action="">
+            <fieldset class="inlineLabels">
+                <div id='invitatioin'>
+                    <a>{% trans "Search Dating Partner" %}</a><input id="get_search" type="text" name="search" value="{{ search_terms }}" />
+                    <p></p>
+                    <div  class="ctrlHolder">
+	                    <label for="id_message">{% trans "Inviting Message to your dating partner" %}</label>
+	                    <textarea id="id_message" rows="5" cols="20" name="message" class="textarea"></textarea>
+	                </div>
+                </div>
+                <div class="form_block">
+                    <input type="hidden" name="action" value="sent" />
+                    <input id= "create" type="submit" value="{% trans 'sent' %}" />
+                </div>
+            </fieldset>
+        </form>
+    {% endifequal %}
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+        var map;
+        $(document).ready(function(){
+            map = initialize({{affair.latitude}}, {{affair.longitude}}, 11);
+        });
+        var done_for_search = function(data, textStatus){
+ 	        if(textStatus=="success"){
+ 		        var txt = data.responseText;
+ 		        var instances = JSON.parse(txt);
+ 		        var i = 0
+ 		        $('p').empty(); 
+     		    for (i=0; i<instances.length; i++){	
+     			    $('p').append('<div class="ctrlHolder"><div style="float: left;">'+instances[i].avatar+'</div><a href="'+instances[i].link+'">'+instances[i].username+'<a><input type="checkbox" name="invitation" value="'+instances[i].id+'"/></div>');
+   		        }
+ 	        }
+ 	        else{
+ 		        alert("Some error happens.");
+ 	        }
+        }
+	    var get_search = function(){	
+            var data_for_search = {"search_term":$('#get_search').val()};
+            var args = {type:"POST",
+                        url:"",
+                        data:data_for_search,
+                        complete:done_for_search};
+            $.ajax(args);
+            return false;
+        };       
+	    $("#get_search").keyup(get_search);
+    </script>
+{% endblock %}

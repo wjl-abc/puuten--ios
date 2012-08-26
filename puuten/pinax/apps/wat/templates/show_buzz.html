@@ -1,0 +1,7 @@
+{% load weibo_tags %}
+
+<div class="buzz" id = {{buzz.id}}>
+    <p><a href='{{bs.get_absolute_url}}'>{{bs.name}}</a><a>的活动(附加消息)：</a></p>
+    {% only_weibo wb %}
+    <a href="{{buzz.get_absolute_url}}">详细</a>    
+</div>

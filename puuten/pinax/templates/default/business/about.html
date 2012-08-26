@@ -1,0 +1,30 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load avatar_tags %}
+
+{% block head_title %}{% blocktrans %}About{% endblocktrans %}{% endblock %}
+{% block body %}
+    <div class="left_panel">
+        <div class="vcard">
+            <div class="profile_info">
+                {% if business.name %}<p><b>{% trans "Name" %}</b>: <span class="fn">{{ business.name }}</span></p>{% endif %}
+                {% if business.about %}<p><b>{% trans "About" %}</b>: {{ business.about }}</p>{% endif %}   
+                {% if business.website %}<p><b>{% trans "Website" %}</b>: <a class="url" href="{{ business.website }}">{{ business.website }}</a></p>{% endif %}
+            </div>
+            <table width="100%">
+            <p><b>{% trans "Stuff" %}</b>:</a></p>
+            {% for manager in managers %}
+                {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
+                    <td>
+                        <div class="avatar">{% avatar manager.manager 40 %}</div>
+                        <div class="details"><a href="{% url profile_detail manager.manager.id %}" title="{{ manager.manager.username }}">{{ manager.manager.username }}</a></div>
+                    </td>
+                {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
+            {% endfor %}
+                {% if managers|length|divisibleby:"3" %}{% else %}</tr>{% endif %}
+        </table>
+        </div>
+    </div>        
+{% endblock %}

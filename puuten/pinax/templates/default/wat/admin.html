@@ -1,0 +1,119 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load avatar_tags %}
+{% load extra_tagging_tags %}
+{% load wat_tag %}
+
+{% block head_title %}{% blocktrans %}Buzz Admin{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    <h2>{{buzz.title}}</h2>
+    <p>{% show_tags_for buzz %}</p>
+    {% if is_creator %}
+    <form class="uniForm" id="new_dating" method="POST" action="">
+        <fieldset class="inlineLabels">
+            <div id='search_partner'>
+                <a>{% trans " Search And Invite Member" %}</a><input id="get_search" type="text" name="search" value="{{ search_terms }}" />
+                <p></p>
+                <div  class="ctrlHolder">
+	                <label for="id_message">{% trans "Inviting Message to him/her" %}</label>
+	                <textarea id="id_message" rows="5" cols="20" name="message" class="textarea"></textarea>
+	            </div>
+            </div>
+            <div class="form_block">
+                <input type="hidden" name="action" value="invite" />
+                <input id= "create" type="submit" value="{% trans 'invite' %}" />
+            </div>
+        </fieldset>
+    </form>
+    
+    <h3>{% trans "Members" %}({% get_member_count buzz %}):</h3>
+    {% for instance in buzz_members %}
+    <table cellpadding="5" cellspacing="0" border="0" class="members-list" width="50%">
+        <tr class="{% cycle odd,even %}">
+            <td>{% avatar_user instance.id 30 %}<a href="{% url profile_detail instance.id %}">{{ instance.username }}</a></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="buzz_member_id" value="{{ instance.id }}"/>
+                    <input type="hidden" name="action" value="remove"/>
+					<input type="submit" value="{% trans 'remove' %}" />
+                </form>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+    <h3>{% trans "Applicants" %}({% get_applicant_count buzz %}):</h3>
+    {% for instance in applications %}
+    <table cellpadding="5" cellspacing="0" border="0" class="members-list" width="50%">
+        <tr class="{% cycle odd,even %}">
+            <td>{% avatar_user instance.id 30 %}<a href="{% url profile_detail instance.id %}">{{ instance.username }}</a></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="applicant_id" value="{{ instance.id }}"/>
+                    <input type="hidden" name="action" value="approve"/>
+					<input type="submit" value="{% trans 'approve' %}" />
+                </form>
+            </td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="applicant_id" value="{{ instance.id }}"/>
+                    <input type="hidden" name="action" value="reject"/>
+					<input type="submit" value="{% trans 'reject' %}" />
+                </form>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+    
+    {% else %}
+        {% ifnotequal buzz.accessing_mode 2 %}
+            {% if not related_or_not %}
+                <form method="POST" action=""> 
+                    <div class="form_block">
+                        <input type="hidden" name="action" value="join" />
+                        <input id= "create" type="submit" value="{% trans 'join' %}" />
+                    </div>
+                </form>
+            {% endif %}
+        {% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{buzz.latitude}}, {{buzz.longitude}}, 10);
+        show_marker_b({{buzz.latitude}}, {{buzz.longitude}}, map);
+    });
+    
+    var done_for_search = function(data, textStatus){
+ 	    if(textStatus=="success"){
+ 		    var txt = data.responseText;
+ 		    var instances = JSON.parse(txt);
+ 		    var i = 0
+ 		    $('p').empty(); 
+     		for (i=0; i<instances.length; i++){	
+     			$('p').append('<div class="ctrlHolder"><div style="float: left;">'+instances[i].avatar+'</div><a href="'+instances[i].link+'">'+instances[i].username+'<a><input type="radio" name="dating_partner" value="'+instances[i].id+'"/></div>');
+   		    }
+ 	    }
+ 	    else{
+ 		    alert("Some error happens.");
+ 	    }
+    }
+	var get_search = function(){
+	    	
+        var data_for_search = {"search_term":$('#get_search').val()};
+        var args = {type:"POST",
+                    url:"",
+                    data:data_for_search,
+                    complete:done_for_search};
+        $.ajax(args);
+        return false;
+    };       
+	    $("#get_search").keyup(get_search);
+    
+    </script>
+{% endblock %}

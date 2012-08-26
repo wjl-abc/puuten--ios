@@ -1,0 +1,42 @@
+{% extends "friends_app/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load blog_tags %}
+
+{% block head_title %}{% blocktrans %}Friends' Blogs{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function(){
+            {% if object_list %}
+                map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+                delete_marker();
+                {% for blog in object_list %}
+                add_marker({{blog.latitude}}, {{blog.longitude}},"{{blog.title}}",
+                        "{{blog.title}}","{{ blog.author.username }}",
+                        "{{ blog.get_absolute_url }}","{% url profile_detail blog.author.id %}");
+                {% endfor %}
+                show_markers();
+            {% endif %}
+          });
+    </script>
+
+    <h1>{% blocktrans %}Friends' Blogs{% endblocktrans %}</h1>
+    {% if object_list %}
+        <p class="helptext">{% trans "These are blog posts from your friends:" %}</p>
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        {% autopaginate object_list %}
+            
+            {% for blog_post in object_list %}
+                {% show_blog_post blog_post %}
+            {% endfor %}
+            
+        {% paginate %}
+        
+    {% else %}
+        {% trans "No blog posts yet." %}
+    {% endif %}
+    
+{% endblock %}

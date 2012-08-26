@@ -1,0 +1,42 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}New Business{% endblocktrans %}{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var map = initialize({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+    	    $('#id_latitude').val({{profile.latitude}});
+    	    $('#id_longitude').val({{profile.longitude}});
+            set_marker($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+            $('#div_id_latitude').hide(); 
+            $('#div_id_longitude').hide();
+          });
+    </script>
+    <form class="uniForm" id="edit-profile" enctype="multipart/form-data"  method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ business_profile_form|as_uni_form }}
+                <div id="div_id_image" class="ctrlHolder">
+	                <label for="id_image">                    
+	                    {% trans "mainpic" %}
+	                </label>
+	            <input id="id_image" type="file" class="fileinput" name="image">
+        		</div> 
+                <div id="map_canvas" style="width:600px; height:500px"></div>
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input type="submit" value="{% trans "create" %}" />
+                    or <a href="{% url profile_detail profile.user.id %}">{% trans "cancel" %}</a>
+                </div>
+            </fieldset>
+        </form>
+    
+{% endblock %}

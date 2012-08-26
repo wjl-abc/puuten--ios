@@ -1,0 +1,49 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}App Page{% endblocktrans %}{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+            $(":checkbox").click(function(){
+                var str="";
+                $("[name=app_id]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_name").val(str);
+            });
+        });
+    </script>
+    <form class="uniForm" id="edit-profile" method="POST" action="">
+            <fieldset class="inlineLabels">
+                <div id="div_id_name" class="ctrlHolder">
+	                <input id="id_name" type="hidden" class="textinput" name="name" maxlength="200" />
+                </div>
+                <div id="tags" >
+                    <p>Please select the apps you need from below:</p>
+                    {% for instance in app_list %}
+                        <input type="checkbox" name="app_id" value={{instance.id}} >{% trans instance.name %}
+                        <p>{{instance.description}}</p>
+                    {% endfor %}
+                    <input type="checkbox" name="app" value="gallery" DISABLED >Gallery
+                    <p>Coming soon</p>
+                    <input type="checkbox" name="app" value="menu" DISABLED >Menu
+                    <p>Coming soon</p>
+                    <input type="checkbox" name="app" value="reservation" DISABLED >Reservation
+                    <p>Coming soon</p>
+                </div>
+                <div class="form_block">
+                    <input type="hidden" name="action" value="submit" />
+                    <input id= "create" type="submit" value="{% trans "submit" %}" />
+                </div>
+            </fieldset>
+        </form>
+    
+{% endblock %}

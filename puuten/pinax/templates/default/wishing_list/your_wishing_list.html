@@ -1,0 +1,22 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load group_tags %}
+{% load extra_tagging_tags %}
+{% load share_tags %}
+{% load weibo_tags %}
+{% load action_tags %}
+
+{% block head_title %}{% blocktrans %}My Wishing List{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if wishing_list %}
+        {% for instance in wishing_list %}
+            {% show_wish request.user instance %}
+            <form action="{% url wishing_destroy instance.id %}" method="POST">
+                <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Post" %}" />
+                <input type="hidden" name="action" value="delete"/>
+            </form>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

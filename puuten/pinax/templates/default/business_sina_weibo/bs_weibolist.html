@@ -1,0 +1,50 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load weibo_tags %}
+
+{% block head_title %}{% blocktrans %}Business From Sina{% endblocktrans %}{% endblock %}
+
+{% block body %}
+
+        <div ><a href="{{bs.get_absolute_url}}" title="{{bs.name}}"><img usercard="" id="{{bs.sina_id}}" title="{{bs.name}}" alt="" width="50" height="50" src="{{bs.avatar}}"></a></div>
+        <div class="tag"><a>{{bs.tags}}</a></div>
+        <div class="intro"><a>{{bs.introduction}}</a></div>
+        <h1>所有信息：</h1>
+        {% if weibolist %}
+            
+            {% autopaginate weibolist %}
+
+                {% for instance in weibolist %}
+                    {% only_weibo instance %}
+                    <div class="operation" id ={{instance.id}}>
+                        <a href="{% url wb_comments instance.id %}?next=/business/bs_weibo_list/{{bs.id}}/" rel='facebox'>{% get_comment_count for instance as commentcount %} {{ commentcount }} 条评论</a>
+    	                <a class="wat" href="/wat/new/?wb={{instance.id}}" rel='facebox'>约TA一起去</a>
+    	                <a class="add_wish">加入愿望单</a>
+    	            <div>
+                {% endfor %}
+
+            {% paginate %}
+        {% else %}
+            {% trans "No tweets posts yet." %}
+        {% endif %}
+    <script type="text/javascript">
+        var done_for_wish = function(data, textStatus){
+        	
+        }
+        var add_wish = function(){
+            var data_for_wish = {"id":$(this).parent().attr("id"), "action":"add_wish"};
+            var args = {type:"POST",
+                       url:"",
+                       data:data_for_wish,
+                       complete:done_for_wish};
+            $.ajax(args);
+            return false;
+        };
+        $(".add_wish").click(add_wish);
+    </script>
+{% endblock %}

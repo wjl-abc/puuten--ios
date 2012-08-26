@@ -1,0 +1,71 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load extra_tagging_tags %}
+{% load blog_tags %}
+{% load markup %}
+{% load switchcase %}
+{% load restructuredtext %}
+{% load blog_tags %}
+{% load threadedcommentstags %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        <ul>
+            <li><a href="{% url blog_list_user user.id %}">{% trans "Blogs" %}</a></li>
+            <li><a href="{% url photos_member user.id %}">{% trans "Photos" %}</a></li>
+            <li><a href="{% url tweets_list_user user.id %}">{% trans "Tweets" %}</a></li>
+            <li><a href="{% url profile_detail user.id %} ">{% trans "Your Profile" %}</a></li>
+        </ul>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+
+{% block head_title %}{% blocktrans %}All Blogs{% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function(){
+            {% if blogs %}
+                map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+                delete_marker();
+                {% for blog in blogs %}
+                    add_marker({{blog.latitude}}, {{blog.longitude}},"{{blog.title}}",
+                              "{{blog.body}}","{{ blog.author.username }}",
+                              "{{ blog.get_absolute_url }}","{% url profile_detail blog.author.id %}");
+                {% endfor %}
+                show_markers();
+            {% endif %}
+          });
+    </script>
+
+    <h1>{% trans "All Blogs" %}</h1>
+    {% if blogs %}
+        <p>{% trans "These are blog posts from everyone:" %}</p>
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        {% autopaginate blogs %}
+
+            {% for blog_post in blogs %}
+                {% show_blog_post blog_post %}
+            {% endfor %}
+
+        {% paginate %}
+    {% else %}
+        {% trans "No blog posts yet." %}
+    {% endif %}
+{% endblock %}
+

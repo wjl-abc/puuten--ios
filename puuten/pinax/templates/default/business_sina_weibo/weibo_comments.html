@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+{% load avatar_tags %}
+{% load theme_tags %}
+{% load weibo_tags %}
+<script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script>  
+{% show_weibo wb %}
+<a>{% get_comment_count for wb as commentcount %} {{ commentcount }} 条评论</a>
+{% comments_next wb next %}

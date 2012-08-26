@@ -1,0 +1,46 @@
+{% extends "friends_app/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load ijustdated_tags %}
+{% block head_title %}{% blocktrans %}My Friends' Dating{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    {% if object_list %}  
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="50%">
+        {% for instance in object_list %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b><a href="{% url profile_detail instance.partner.id %}">{{ instance.partner.username }}</a></b></td>
+                    <td><b>{% trans "with" %}{% get_another_partner instance %}</b></td>
+                    <td><b><a href="{{ instance.dating.get_absolute_url }}">{% trans "'s dating" %}</a></b><br />
+                    </td>
+                    <td nowrap>{{ instance.dating.created_at|date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        mm_icon = "{{ STATIC_URL }}pinax/images/dating_mm.png";
+        mf_icon = "{{ STATIC_URL }}pinax/images/dating_mf.png";
+        ff_icon = "{{ STATIC_URL }}pinax/images/dating_ff.png";
+        {% for instance in object_list %}
+            {% ifequal instance.dating.dating_mode 1 %}
+                show_marker_b({{instance.dating.latitude}}, {{instance.dating.longitude}});
+            {% endifequal %}
+            {% ifequal instance.dating.dating_mode 2 %}
+                show_marker_b({{instance.dating.latitude}}, {{instance.dating.longitude}});
+            {% endifequal %}
+            {% ifequal instance.dating.dating_mode 3 %}
+                show_marker_b({{instance.dating.latitude}}, {{instance.dating.longitude}});
+            {% endifequal %}
+        {% endfor %}
+    });
+    </script>
+{% endblock %}

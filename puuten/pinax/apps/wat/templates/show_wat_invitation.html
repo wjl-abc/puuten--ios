@@ -1,0 +1,8 @@
+{% load weibo_tags %}
+<div class="invitation" id={{id}}>
+<a href="{{from.get_absolute_url}}">{{from.username}}<a><a>给你发来邀请信息：</a><a>{{info}}</a><br/>
+<a>附属信息:</a>
+{% only_weibo wb %}
+<a class = "accept">接受</a>
+<a class = "ignore">忽略</a>
+</div>

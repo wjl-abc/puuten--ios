@@ -1,0 +1,46 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load event_tags %}
+{% load markup %}
+{% load switchcase %}
+{% load tagging_tags %}
+{% load restructuredtext %}
+{% load theme_tags %}
+{% load extra_tagging_tags %}
+
+{% block head_title %}{% blocktrans %}Events{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if is_manager %}
+        <a href="{% url business_new_event business.id %}">{% trans "New Event" %}</a><br />
+    {% endif %}
+    
+    {% if events %}
+        <table cellpadding="5" cellspacing="0" border="0" class="app-list" width="100%">
+            <tr class="{% cycle odd,even %}">
+                {% for instance in events %}        
+                    <td><b><a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></b><br /></td>
+                    <td nowrap>{{ instance.publish|date }}</td>
+                    <td nowrap>{% show_tags_for instance %}</td>
+                    {% if is_manager %} 
+                    <td width="50px" align="center">
+                        <a href="{{ instance.get_edit_url }}">
+                            {% silk "pencil" %}
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{{ instance.get_destroy_url }}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Event" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                       </form>
+                    </td>
+                    {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        {% trans "No event posts yet." %}
+    {% endif %}
+{% endblock %}

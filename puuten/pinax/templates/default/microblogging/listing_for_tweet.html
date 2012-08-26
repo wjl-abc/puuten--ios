@@ -1,0 +1,64 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load pagination_tags %}
+{% load microblogging_tags %}
+{% load comments_tag %}
+{% load tagging_tags %}
+{% load theme_tags %}
+{% load group_tags %}
+{% load threadedcommentstags %}
+{% autopaginate tweets %}
+
+{% if tweets %}
+    {% for tweet in tweets %}
+        <div class="tweet" id="t{{ tweet.id }}">
+            {% if prefix_sender %}<a href="{% url profile_detail tweet.sender_id %}"><b>{{ tweet.sender }}</b></a>{% endif %}
+            {% render_tweet_text tweet %}
+            <span class="timesince">{% blocktrans with tweet.sent|timesince as tweet_age %}{{ tweet_age }} ago{% endblocktrans %}</span>
+            <a href="{% url forward_tweet  tweet.id  %}" rel="facebox"><b>{% trans "Forward" %}({% get_forward_count for tweet as forwardcount %} {{ forwardcount }})</b></a>
+            <a href="{% url comment_tweet  tweet.id  %}" rel="facebox"><b>{% trans "Comments" %}({% get_comment_count for tweet as commentcount %} {{ commentcount }})</b></a>
+            </br>
+            {% ifequal tweet.reference.get_type "tweet" %}
+                {% if prefix_sender %}<a href="{% url profile_detail tweet.reference.sender_id %}"><b>{{ tweet.reference.sender }}</b></a>{% endif %}
+                {% render_tweet_text tweet.reference %}
+            {% endifequal %}
+
+            {% ifequal tweet.reference.get_type "image" %}
+                <td><b><a href="{% groupurl photo_details group id=tweet.reference.id %}"><img src="{{ tweet.reference.get_thumbnail_url }}" alt="{{ tweet.reference.title }}"/></a></b><br />
+                </td>
+            {% endifequal %}
+            
+            {% ifequal tweet.reference.get_type "post" %}
+                <td><b><a href="{{ tweet.reference.get_absolute_url }}">{{ tweet.reference.title }}</a></b><br />
+                </td>
+            {% endifequal %}
+            
+            {% ifequal tweet.reference.get_type "event" %}
+                <td><b><a href="{{ tweet.reference.get_absolute_url }}">{{ tweet.reference.title }}</a></b><br />
+                </td>
+            {% endifequal %}
+            
+            {% ifequal tweet.reference.get_type "businessblog" %}
+                <td><b><a href="{{ tweet.reference.get_absolute_url }}">{{ tweet.reference.title }}</a></b><br />
+                </td>
+            {% endifequal %}
+         </div>
+         <form action="{% url tweet_destroy tweet.id %}" method="POST">
+             {% ifequal tweet.sender request.user %}
+             <div class="form_block">
+                 <input type="hidden" name="action" value="delete" />
+                 <input type="submit" value="{% trans 'delete' %}" />
+             </div>
+             {% endifequal %}
+         </form>
+    {% endfor %}
+{% else %}
+    {% if are_mine %}
+        {% url tweets_you_follow as tweets_url %}
+        <p>{% blocktrans %}You haven't posted any <a href="{{ tweets_url }}">tweets</a> yet.{% endblocktrans %}</p>
+    {% else %}
+        <p>{% blocktrans %}There are currently no tweets to be listed.{% endblocktrans %}</p>
+    {% endif %}
+{% endif %}
+
+{% paginate %}

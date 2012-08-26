@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-22 21:22+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: confirm_email.html:5
+msgid "Confirm Email"
+msgstr "确认邮件"
+
+#: confirm_email.html:9
+msgid "Email Confirmed"
+msgstr "邮件已确认"
+
+#: confirm_email.html:11
+#, python-format
+msgid ""
+"You have confirmed that %(email)s is an email address for user '%(user)s'."
+msgstr "你已确认邮件 %(email)s 是用户 '%(user)s' 的联系邮箱。"
+
+#: confirm_email.html:13
+msgid "Invalid confirmation key."
+msgstr "非法的确认码。"

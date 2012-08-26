@@ -1,0 +1,36 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Edit Profile{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function(){
+        	$('#div_id_latitude').hide(); 
+            $('#div_id_longitude').hide();
+            $('#div_id_scale').hide();
+            $('#div_id_NE_lat').hide();
+            $('#div_id_NE_lng').hide();
+            $('#div_id_SW_lat').hide();
+            $('#div_id_SW_lng').hide();
+            map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+            set_your_area_b($('#id_latitude'), $('#id_longitude'), $('#id_NE_lat'), $('#id_NE_lng'), $('#id_SW_lat'), $('#id_SW_lng'), $('#id_scale'), {{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+          });
+        </script>
+    <h1>{% trans "Edit Profile" %}</h1>
+    <form class="uniForm" id="edit-profile" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ profile_form|as_uni_form }}
+                <p>{% trans "Please select the area you are interested:" %}</p>  
+                <div id="map_canvas" style="width:900px; height:650px"></div>
+                <div class="form_block">
+                    <input type="submit" value="{% trans 'update' %}" />
+                    or <a href="{% url profile_detail profile.user.id %}">{% trans "cancel" %}</a>
+                </div>
+            </fieldset>
+        </form>
+    
+{% endblock %}

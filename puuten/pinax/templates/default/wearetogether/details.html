@@ -1,0 +1,77 @@
+{% extends "wearetogether/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+
+{% block head_title %}{{ affair.theme }}{% endblock %}
+
+{% block body %}
+    <div id="map_canvas" style="width:600px; height:400px"></div>
+    <h2>{{ affair.theme }}</h2>
+    
+    {% if affair_diaries %}
+        <div>
+            {% for instance in affair_diaries %}
+                <div>
+                    <div class="diary-meta">
+                        <p><a href="{% url profile_detail instance.author.id %}">{{ instance.author.username }}</a> on {{ instance.created_at|date }}:</p> 
+                        <p><a>{{ instance.body }}</a></p>
+                        <a href="{% url comment_diary  instance.id %}" rel="facebox">{% get_comment_count for instance as commentcount %} {{ commentcount }} Comments</a>
+                    </div>
+                </div>
+                <form action="{% url affair_diary_destroy instance.id %}" method="POST">
+                    {% ifequal instance.author request.user %}
+                        <div class="form_block">
+                            <input type="hidden" name="action" value="delete" />
+                            <input type="submit" value="{% trans 'delete' %}" />
+                        </div>
+                    {% endifequal %}
+                </form>
+            {% endfor %}
+        </div>
+    {% endif%}
+    <div class="form-toggle">
+        <p><span id="diary-toggle">{% trans "Add more information to enrich your memory" %}</span></p>
+        <form class="uniForm" id="new_diary" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ affair_form|as_uni_form }}
+                <!-- 
+                <p><span id="new_location_toggle">{% trans "Update the location of this message" %}</p>
+                <div id="new_map_canvas" style="width:600px; height:400px"></div>
+                -->
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'submit' %}" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize({{affair.latitude}}, {{affair.longitude}}, 10);
+        show_marker({{affair.latitude}}, {{affair.longitude}}, map);
+        //map_for_diary = initialize_for_dairy({{dating.latitude}}, {{dating.longitude}}, 10);
+        //set_marker_diary($('#id_latitude'), $('#id_longitude'), {{dating.latitude}}, {{dating.longitude}}, map_for_diary);
+    });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#new_diary').hide();
+            $('#diary-toggle').click(function() {
+                $('#new_diary').slideToggle();
+                $('#new_diary').autoscroll();
+                return false;
+            });
+            if ($('#new_diary ul.errorlist').length) {
+                $('#new_diary').show();
+                $('#new_diary ul.errorlist').autoscroll();
+            }
+        });
+    </script>
+{% endblock %}

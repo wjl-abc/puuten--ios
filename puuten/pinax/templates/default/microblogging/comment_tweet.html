@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load microblogging_tags %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }}" href="/feeds/tweets/only/{{ user.username }}/" />
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }} and friends" href="/feeds/tweets/with_friends/{{ user.username }}/" />
+{% endblock %}
+
+{% block body %}    
+        <div class="tweet" id="t{{ tweet.id }}">
+        <a href="{% url profile_detail tweet.sender %}"><b>{{ tweet.sender }}</b></a>
+        {% render_tweet_text tweet %} <span class="timesince">{{ tweet.sent|timesince }} ago</span></br>
+        {% if reference %}<a href="{% url profile_detail reference.sender_id %}"><b>{{ reference.sender }}:</b></a>{% render_tweet_text reference %}{% endif %}
+    </div>
+    <a>{% get_comment_count for tweet as commentcount %} {{ commentcount }} Comments</a>
+    {% comments tweet %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Your Business{% endblocktrans %}{% endblock %}
+
+{% block body %}
+
+    <h1><a href="{% url business_new %} ">{% trans "New Business" %}</a></h1>
+    {% if business_approved %}
+	    <h1>{% trans "Your business:" %}</h1>
+	    <table cellpadding="5" cellspacing="0" border="0" class="app-list" width="100%">
+            <tr class="{% cycle odd,even %}">
+                {% for single_business in business_approved %}
+                    <td><b><a href="{{ single_business.get_absolute_url }}">{{ single_business.name }}</a></b><br /></td>
+                    <td><b><a href="{% url business_apps single_business.id %}">{% trans "modify the apps" %}</a></b><br /></td>
+                    <td width="50px" align="center">
+                        <a href="{% url business_edit single_business.id %}">
+                            {% silk "pencil" %}
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{% url business_destroy single_business.id %}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete this business" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                        </form>
+                    </td></br>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if business_pending %}
+	     <h1>{% trans "Your Business in pending" %}</h1>
+		    <table cellpadding="5" cellspacing="0" border="0" class="app-list" width="100%">
+            <tr class="{% cycle odd,even %}">
+                {% for single_business in business_pending %}
+                    <td><b><a>{{ single_business.name }}</a></b><br /></td>
+                    <td><b><a href="{% url business_apps single_business.id %}"> modify the apps </a></b><br /></td>
+                    <td width="50px" align="center">
+                        <a href="{% url business_edit single_business.id %}">
+                            {% silk "pencil" %}
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{% url business_destroy single_business.id %}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete this business" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                        </form>
+                    </td></br>
+                </tr>
+            {% endfor %}
+        </table>
+		    
+    {% endif %}
+    {% if not business_pending %}
+        {% if not business_approved %}
+            {% trans "No business created yet." %}
+        {% endif %}
+    {% endif%}
+{% endblock %}

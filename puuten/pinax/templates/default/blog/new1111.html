@@ -1,0 +1,70 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Write a Blog Post{% endblocktrans %}{% endblock %}
+
+{% block body %}
+   
+    {# @@@ not sure how to bring back teaser toggle with uni_form #} 
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+    	    if("{{something}}"=="None"){
+                var map = initialize({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+		        set_marker($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+    	
+		        $('#id_latitude').val({{profile.latitude}});
+    	        $('#id_longitude').val({{profile.longitude}});
+            }
+
+            $('#div_id_latitude').hide();
+            $('#div_id_longitude').hide();
+            $('#div_id_tags').hide();
+            $('#div_id_owner_id').hide();
+        
+            $(":checkbox").click(function(){
+                var str="";
+                $("[name=items]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_tags").val(str);
+            });
+        });
+    </script>
+    {% if is_manager %}
+        <form class="uniForm" id="new_blog" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ blog_form|as_uni_form }}
+                <div id="tags" >
+                    <p>Select the tags(no more than 3)</p>
+                    <input type="checkbox" name="items" value="北京"/>北京
+                    <input type="checkbox" name="items" value="天津"/>天津
+                    <input type="checkbox" name="items" value="上海"/>上海
+                    <input type="checkbox" name="items" value="广州"/>广州
+                    <input type="checkbox" name="items" value="南京"/>南京
+                </div>
+                {% if not something%}
+                    <div id="map_canvas" style="width:600px; height:500px"></div>
+                {% endif %}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'create' %}" />
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <h2>{% trans "You are not permitted to visit this page" %}</h2>
+    {% endif %}
+    
+    
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <script type="text/javascript">
+        $(function(){
+            $('#blog_form').validate('{% url blog_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}

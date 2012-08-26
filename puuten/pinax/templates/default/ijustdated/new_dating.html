@@ -1,0 +1,167 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load avatar_tags %}
+{% load ijustdated_tags %}
+{% load weibo_tags %}
+{% load business_sina_tags %}
+
+{% block head_title %}{% blocktrans %}New Dating{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <form class="uniForm" id="new_dating" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ dating_form|as_uni_form }}
+            <div id="dating_mode">
+                <div>
+                     <a><img src="{{ STATIC_URL }}pinax/images/dating_ff.png" alt="Dating"/></a><input type="radio" name="items" id="item1" value="ff"/>
+                     <a><img src="{{ STATIC_URL }}pinax/images/dating_mf.png" alt="Dating"/></a><input type="radio" name="items" id="item2" value="mf" checked />
+                     <a><img src="{{ STATIC_URL }}pinax/images/dating_mm.png" alt="Dating"/></a><input type="radio" name="items" id="item3" value="mm"/>
+                </div>
+            </div>
+                {% if attachment.default_partner %}
+                    <div id='default_partner' >
+                        <a>{% trans "Dating Partner" %}:</a> 
+                        <div> {% avatar_user attachment.default_partner.id 40 %}<a href="{% url profile_detail attachment.default_partner.id %}">{{ attachment.default_partner.username }}</a>
+                            <div  class="ctrlHolder">
+	                            <label for="id_message">{% trans "Inviting Message to your dating partner" %}</label>
+	                            <textarea id="id_message" rows="5" cols="20" name="message" class="textarea"></textarea>
+	                        </div>
+                            <div id="change_to_other_partners"><a><span>{% trans "change my dating partner" %}</span></a></div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if attachment.partner %}
+                    <div id='partner' >
+                        <a>{% trans "Dating Partner" %}:</a> 
+                        <div> {% avatar_user attachment.partner.id 40 %}<a href="{% url profile_detail attachment.partner.id %}">{{ attachment.partner.username }}</a>
+                            <div  class="ctrlHolder">
+	                            <label for="id_message">{% trans "Inviting Message to your dating partner" %}</label>
+	                            <textarea id="id_message" rows="5" cols="20" name="message" class="textarea"></textarea>
+	                        </div>
+                            <div id="change_to_other_partners"><a><span>{% trans "change my dating partner" %}</span></a></div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div id='search_partner'>
+                    <a>{% trans "Search Dating Partner" %}</a><input id="get_search" type="text" name="search" value="{{ search_terms }}" />
+                    <p></p>
+                    <div  class="ctrlHolder">
+	                    <label for="id_message">{% trans "Inviting Message to your dating partner" %}</label>
+	                    <textarea id="id_message" rows="5" cols="20" name="message" class="textarea"></textarea>
+	                </div>
+                    <input type="checkbox" name="default_setting" value="yes"/><a>{% trans 'Setting him/her to be your default dating partner' %}</a>
+                    {% if attachment.default_partner %}
+                        <div id="change_to_default_partner"><a><span>{% trans "change to my default dating partner" %}</span></a></div>
+                    {% endif %}
+                </div>
+            <div id="dating_tag">
+                <input type="checkbox" name="items_tag" value="food"/><a>{% trans 'food' %}</a>
+                <input type="checkbox" name="items_tag" value="movie"/><a>{% trans 'movie' %}</a>
+                <input type="checkbox" name="items_tag" value="shopping"/><a>{% trans 'shopping' %}</a>
+                <input type="checkbox" name="items_tag" value="KTV"/><a>{% trans 'KTV' %}</a>
+                <input type="checkbox" name="items_tag" value="sports"/><a>{% trans 'sports' %}</a>
+                <input type="checkbox" name="items_tag" value="surprise"/><a>{% trans 'surprise' %}</a>
+                <input type="checkbox" name="items_tag" value="touch"/><a>{% trans 'touch' %}</a>
+                <input type="checkbox" name="items_tag" value="hug"/><a>{% trans 'hug' %}</a>
+                <input type="checkbox" name="items_tag" value="kiss"/><a>{% trans 'kiss' %}</a><br/>
+                {% if attachment.bs %}
+                    {% get_business_tag attachment.bs %}
+                {% endif %}
+            </div>
+            <div class="form_block">
+                <input type="hidden" name="action" value="create" />
+                <input id= "create" type="submit" value="{% trans 'create' %}" />
+            </div>
+        </fieldset>
+    </form>
+    {% if attachment.bs %}    
+        <div>
+            <a href="{{attachment.bs.get_absolute_url}}" title="{{attachment.bs.name}}"><img usercard="id={{attachment.bs.sina_id}}" title="{{attachment.bs.name}}" alt="" width="50" height="50" src="{{attachment.bs.avatar}}"></a>
+            <a>{{attachment.bs.name}}</a>
+        </div>
+    {% endif %}
+    {% if attachment.wb %}
+        {% attach_weibo attachment.wb %}
+    {% endif %}
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    
+    <script type="text/javascript">
+        var map;
+   	    $(document).ready(function(){
+   	    	$('#div_id_latitude').hide();
+   	        $('#div_id_longitude').hide();
+   	        $('#div_id_tags').hide();
+   	        $('#div_id_reference_bs').hide();
+   	        $('#div_id_reference_wb').hide();
+    	    $('#id_latitude').val({{profile.latitude}});
+    	    $('#id_longitude').val({{profile.longitude}});
+    	    if(parseFloat("{{attachment.bs.latitude}}")){
+    	        map = initialize_b(parseFloat("{{attachment.bs.latitude}}"),parseFloat("{{attachment.bs.longitude}}"), 13);
+    	        show_marker_b(parseFloat("{{attachment.bs.latitude}}"), parseFloat("{{attachment.bs.longitude}}"), map);
+    	        $('#id_latitude').val(parseFloat("{{attachment.bs.latitude}}"));
+    	        $('#id_longitude').val(parseFloat("{{attachment.bs.longitude}}"));
+    	    }
+    	    else{
+    	        map = initialize_b({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+	    	    set_marker_b($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+	    	}
+	    	var str = "";
+	    	$("[name=items_tag]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_tags").val(str);
+		    $(":checkbox").click(function(){
+                var str="";
+                $("[name=items_tag]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_tags").val(str);
+            });
+		    
+        });
+     	
+   	    var done_for_search = function(data, textStatus){
+     	    if(textStatus=="success"){
+     		    var txt = data.responseText;
+     		    var instances = JSON.parse(txt);
+     		    var i = 0
+     		    $('p').empty(); 
+         		for (i=0; i<instances.length; i++){	
+         			$('p').append('<div class="ctrlHolder"><div style="float: left;">'+instances[i].avatar+'</div><a href="'+instances[i].link+'">'+instances[i].username+'<a><input type="radio" name="dating_partner" value="'+instances[i].id+'"/></div>');
+       		    }
+     	    }
+     	    else{
+     		    alert("Some error happens.");
+     	    }
+        }
+   	    var get_search = function(){
+   	    	
+            var data_for_search = {"search_term":$('#get_search').val()};
+            var args = {type:"POST",
+                        url:"",
+                        data:data_for_search,
+                        complete:done_for_search};
+            $.ajax(args);
+            return false;
+        };       
+   	    $("#get_search").keyup(get_search);
+   	$(function(){
+ 	    if({{attachment.flag}}){
+ 	        $("#search_partner").hide();
+ 	    }
+ 	    var $toggleBtn1 = $('#change_to_other_partners');
+ 	    var $toggleBtn2 = $('#change_to_default_partner');
+ 	    $toggleBtn1.click(function(){
+ 	    	$("#default_partner").hide()
+ 	    	$("#search_partner").show();
+ 	    })
+ 	    $toggleBtn2.click(function(){
+ 	    	$("#default_partner").show()
+ 	    	$("#search_partner").hide();
+ 	    })
+    })
+    </script>
+{% endblock %}
+

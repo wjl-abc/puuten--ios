@@ -184,4 +184,24 @@
     [self.waterFlowViewDelegate waterFlowView:self didSelectRowAtIndexPath:_indextPath];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"mmmmmmm");
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    NSLog(@"nnnnnnnn");
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+{
+    NSLog(@"qqqqqqqqqq");
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    NSLog(@"ggggggg");
+}
+
 @end

@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+
+{% block body %}    
+    <a>{% get_comment_count for diary as commentcount %} {{ commentcount }} Comments</a>
+    {% comments diary %}
+{% endblock %}

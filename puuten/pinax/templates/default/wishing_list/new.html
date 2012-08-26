@@ -1,0 +1,64 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}New Wish{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+   	    	$('#div_id_latitude').hide();
+   	        $('#div_id_longitude').hide();
+    	    $('#id_latitude').val({{profile.latitude}});
+    	    $('#id_longitude').val({{profile.longitude}});
+        });
+    </script>
+    {# @@@ not sure how to bring back teaser toggle with uni_form #}
+    <form class="uniForm" id="edit-profile" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ blog_form|as_uni_form }}
+            <div class="form_block">
+            <input type="hidden" name="action" value="create" />
+            <input type="submit" value="{% trans "create" %}"/>
+            </div>
+        </fieldset>
+    </form>
+    
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/lang/zh_CN.js"></script>
+	<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('#id_body');
+					togglemenu();
+			});
+			function togglemenu() 
+			{
+			    if($(".ke-toolbar").data('allbutton')=="" || $(".ke-toolbar").data('allbutton')==null || $(".ke-toolbar").data('allbutton')== undefined)
+			    {
+			    	$(".ke-toolbar").data('allbutton',$(".ke-toolbar").html());
+			    }
+			    var newstr = $(".ke-toolbar").data('allbutton').split('<br>')[0];
+			    if($(".ke-toolbar").html().length < $(".ke-toolbar").data('allbutton').length )
+			    {
+			    	$(".ke-toolbar").html($(".ke-toolbar").data('allbutton'));
+			    }
+			    else
+			    {
+			    	$(".ke-toolbar").html(newstr);
+			    }             
+			}
+	</script>
+    <script type="text/javascript">
+        $(function(){
+            $('#blog_form').validate('{% url blog_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}

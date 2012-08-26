@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 18:24+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: add.html:6 add.html.py:10 base.html:9
+msgid "Add Bookmark"
+msgstr "添加书签"
+
+#: add.html:18
+msgid "add bookmark"
+msgstr "添加书签"
+
+#: base.html:10 your_bookmarks.html:8 your_bookmarks.html.py:11
+msgid "Your Bookmarks"
+msgstr "您的书签"
+
+#: base.html:11 friends_bookmarks.html:12 friends_bookmarks.html.py:17
+msgid "Friends' Bookmarks"
+msgstr "好友的书签"
+
+#: base.html:12 bookmarks.html:12 bookmarks.html.py:19
+msgid "All Bookmarks"
+msgstr "所有的书签"
+
+#: bookmarks.html:24
+msgid "These are bookmarks from everyone:"
+msgstr "所有人的书签"
+
+#: bookmarks.html:26 friends_bookmarks.html:25
+msgid "Sort by:"
+msgstr "排序"
+
+#: bookmarks.html:29 bookmarks.html.py:31 bookmarks.html.py:37
+#: bookmarks.html:39 bookmarks.html.py:44 bookmarks.html.py:46
+#: friends_bookmarks.html:28 friends_bookmarks.html.py:30
+#: friends_bookmarks.html:36 friends_bookmarks.html.py:38
+#: friends_bookmarks.html:43 friends_bookmarks.html.py:45
+msgid "or"
+msgstr "或"
+
+#: bookmarks.html:30 friends_bookmarks.html:29
+msgid "total points"
+msgstr ""
+
+#: bookmarks.html:36 friends_bookmarks.html:35
+msgid "reddit-like hotness"
+msgstr ""
+
+#: bookmarks.html:47 friends_bookmarks.html:46
+msgid "date added"
+msgstr "添加日期"
+
+#: bookmarks.html:83 friends_bookmarks.html:82
+#, python-format
+msgid ""
+"\n"
+"                                Saved once\n"
+"                            "
+msgid_plural ""
+"\n"
+"                                Saved %(count)s times\n"
+"                            "
+msgstr[0] ""
+msgstr[1] ""
+
+#: bookmarks.html:89 friends_bookmarks.html:88
+msgid "(including you)"
+msgstr "(包含你)"
+
+#: bookmarks.html:91 friends_bookmarks.html:90
+msgid "save"
+msgstr "保存"
+
+#: bookmarks.html:104 friends_bookmarks.html:103 your_bookmarks.html:46
+msgid "No bookmarks yet."
+msgstr "没有书签"
+
+#: friends_bookmarks.html:23
+msgid "These are bookmarks from your friends:"
+msgstr "这些是来自您好友的书签"
+
+#: your_bookmarks.html:34
+msgid "Delete Bookmark"
+msgstr "删除书签"

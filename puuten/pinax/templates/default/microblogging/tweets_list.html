@@ -1,0 +1,33 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load microblogging_tags %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        <ul>
+            <li><a href="{% url blog_list_user user.id %}">{% trans "Blogs" %}</a></li>
+            <li><a href="{% url photos_member user.id %}">{% trans "Photos" %}</a></li>
+            <li><a href="{% url tweets_list_user user.id %}">{% trans "Tweets" %}</a></li>
+            <li><a href="{% url profile_detail user.id %} ">{% trans "Your Profile" %}</a></li>
+        </ul>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% endblock %}
+
+
+{% block head_title %}{% blocktrans %}Personal Tweets{% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+    {# @@@ use url tag #}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for all users" href="/feeds/tweets/all/" />
+{% endblock %}
+
+{% block body %}
+
+    <p>{% trans "These are tweets from " %}{{username}}:</p>
+
+    {% tweet_listing_for_tweet tweets 1 0 %}
+{% endblock %}
+

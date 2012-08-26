@@ -1,0 +1,109 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load ijustdated_tags %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+{% load weibo_tags %}
+{% load business_sina_tags %}
+
+{% block head_title %}{% blocktrans %}My Dating{% endblocktrans %}{% endblock %}
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }}" href="/feeds/tweets/only/{{ user.username }}/" />
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }} and friends" href="/feeds/tweets/with_friends/{{ user.username }}/" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="{{ STATIC_URL }}kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="{{ STATIC_URL }}kindeditor/lang/zh_CN.js"></script>
+{% endblock %}
+{% block body %}
+    <div id="map_canvas" style="width:600px; height:400px"></div>
+    {% if bs %}    
+        <div>
+            <a>{{bs.name}}</a>
+        </div>
+    {% endif %}
+    {% if wb %}
+        {% attach_weibo wb %}
+    {% endif %}
+    <p>Is this is related to <a href="{% url dating_and_wishing request.user.id %}" rel="facebox">your wishes</a> or <a href="{% url dating_and_wishing partner.id %}" rel="facebox">your partner's wish</a>?</p>
+    {% if dating_diaries %}
+        <div>
+            {% for instance in dating_diaries %}
+                <div>
+                    <div class="diary-meta">
+                        <p><a href="{% url profile_detail instance.author.id %}">{{ instance.author.username }}</a> on {{ instance.created_at|date }}:</p> 
+                        <p><a>{{ instance.body|safe }}</a></p>
+                        <a href="{% url comment_diary  instance.id %}" rel="facebox">{% get_comment_count for instance as commentcount %} {{ commentcount }} Comments</a>
+                    </div>
+                </div>
+                <form action="{% url diary_destroy instance.id %}" method="POST">
+                    {% ifequal instance.author request.user %}
+                        <div class="form_block">
+                            <input type="hidden" name="action" value="delete" />
+                            <input type="submit" value="{% trans 'delete' %}" />
+                        </div>
+                    {% endifequal %}
+                </form>
+            {% endfor %}
+        </div>
+    {% endif%}
+    <div class="form-toggle">
+        <p><span id="diary-toggle">{% trans "Add more information to enrich your memory" %}</span></p>
+        <form class="uniForm" id="new_diary" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ diary_form|as_uni_form }}
+                <!-- 
+                <p><span id="new_location_toggle">{% trans "Update the location of this message" %}</p>
+                <div id="new_map_canvas" style="width:600px; height:400px"></div>
+                -->
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'submit' %}" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{dating.latitude}}, {{dating.longitude}}, 10);
+        show_marker_b({{dating.latitude}}, {{dating.longitude}}, map);
+    });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#new_diary').hide();
+            $('#diary-toggle').click(function() {
+                $('#new_diary').slideToggle();
+                $('#new_diary').autoscroll();
+                return false;
+            });
+            if ($('#new_diary ul.errorlist').length) {
+                $('#new_diary').show();
+                $('#new_diary ul.errorlist').autoscroll();
+            }
+        });
+        var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('#id_message',{ismicroblog:"true"});
+		});
+		$(document).ready(function() {
+			$(".mplay").click(function(){
+				$(this).find(".uploadVideo").html('<embed allowfullscreen="true"  src="'+$('.uploadVideo').attr('vsrc')+'" flashvars="playMovie=true&amp;isAutoPlay=true&amp;auto=1&amp;autoPlay=true&amp;adss=0" type="application/x-shockwave-flash" width="500" height="400" wmode="transparent"  loop="true">');
+			});
+			$("#diary-toggle").bind("click",function(){
+				$(".ke-container.ke-container-default").attr("style","width: 300px; ");
+			});
+		});
+		
+		$(document).ready(function() {
+			$(".uploadPic").click(function(){
+				$(this).html('<img src="'+$('.uploadPic').attr('vsrc')+'">');
+			});
+		});
+    </script>
+{% endblock %}

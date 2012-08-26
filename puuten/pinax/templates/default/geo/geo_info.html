@@ -1,0 +1,38 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Geo Information Management{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <table cellpadding="5" cellspacing="0" border="0" class="geo-info-list" width="100%">
+        {% for instance in geo_info_list %}  
+            <tr class="{% cycle odd,even %}">      
+                <td><b><a>{{instance.city}}</a></b><br /></td>
+                <td nowrap>{{ instance.lat }}</td>
+                <td nowrap>{{ instance.lng }}</td>
+                <td align="right">
+                    <form action="{% url geo_info_destroy instance.id %}" method="POST">
+                        {# @@@ still can't replace this with a silk tag yet #}
+                        <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete This Geo Info" %}" />
+                        <input type="hidden" name="action" value="delete"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h3>{% trans "New Geo Info" %}</h3>
+    <form class="uniForm" id="new-geo-info" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ geo_info_form|as_uni_form }}
+            <div class="form_block">
+            <input type="hidden" name="action" value="create" />
+            <input type="submit" value="{% trans "create" %}"/>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -7,6 +7,7 @@
 //
 
 #import "ImageViewCell.h"
+#import "JMWhenTapped.h"
 
 
 #define TOPMARGIN 8.0f
@@ -37,7 +38,7 @@
 {
 	if(self = [super initWithIdentifier:indentifier])
 	{
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concrete_wall_3.png"]];
+        self.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];
         //self.backgroundColor = [UIColor colorWithRed:0.90 green:0.92 blue:0.99 alpha:1];
         
         imageView = [[UIImageView alloc] init];
@@ -124,12 +125,12 @@
     type=Type;
     delegate = Delegate;
 }
-
+/*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //[self.delegate imageViewCell:self clickedCell:WB_ID];
     [self.delegate imageViewCell:self clickedCell:WB_ID];
-}
+}*/
 
 //保持图片上下左右有固定间距
 -(void)relayoutViews{
@@ -160,6 +161,9 @@
     else{
         imageView.frame = CGRectMake( originX, originY,width, height-58);
     }
+    [imageView whenTapped:^{
+		[self.delegate imageViewCell:self clickedCell:WB_ID];
+	}];
     [super relayoutViews];
 
 }

@@ -1,0 +1,19 @@
+{% extends "wat/base.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}{% blocktrans %}Buzz Map{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <div id="map_canvas" style="width:900px; height:650px"></div>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+    });
+    </script>
+{% endblock %}

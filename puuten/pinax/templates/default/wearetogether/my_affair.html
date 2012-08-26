@@ -1,0 +1,52 @@
+{% extends "wearetogether/base.html" %}
+
+{% load i18n %}
+{% load switchcase %}
+{% load theme_tags %}
+{% block head_title %}{% blocktrans %}My Affair{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if affair_relationship %}
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        <table cellpadding="5" cellspacing="0" border="0" class="affair-list" width="50%">
+            {% for instance in affair_relationship %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b><a href="{{ instance.affair.get_absolute_url }}">{{ instance.affair.theme }}</a></b><br /></td>
+                    <td>{% trans "created by" %}<a href="{% url profile_detail instance.affair.creator.id %}"> {{ instance.affair.creator.username }}</a></td>
+                    <td nowrap>{{ instance.affair.created_at|date }}</td>
+                    <td width="50px" align="center">
+                        {% ifequal instance.affair.creator request.user %}
+                            <a href="{% url affair_edit instance.affair.id %}">
+                                {% silk "pencil" %}
+                            </a>
+                        {% endifequal %}
+                    </td>
+                    <td align="right">
+                        {% ifequal instance.affair.creator request.user %}
+                            <form action="{% url affairship_destroy instance.affair.id %}" method="POST">
+                                {# @@@ still can't replace this with a silk tag yet #}
+                                <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Affair" %}" />
+                                <input type="hidden" name="action" value="delete"/>
+                            </form>
+                        {% endifequal %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <a>{% trans "You have no affairs" %}</a><br>
+    {% endif %}
+    <a href = "{% url new_affair %}">{% trans "Start a new affair" %}</a>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        {% for instance in affair_relationship %}
+            show_marker({{instance.affair.latitude}}, {{instance.affair.longitude}}, map); 
+        {% endfor %}
+    });
+    </script>
+{% endblock %}

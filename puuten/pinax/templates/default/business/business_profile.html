@@ -1,0 +1,27 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load blog_tags %}
+{% load avatar_tags %}
+
+{% block head_title %}{% blocktrans %}Business Profile{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var map = initialize({{business.latitude}},{{business.longitude}}, 12);
+            show_marker({{business.latitude}}, {{business.longitude}}, map);
+          });
+    </script>
+    <h1>{{ business.name }}</h1>
+    
+    <div class="profile_info">
+        {% if business.name %}<p><b>{% trans "Name" %}</b>: <span class="fn">{{ business.name }}</span></p>{% endif %}
+        {% if business.about %}<p><b>{% trans "About" %}</b>: {{ business.about }}</p>{% endif %}   
+        {% if business.website %}<p><b>{% trans "Website" %}</b>: <a class="url" href="{{ business.website }}">{{ business.website }}</a></p>{% endif %}
+        {% if business.location %}<p><b>{% trans "Location" %}</b>: {{ business.location }}</p>{% endif %}
+        {% if business.direction %}<p><b>{% trans "Direction" %}</b>: {{ business.direction }}</p>{% endif %}
+        {% if business.latitude %}<div id="map_canvas" style="width:600px; height:500px"></div>{% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "home/base.html" %}
+
+{% load i18n %}
+{% load ijustdated_tags %}
+
+{% block head_title %}{% blocktrans %}Dating Map{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <a href="{% url new_dating %}">{% trans "New Dating" %}</a>
+    <a href="{% url new_buzz %}">{% trans "New Buzz" %}</a>
+    <div id="map_canvas" style="width:900px; height:650px"></div>
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+    var map;
+    mm_icon = "{{ STATIC_URL }}pinax/images/dating_mm.png";
+    mf_icon = "{{ STATIC_URL }}pinax/images/dating_mf.png";
+    ff_icon = "{{ STATIC_URL }}pinax/images/dating_ff.png";
+    $(document).ready(function(){
+    	map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+    	{% for instance in datings %}
+        var window_information = "{% window_info_dating instance %}"
+        {% ifequal instance.dating_mode 1 %}
+            show_marker_infor_b({{instance.latitude}}, {{instance.longitude}}, window_information, mm_icon);
+        {% endifequal %}
+        {% ifequal instance.dating_mode 2 %}
+            show_marker_infor_b({{instance.latitude}}, {{instance.longitude}}, window_information, mf_icon);
+        {% endifequal %}
+        {% ifequal instance.dating_mode 3 %}
+            show_marker_infor_b({{instance.latitude}}, {{instance.longitude}}, window_information, ff_icon);
+        {% endifequal %}
+        {% endfor %}
+    })
+    </script>
+{% endblock %}

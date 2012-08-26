@@ -1,0 +1,51 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load extra_tagging_tags %}
+{% load blog_tags %}
+{% load markup %}
+{% load switchcase %}
+{% load restructuredtext %}
+{% load blog_tags %}
+{% load threadedcommentstags %}
+
+{% block head_title %}{% blocktrans %}Blogs{% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function(){
+            {% if blogs %}
+                map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+                delete_marker();
+                {% for blog in blogs %}
+                    add_marker({{blog.latitude}}, {{blog.longitude}},"{{blog.title}}",
+                              "{{blog.body}}","{{ blog.author.username }}",
+                              "{{ blog.get_absolute_url }}","{% url profile_detail blog.author.id %}");
+                {% endfor %}
+                show_markers();
+            {% endif %}
+          });
+    </script>
+
+    <h1>{% trans "All Blogs" %}</h1>
+    {% if blogs %}
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        {% autopaginate blogs %}
+
+            {% for blog_post in blogs %}
+                {% show_blog_post blog_post %}
+            {% endfor %}
+
+        {% paginate %}
+    {% else %}
+        {% trans "No blog posts yet." %}
+    {% endif %}
+{% endblock %}
+

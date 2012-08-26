@@ -1,0 +1,60 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load profile_tags %}
+
+{% block head_title %}{% blocktrans %}Business And Search{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if is_creator %}
+        <h1>{% trans "Profiles" %}</h1>
+    
+        <form method="GET" action="">
+            <input type="text" name="search" value="{{ search_terms }}" />
+            <input type="submit" value="Search" />
+            {% if search_terms %}
+                <a href="{% clear_search_url request %}">{% trans "Clear Search Terms" %}</a>
+            {% endif %}
+    	</form>
+
+        {% if users %}
+            {% show_profile users %}
+            <div class="form-toggle">
+                <p><span id="join-invite-toggle">{% trans "Invite him/her new to join" %}</span></p>
+                <form id="join-invite" method="POST" action="">
+                    <p>{% trans "If you'd like to invite someone to join your business, you can enter a message for them below:" %}</p>
+                    <fieldset class="inlineLabels">
+                        {{ invite_form|as_uni_form }}
+                        <div class="form_block">
+                            <input type="hidden" name="action" value="invite" />
+                            <input type="submit" value="{% trans "invite" %}" />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        {% else %}
+            <p>{% trans "No profile were found." %}</p>
+        {% endif %}
+    {% else%}
+        <h2>{% trans "You are not permit to access this page" %}</h2>
+    {% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#join-invite').hide();
+            $('#join-invite-toggle').click(function() {
+                $('#join-invite').slideToggle();
+                $('#join-invite').autoscroll();
+                return false;
+            });
+            if ($('#join-invite ul.errorlist').length) {
+                $('#join-invite').show();
+                $('#join-invite ul.errorlist').autoscroll();
+            }
+        });
+    </script>
+{% endblock %}

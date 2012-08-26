@@ -1,0 +1,42 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+{% endblock %}
+{% block head_title %}{% blocktrans %}Latest Photos{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+    $(document).ready(function(){  
+    	$('#div_id_latitude').hide();
+        $('#div_id_longitude').hide();
+        
+        $('#div_id_owner_id').hide();
+    	if("{{something}}"=="None"){
+        var map = initialize({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+        set_marker($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+        $('#id_latitude').val({{profile.latitude}});
+        $('#id_longitude').val({{profile.longitude}});
+        }
+        
+        
+      });
+    </script>
+    <form class="uniForm" id="edit-profile" method="POST" enctype="multipart/form-data" action="">
+        <fieldset class="inlineLabels">
+            {{ photo_form|as_uni_form }}
+            {% if not something%}
+                <div id="map_canvas" style="width:600px; height:500px"></div>
+            {% endif %}
+
+            <div class="form_block">
+                <input type="hidden" name="action" value="upload" />
+                <input type="submit" value="{% trans "Upload" %}" />
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

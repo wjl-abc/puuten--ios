@@ -1,0 +1,50 @@
+{% load i18n %}
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+            $(":checkbox").click(settags);
+        });
+        function settags()
+        {
+			var str="";
+			$("[name=items]:checkbox:checked").each(function(){
+				str+=$(this).val()+",";
+			})
+			$("#id_tags").val(str+$("#puutertagsinput").val());
+        }
+        function showmoretags()
+        {
+        	var ct = $('#morepuutertags');
+        	if(ct.hasClass('hidden'))
+        	{
+        		ct.prev().text('{% trans "Less tags" %}');
+		        ct.slideDown();
+		    }
+		    else {
+		        ct.prev().text('{% trans "More tags" %}');
+		        ct.slideUp();
+		    }
+		    ct.toggleClass('hidden');
+        	//$('#morepuutertags').toggleClass('hidden');
+        }
+    </script>
+<div id="tags" >
+	<h5>{% trans "Please choose some tags(no more than 3):" %}</h5>
+	{% if recommendcatetags %}
+	
+	    {% for tag in recommendcatetags %}
+	        <input type="checkbox" name="items" value="{{ tag }}"/>{{ tag }}
+	    {% endfor %}
+	    {% if recommendfretags %}
+		<a href="javascript:showmoretags()">{% trans "More tags" %}</a>
+			<div id="morepuutertags" class="hidden" >
+		    {% for tag in recommendfretags %}
+		        <input type="checkbox" name="items" value="{{ tag }}"/>{{ tag }}
+		    {% endfor %}
+		    <br>
+		    {% trans "Please enter:" %}<input id="puutertagsinput" onblur="javascript:settags()" type="text"></input> 
+		    </div>
+		{% endif %}
+		<br>
+	{% endif %}
+	
+</div>

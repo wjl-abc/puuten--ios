@@ -1,0 +1,2 @@
+{% load i18n %}{{ invitation.local_business.get_absolute_url as user_url }}
+{% blocktrans with invitation.local_business as invitation_local_business %}You accepted <a href="{{ user_url }}">{{ invitation_local_business }}</a>'s management request.{% endblocktrans %}

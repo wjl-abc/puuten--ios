@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load oembed_tags %}
+{% load microblogging_tags %}
+{% load comments_tag %}
+{% load threadedcommentstags %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }}" href="/feeds/tweets/only/{{ user.username }}/" />
+    <link rel="alternate" type="application/atom+xml" title="Tweets Feed for User {{ user.username|capfirst }} and friends" href="/feeds/tweets/with_friends/{{ user.username }}/" />
+{% endblock %}
+
+{% block body %}    
+    <div class="tweet" id="t{{ tweet.id }}">
+        <a href="{% url profile_detail tweet.sender_id %}"><b>{{ tweet.sender }}</b></a>
+        {% render_tweet_text tweet %} <span class="timesince">{{ tweet.sent|timesince }} ago</span></br>
+        {% if reference %}<a href="{% url profile_detail reference.sender_id %}"><b>{{ reference.sender }}:</b></a>{% render_tweet_text reference %}{% endif %}
+    </div>
+    <form class="uniForm" method="POST" action="{% url forward_tweet  tweet.tweet_id  %}">
+        <fieldset class="inlineLabels">
+            <div class="ctrlHolder">
+                <textarea id="id_comment" rows="10" cols="40" name="comment"></textarea>
+            </div>
+            <div id="tags" >
+                <input type="checkbox" name="items" value="synchronization"/>{% trans "Synchronize to your twitter" %}
+            </div>
+            <div class="form_block">
+                <input type="hidden" name="next" value="{{ request.path }}" />
+                <input type="submit" value="{% trans "Post Response" %}" />
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}

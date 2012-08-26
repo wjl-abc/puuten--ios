@@ -1,0 +1,39 @@
+{% extends "site_base_business.html" %}
+
+{% load uni_form %}
+{% load i18n %}
+{% load humanize %}
+{% load comments_tag %}
+{% load tagging_tags %}
+{% load blog_tags %}
+{% load business_blog_tags %}
+{% load theme_tags %}
+{% load threadedcommentstags %}
+
+{% block head_title %}{% blocktrans %}Blog Post{% endblocktrans %} : {{ post.title }}{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for User {{ post.author.username }}" href="/feeds/posts/only/{{ post.author.username }}/" />
+{% endblock %}
+
+{% block body %}
+    
+    <form class="uniForm" id="edit-profile" method="POST" action="">
+        <div class="blog-post">
+            <p>{% show_blog_post post %}</p>
+            
+            <div class="blog-meta"><p>{% trans "Posted by" %}: {% owner post %} {% trans "On" %} {{ post.publish|date }}</p></div>
+            
+            {% if is_manager %}
+                <a href="{{ post.get_edit_url }}">{% trans "Edit Post" %}</a><br />
+            {% endif %}
+            <div class="form_block">
+                <input type="hidden" name="action" value="add_to_my_wishing list" />
+                <input type="submit" value="{% trans 'add to my wishing list' %}" />
+            </div><br />
+        </div>
+    </form>
+    <a>{% get_comment_count for post as commentcount %} {{ commentcount }} Comments</a>
+    {% comments post %}
+{% endblock %}

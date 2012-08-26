@@ -48,7 +48,6 @@
         NSError* error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
-        NSLog(@"There are %i images", [arrayData count]);
         [self dataSourceDidLoad];
     }];
     [request setFailedBlock:^{
@@ -166,5 +165,7 @@
     selected_cell = cell_id;
     [self performSegueWithIdentifier:@"details" sender:self];
 }
+
+
 
 @end

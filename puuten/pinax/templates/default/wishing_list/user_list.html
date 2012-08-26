@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load humanize %}
+{% load profile_tags %}
+
+{% block body %}
+    {% for user in user_list %}
+        {% ifnotequal user request.user %}
+            {% show_profile request user %}
+            <a href="/ijustdated/new/?bs_id={{wb.get_owner_id}}&wb={{wb.id}}&partner_id={{user.id}}">Invite him/her</a>
+        {% endifnotequal %}
+        {% ifequal user request.user %}
+            {% show_profile request user %}
+        {% endifequal %}
+    {% endfor %}
+{% endblock %}

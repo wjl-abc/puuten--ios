@@ -1,0 +1,142 @@
+{% extends "profiles/base.html" %}
+
+{% load uni_form %}
+{% load i18n %}
+{% load avatar_tags %}
+{% load blog_tags %}
+{% load photo_tags %}
+{% load markup %}
+{% load switchcase %}
+{% load tagging_tags %}
+{% load restructuredtext %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Welcome{% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for User {{ user.username }}" href="/feeds/posts/only/{{ user.username }}/" />
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+    <script type="text/javascript">
+    </script>
+    {% if notice_unseen_count %} <a href="{% url notification_notices %}">{% trans "You have " %}{{ notice_unseen_count }}{% trans " new notice" %}</a>{% endif %}
+    {% if invitations_count %} <a href="{% url invitations %}">{% trans "You have " %}{{ invitations_count }}{% trans " new invitation" %}{% endif %}
+    {% if messages_inbox_count %} <a href="{% url messages_inbox %}">{% trans "You have " %}{{ messages_inbox_count }}{% trans " new messages" %}{% endif %}
+    <form class="uniForm" id="Tweet" method="POST" action="">
+        <div class="vcard">
+            <div id="profile_avatar">
+                <div><img src="{% avatar_url request.user 80 %}" alt="Photo of {{ request.user }}" class="photo" /></div>
+            </div>
+         </div>
+        <fieldset class="inlineLabels">
+            {{ tweet_form|as_uni_form }}
+        </fieldset>
+    </form>
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    <form method="POST" action=""> 
+        <div class="form_block">
+            <input type="hidden" name="next" value="tweets in this area" />
+            <input id= "get_tweet" type="submit" value="{% trans 'Tweets in this area' %}" />
+        </div>
+    </form>
+    <form method="POST" action=""> 
+        <div class="form_block">
+            <input type="hidden" name="next" value="posts in this area" />
+            <input id= "get_blog" type="submit" value="{% trans 'Posts in this area' %}" />
+        </div>
+    </form>
+    <form method="POST" action=""> 
+        <div class="form_block">
+            <input type="hidden" name="next" value="photos in this area" />
+            <input id= "get_photo" type="submit" value="{% trans 'Photos in this area' %}" />
+        </div>
+    </form>
+    <a href="{% url blog_new %}">{% trans "New Blog"%}</a><br />
+    <a href="{% url photo_upload %}">{% trans "New Photo"%}</a><br />
+    
+    {% if register %}
+        {% for random_num in register %}
+            <a>{{ random_num }}</a>
+        {% endfor %}
+    {% endif %}
+    <script type="text/javascript">
+        var map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        $(document).ready(function(){
+            $('#div_id_latitude').hide();
+            $('#div_id_longitude').hide(); 
+        });
+        var done_for_blogs = function(data, textStatus){
+            if(textStatus=="success") {
+                var txt = data.responseText;
+                var blogs = JSON.parse(txt);
+                var i = 0;
+                delete_marker();
+                for (i=0; i<blogs.length; i++){
+                    add_marker(blogs[i].latitude, blogs[i].longitude, blogs[i].title,
+                    blogs[i].body, blogs[i].author,
+                    blogs[i].url, blogs[i].author_url);
+                }
+                show_markers();
+            }
+            else {
+                alert("Some error happens.");
+            }
+        }
+        var done_for_tweets = function(data, textStatus){
+            if(textStatus=="success") {
+                var txt = data.responseText;
+                var tweets = JSON.parse(txt);
+                var i = 0;
+                delete_marker();
+                for (i=0; i<tweets.length; i++){
+                	add_marker_tweet(tweets[i].lat, tweets[i].lng, tweets[i].text, 
+                			         tweets[i].sender, tweets[i].sender_url,
+                			         tweets[i].forward_url, tweets[i].num_forward,
+                			         tweets[i].comment_url, tweets[i].num_comment);
+                }
+                show_markers();
+            }
+            else {
+                alert("Some error happens.");
+            }
+        }
+        var get_blogs = function(){
+            var data_for_blog = get_your_area(map);
+            data_for_blog["type"] = "blog";
+            var args = {type:"POST",
+                       url:"",
+                       data:data_for_blog,
+                       complete:done_for_blogs};
+            $.ajax(args);
+            return false;
+        };
+        var get_tweets = function(){
+            var data_for_tweet = get_your_area(map);
+            data_for_tweet["type"] = "tweet";
+            var args = {type:"POST",
+                       url:"",
+                       data:data_for_tweet,
+                       complete:done_for_tweets};
+            $.ajax(args);
+            return false;
+        };
+        var get_photos = function(){
+            var data_for_photo = get_your_area(map);
+            data_for_photo["type"] = "photo";
+            var args = {type:"POST",
+                       url:"",
+                       data:data_for_photo,
+                       complete:done};
+            $.ajax(args);
+            return false;
+        };
+        $("#get_blog").click(get_blogs);
+        $("#get_tweet").click(get_tweets);
+        $("#get_photo").click(get_photos);
+    </script>
+{% endblock %}

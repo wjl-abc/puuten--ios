@@ -1,0 +1,67 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load ijustdated_tags %}
+{% block head_title %}{% blocktrans %}My Dating{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <a href="{% url new_dating %}">{% trans "New Dating" %}</a>
+    <div id="map_canvas" style="width:600px; height:500px"></div>
+    {% if dating_ship_pending %}     
+        <table cellpadding="5" cellspacing="0" border="0" class="dating-list" width="100%">
+            {% for instance in dating_ship_pending %}
+                <tr class="{% cycle odd,even %}">
+                    <td><p>{% trans "with" %} <a href="{% url profile_detail instance.dating.creator.id %}">{{ instance.dating.creator.username }}</a></td>
+                    <td><b><a href="{{ instance.dating.get_absolute_url }}">{% trans "dating" %}</a></b><br /></td>
+                    <td nowrap>{{ instance.dating.created_at|date }}</td>
+                    <td align="right">
+                        <form method="post" action="">
+                            <input type="checkbox" name="default_setting" value="yes"/><a>{% trans 'Accept him/her to be your dating partner automatically' %}.</a>
+						    <input type="hidden" name="datingship" value="{{ instance.id }}"/>
+						    <input type="hidden" name="action" value="datingship_accept"/>
+						    <input type="submit" value="{% trans 'accept' %}" />
+					    </form>
+                    </td>
+                    <td align="right">
+                        <form method="post" action="">
+						    <input type="hidden" name="datingship" value="{{ instance.id }}"/>
+						    <input type="hidden" name="action" value="datingship_reject"/>
+						    <input type="submit" value="{% trans 'reject' %}" />
+					    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if dating_ship_approved %}  
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="50%">
+        {% for instance in dating_ship_approved %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b>{% trans "with" %} {% get_another_partner instance %}</b></td>
+                    <td><b><a href="{{ instance.dating.get_absolute_url }}">{% trans "dating" %}</a></b><br /></td>
+                    <td nowrap>{{ instance.dating.created_at|date }}</td>
+                    <td align="right">
+                        <form action="{% url datingship_destroy instance.dating.id %}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Post" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                       </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+        map = initialize_b({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        {% for instance in dating_ship_approved %}
+            show_marker_b({{instance.dating.latitude}}, {{instance.dating.longitude}}, map); 
+        {% endfor %}
+    });
+    </script>
+{% endblock %}

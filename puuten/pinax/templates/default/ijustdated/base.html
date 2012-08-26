@@ -1,0 +1,24 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}dating_map{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.6.1.min.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/ijustdated.js"></script> 
+{% endblock %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        <ul>
+            <li><a href="{% url dating_map %}">{% trans "Dating Map" %}</a></li>
+            <li><a href="{% url new_dating %}">{% trans "New Dating" %}</a></li>
+            <li><a href="{% url my_dating %}">{% trans "My Dating" %}</a></li>
+        </ul>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% endblock %}

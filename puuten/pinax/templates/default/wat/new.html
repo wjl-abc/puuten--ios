@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load uni_form %}
+{% load friends_app_tags %}
+{% load avatar_tags %}
+{% load profile_tags %}
+{% load weibo_tags %}
+{% load business_sina_tags %}
+
+{% block head_title %}{% blocktrans %}邀请朋友一起去{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <form class="uniForm" id="new_buzz" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ buzz_form|as_uni_form }}
+            <div class="form_block">
+                <input type="hidden" name="action" value="create" />
+                <input id= "create" type="submit" value="{% trans '发送' %}" />
+            </div>
+        </fieldset>
+    </form>
+    
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+   	        $('#div_id_reference_bs').hide();
+   	        $('#div_id_reference_wb').hide();
+   	        $('#div_id_latitude').hide();
+   	        $("#div_id_longitude").hide();
+   	        if("{{attachment.partner}}"){
+   	            $('#div_id_reference_wb').after("<input id='id_guest' type='text' class='textinput' name='guest_list' maxlength='200' value={{attachment.partner.id}} />");
+   	        }
+   	        else{
+   	            $('#div_id_reference_wb').after("<input id='id_guest' type='text' class='textinput' name='guest_list' maxlength='200' />");
+   	        }
+   	        $('#id_guest').hide();
+   	        if("{{attachment.partner}}"=="0"){
+     	        $("#div_id_body").before("{% friends_checkbox request.user %}");
+   	        }
+   	        if("{{attachment.dir}}"){
+    	        $('#id_guest').after("<input id='id_dir' type='hidden' class='textinput' name='dir_page' maxlength='200' />")
+    	        $('#id_dir').val("{{attachment.dir}}")
+    	    }
+    	    $('#id_latitude').val(parseFloat("{{attachment.bs.latitude}}"));
+    	    $('#id_longitude').val(parseFloat("{{attachment.bs.longitude}}"));
+    	    $(":checkbox").click(function(){
+                var str="";
+                $("[name=items]:checkbox:checked").each(function(){
+                    str+=$(this).val()+",";
+                })
+                $("#id_guest").val(str);
+            });
+        });
+    </script>
+{% endblock %}
+

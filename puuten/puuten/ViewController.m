@@ -60,7 +60,6 @@
         NSError* error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
-        NSLog(@"There are %i images", [arrayData count]);
         [self dataSourceDidLoad];
     }];
     [request setFailedBlock:^{
@@ -79,10 +78,18 @@
     [waterFlow reloadData];
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super initWithCoder:aDecoder])) {
+        self.navigationController.title = @"home";
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	self.navigationController.title = @"home";
 }
 
 -(void)loadMore{
@@ -132,12 +139,12 @@
     [imageViewCell relayoutViews];
     switch (type) {
         case 1:
-            info = @"把相关的信息加入了愿望单";
+            info = @"把该信息加入了愿望单";
             break;
         case 2:
-            info = @"更新了相关的活动专辑";
+            info = @"更新了和该信息相关的活动专辑";
             break;
-        case 3:
+        case 4:
             info = [NSString stringWithFormat:@"接受了%@参加相关活动的邀请", partnerName];
         default:
             break;
@@ -171,6 +178,7 @@
         [self performSegueWithIdentifier:@"login" sender:self];
     }
     else {
+        //self.navigationController.title = @"home";
         arrayData = [[NSMutableArray alloc] init];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         

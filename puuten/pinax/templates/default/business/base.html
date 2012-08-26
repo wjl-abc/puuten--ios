@@ -1,0 +1,29 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load business_sina_tags %}
+{% block body_class %}business{% endblock %}
+
+{% block js %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/blog.location.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/baidu_map.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-1.7.2.min.js"></script> 
+    <link type="text/css" href="{{ STATIC_URL }}pinax/css/ui-lightness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="{{ STATIC_URL }}pinax/js/jquery-ui-1.8.20.custom.min.js"></script>
+    
+{% endblock %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        <ul>
+            <li><a href="{% url your_business %}">{% trans "Your Business" %}</a></li>
+            <li><a href="{% url your_collection %}">{% trans "Your Collection" %}</a></li>
+            {% ifequal 1 request.user.id %}
+                <li><a href="{% url business_app_management %}">{% trans "Business App Management" %}</a></li>
+            {% endifequal %}
+        </ul>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% endblock %}

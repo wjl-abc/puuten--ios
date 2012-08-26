@@ -1,0 +1,103 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load pagination_tags %}
+{% load weibo_tags %}
+
+{% block head_title %}{% blocktrans %}Business From Sina{% endblocktrans %}{% endblock %}
+{% block body %}
+    <h1>{% trans "All Tweets" %}</h1>
+    {% if bs_admin_or_not %}
+        {% if weibolist %}
+            <p>{% trans "These are tweets posts new " %}:</p>
+                {% autopaginate weibolist %}
+
+                {% for instance in weibolist %}
+                    {% show_weibo instance %}
+                    <form method="POST" action="" class="input" id="{{instance.id}}">
+                        <div class="form_input from"><input type="text" class="it date-pick" /></div>
+                        <div class="form_input to"><input type="text" class="it date-pick" /></div>
+                        {% show_temp_tags %}
+                        <input class="form_input tags" type='checkbox' name='items' value="演出/电影" />演出/电影
+                        <input class="form_input tags" type='checkbox' name='items' value="展览/沙龙" />展览/沙龙
+                        <input class="form_input tags" type='checkbox' name='items' value="打折/促销" />打折/促销
+                        <input class="form_input tags" type='checkbox' name='items' value="派对/夜店" />派对/夜店
+                        <input class="form_input tags" type='checkbox' name='items' value="聚会" />聚会
+                        <input class="form_input tags" type='checkbox' name='items' value="特色" />特色
+                        <input class="form_input tags" type='checkbox' name='items' value="奖品" />奖品
+                        <input class="form_input tags" type='checkbox' name='items' value="座谈/讲座" />座谈/讲座
+                        <input class="form_input tags" type='checkbox' name='items' value="其它" />其它
+                    </form>
+                    <form action="{% url bs_rd_del instance.id %}" method="POST">
+                        {# @@@ still can't replace this with a silk tag yet #}
+                        <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete WeiBo" %}" />
+                        <input type="hidden" name="action" value="delete"/>
+                    </form>
+                {% endfor %}
+                {% paginate %}
+           
+            <form class="uniForm"  id="weibosform" method="post">
+                <textarea id="wb_id" name="wb_id" class="textarea"></textarea>
+	            <textarea id="from" name="from" class="textarea"></textarea>
+	            <textarea id="to" name="to" class="textarea"></textarea>
+	            <textarea id="checked_id" name="checked_id" class="textarea"></textarea>
+	            <textarea id="tags" name ="tags" class="textarea"></textarea>
+                <div class="form_block">
+                    <input type="hidden" name="action" value="submit" />
+                    <input type="submit" value="{% trans "create" %}" />
+                </div>
+            </form>
+        {% else %}
+            {% trans "No tweets posts yet." %}
+        {% endif %}
+    {% else %}
+        <h1>{% trans "You are not permitted to access this page." %}</h1>
+    {% endif %}
+    <script>
+        $(document).ready(function(){
+            $("#wb_id").hide();
+            $("#from").hide();
+            $("#to").hide();
+            $("#checked_id").hide();
+            $("#tags").hide();
+		    $('.date-pick').datepicker({
+			    inline: true
+			});
+		});
+
+		$(".form_input").change(function(){
+		    var wb_id = $(this).parent('form').attr("id");
+		    if(!$(this).parent('form').find("input:eq(1)").val()){
+    		    $(this).parent('form').find("input:eq(1)").val($(this).parent('form').find("input:eq(0)").val());
+    		}
+		    var str_id = "";
+		    var str_from = "";
+		    var str_to = "";
+		    var str_checked = ""
+		    var str_tags = ""
+		    $(".input").each(function(){
+		        if($(this).find("input:eq(0)").val()){
+     		        str_id = str_id + $(this).attr("id")+",";
+     		        str_from = str_from + $(this).find("input:eq(0)").val()+",";
+     		        str_to = str_to + $(this).find("input:eq(1)").val()+",";
+     		        var str = "";
+     		        $(this).find("[name=items]:checkbox:checked").each(function(){
+     		            str += $(this).val()+" ";
+     		        })
+     		        str_tags += str+",";
+     		    }
+     		    else{
+     		        str_checked = str_checked + $(this).attr("id")+",";
+     		    }
+		    })
+		    $("#wb_id").val(str_id);
+		    $("#from").val(str_from);
+		    $("#to").val(str_to);
+		    $("#checked_id").val(str_checked);
+		    $("#tags").val(str_tags)
+		})
+    </script>
+    
+    
+{% endblock %}

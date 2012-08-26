@@ -1,0 +1,31 @@
+{% load switchcase %}
+{% load restructuredtext %}
+{% load markup %}
+{% load avatar_tags %}
+{% load action_tags %}
+{% load i18n %}
+
+<div class="action clearfix">
+    <td>
+	    <div class="avatar">{% avatar_user performer.id 40 %}</div>
+	    <div class="details"><a href="{% url profile_detail performer.id %}" title="{{ performer.username }}">{{ performer.username }}</a></div>
+	</td>
+	{% ifequal act 1 %}
+	    {% ifequal object.get_type "wish" %}
+	        {% show_wish performer object %}
+	    {% endifequal %}
+	    {% ifnotequal object.get_type "wish" %}
+	        <a>出错了</a>
+	    {% endifnotequal %}
+	{% endifequal%}
+	{% ifequal act 4 %}
+	    {% ifequal object.get_type "buzz" %}
+	        {% show_wat performer object %}
+	    {% endifequal %}
+	    {% ifnotequal object.get_type "buzz" %}
+	        <a>出错了</a>
+	    {% endifnotequal %}
+	{% endifequal %}
+	
+
+</div>

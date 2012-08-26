@@ -1,0 +1,33 @@
+{% extends "wearetogether/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Affair Map{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <form class="uniForm" id="new_dating" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ affair_form|as_uni_form }}
+            <div id="map_canvas" style="width:600px; height:500px"></div>
+            <div class="form_block">
+                <input type="hidden" name="action" value="create" />
+                <input id= "create" type="submit" value="{% trans 'create' %}" />
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
+
+{% block extra_body %}
+    <script>
+    var map;
+    $(document).ready(function(){
+    	$('#div_id_latitude').hide();
+	    $('#div_id_longitude').hide();
+	    $('#id_latitude').val({{profile.latitude}});
+	    $('#id_longitude').val({{profile.longitude}});
+        map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        set_marker($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+    });
+    </script>
+{% endblock %}

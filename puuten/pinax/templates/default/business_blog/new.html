@@ -1,0 +1,51 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}New Blog{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if is_manager %}
+        <form class="uniForm" id="new_blog" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ blog_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'create' %}" />
+                </div>
+            </fieldset>
+        </form>
+            
+    <link rel="stylesheet" href="{{ STATIC_URL }}/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('#id_body',{businessID:"{{ business.id }}"});
+					togglemenu();
+			});
+			function togglemenu() 
+			{
+			    if($(".ke-toolbar").data('allbutton')=="" || $(".ke-toolbar").data('allbutton')==null || $(".ke-toolbar").data('allbutton')== undefined)
+			    {
+			    	$(".ke-toolbar").data('allbutton',$(".ke-toolbar").html());
+			    }
+			    var newstr = $(".ke-toolbar").data('allbutton').split('<br>')[0];
+			    if($(".ke-toolbar").html().length < $(".ke-toolbar").data('allbutton').length )
+			    {
+			    	$(".ke-toolbar").html($(".ke-toolbar").data('allbutton'));
+			    }
+			    else
+			    {
+			    	$(".ke-toolbar").html(newstr);
+			    }             
+			}
+	</script>
+    {% else %}
+        <h2>{% trans "You are not permitted to visit this page" %}</h2>
+    {% endif %}
+
+    
+{% endblock %}

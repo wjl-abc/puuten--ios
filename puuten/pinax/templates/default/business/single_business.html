@@ -1,0 +1,42 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load blog_tags %}
+{% load avatar_tags %}
+
+{% block head_title %}{% blocktrans %}Business{% endblocktrans %}{% endblock %}
+
+
+
+{% block body %}
+    <a>{{ business.name }}</a>    <a href="{% url business_apps business.id %}">{% trans "modify the apps" %}</a><br/>
+    <div>
+         <form method="POST" action="{% url toggle_follow_business business.id %}">
+             {% if is_following %}
+                 <input type="hidden" name="action" value="unfollow" /><input type="submit" value="{% trans "delete this business from your collection" %}"/>
+             {% else %}
+                 <input type="hidden" name="action" value="follow" /><input type="submit" value="{% trans "add this business to your collection" %}"/>
+             {% endif %}
+         </form>
+    </div>
+    {% ifequal request.user business.creator %}
+        <a href="{% url business_search  business.id %}">{% trans "Invite someone to be your manager." %}</a><br />
+    {% endifequal %}
+    {% if is_manager %}
+        <a href="{% url business_new_event business.id %}">{% trans "upcoming event"%}</a><br />
+    {% endif %}
+
+    {% if posts %}
+        <h3>{% trans "Upcoming Events" %}<h3>
+        {% for post in posts %}
+            <p>{% show_blog_post post %}</p> 
+            {% if is_manager %}
+                <a href="{{ post.get_edit_url }}">Edit Post</a>   <a href="{{ post.get_switch_url }}">Delete from the homepage</a>   <br />
+            {% endif %}
+            
+        {% endfor %}
+    {% else %}
+        {% trans "No blog posts yet." %}
+    {% endif %}
+{% endblock %}

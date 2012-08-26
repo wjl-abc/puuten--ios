@@ -1,0 +1,25 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Contact{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if is_manager %}
+        <h1>{% trans "File the contact information" %}:</h1>
+        <form class="uniForm" id="new_blog" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ contact_form|as_uni_form }}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'create' %}" />
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <h2>{% trans "You are not permitted to visit this page" %}</h2>
+    {% endif %}
+    
+    
+{% endblock %}

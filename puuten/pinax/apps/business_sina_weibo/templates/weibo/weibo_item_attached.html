@@ -1,0 +1,25 @@
+{% load switchcase %}
+{% load restructuredtext %}
+{% load markup %}
+{% load gravatar %}
+{% load i18n %}
+
+<div id="{{weibo.sina_id}}" class="blog-post clearfix">
+    <div class="blog-post-tease">
+        {% with weibo.sina_text|truncatewords:"150" as body %}                
+            {{ body|safe }}
+        {% endwith %}         
+        <div class="blog-post-retweeted">
+            {% ifnotequal retweeted_weibo "" %}
+                <div id="{{retweeted_weibo.sina_id}}" class="blog-post clearfix retweeted">
+					<div >{% trans "Retweeted from :" %}<a href="http://www.weibo.com/{{retweeted_weibo.sina_user.idstr}}" target="_blank">@{{retweeted_weibo.sina_user.name}}</a></div>
+		    		<div class="blog-post-tease">
+				        {% with retweeted_weibo.sina_text|truncatewords:"150" as body %}                
+				            {{ body|safe }}
+				        {% endwith %}         
+				    </div>
+			    </div>
+			{% endifnotequal %}
+    	</div>    
+    </div>   
+</div>

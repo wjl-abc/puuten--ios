@@ -1,0 +1,44 @@
+{% extends "friends_app/base_new.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load tagging_tags %}
+{% load group_tags %}
+{% load threadedcommentstags %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Friends' Photos{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var map;
+        $(document).ready(function(){
+            {% if object_list %}
+                map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+                {% for photo in object_list %}
+                    add_marker_photo({{photo.latitude}}, {{photo.longitude}}, "{{ photo.get_thumbnail_url }}", "{{photo.title}}", "{{photo.get_absolute_url}}");
+                {% endfor %}
+            {% endif %}
+          });
+    </script>
+    <h1>{% blocktrans %}Friends' Photos{% endblocktrans %}</h1>
+    
+    {% if object_list %}
+        {% autopaginate object_list 24 %}
+        <div class="thumb-row clearfix">
+            {% for photo in object_list %}
+                <div class="gallery-photo-thumb">
+                    <a href="{% groupurl photo_details group id=photo.id %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a><br />
+                    from <a href="{% url profile_detail photo.member.id %}">{{ photo.member.username }}</a><br />
+                    {% silk "comment" %} <a href="{% groupurl photo_details group id=photo.id %}/#photocomments">{% get_comment_count for photo as commentcount %} {{ commentcount }} Comments</a><br />
+                    Viewed {{ photo.view_count }} times
+                </div>
+            {% endfor %}
+        </div>
+        {% paginate %}
+    {% else %}
+        <p>No photos were found.</p>
+    {% endif %}
+    
+{% endblock %}

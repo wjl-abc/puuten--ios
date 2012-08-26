@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-21 18:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: admin_invite_user.html:4
+msgid "Home"
+msgstr "主页"
+
+#: admin_invite_user.html:8
+msgid ""
+"Invite a user given an e-mail address. The user will be e-mailed a signup "
+"code to create their account on this website."
+msgstr "通过邮箱邀请用户，该用户将收到邀请码的邮件。"
+
+#: failure.html:5 failure.html.py:8
+msgid "Incorrect Code"
+msgstr "错误的邀请码"
+
+#: failure.html:11
+#, python-format
+msgid "The code <b>%(code)s</b> is incorrect."
+msgstr "邀请码 <b>%(code)s</b> 错误。"
+
+#: failure.html:13
+msgid "You must specify a code."
+msgstr "您必顺输入邀请码。"
+
+#: failure.html:16
+msgid "try again:"
+msgstr "再试一次"

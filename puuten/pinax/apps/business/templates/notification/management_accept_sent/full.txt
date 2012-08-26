@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans with invitation.local_business as invitation_local_business %}You accepted {{ invitation_local_business }}'s management request.{% endblocktrans %}

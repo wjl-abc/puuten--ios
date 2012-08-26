@@ -1,0 +1,59 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Edit Profile{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+           // var map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+           // set_your_area($('#id_latitude'), $('#id_longitude'), $('#id_lat_northeast'), $('#id_long_northeast'), $('#id_lat_southwest'), $('#id_long_southwest'), $('#id_scale'), {{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+           // $('#div_id_latitude').hide(); 
+           // $('#div_id_longitude').hide();
+           // $('#div_id_scale').hide();
+            $('#div_id_location').hide();
+           // $('#div_id_lat_northeast').hide();
+           // $('#div_id_long_northeast').hide();
+           // $('#div_id_lat_southwest').hide();
+           // $('#div_id_long_southwest').hide();
+        });
+    </script>
+    <form class="uniForm" id="edit-profile" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ profile_form|as_uni_form }}
+            <p>{% trans "Please select the area you are interested:" %}</p>  
+            <div id="map_canvas" style="width:600px; height:500px"></div>
+        </fieldset>
+  
+    </form>
+    <form method="POST" action=""> 
+        <div class="form_block">
+             <input id="edit_profile"  type="submit" value="update" />
+             or <a href="{% url profile_detail profile.user.username %}">cancel</a>
+        </div>
+    </form>
+    <p>{{profile.latitude}}</p>
+    <script type="text/javascript">
+        var map = initialize({{profile.latitude}}, {{profile.longitude}}, {{profile.scale}});
+        alter({{profile.latitude}});
+        var done = function(data, textStatus){
+            if(textStatus=="success"){}
+            else {}
+        };
+        var submit_profile = function(){
+            alert(111);
+            var area = set_area_test(map)
+           // $("#div_id_about").after('<input id="id_latitude" type="text" class="textinput" value="'+ area["latitude"] +'" name="latitude" />');
+            var args = {type:"POST",
+                        data:{"a",3},
+                        url:"",
+                        complete:done};
+            $.ajax(args);
+            return false;
+        };
+        $("#edit_profile").click(submit_profile);
+    </script>
+
+{% endblock %}

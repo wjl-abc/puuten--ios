@@ -7,6 +7,8 @@
 //
 
 #import "BSHeader.h"
+#import "Constance.h"
+#import "UIImageView+WebCache.h"
 #import "ASIHTTPRequest.h"
 
 @implementation BSHeader
@@ -42,24 +44,36 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     UILabel *label_test =[[UILabel alloc] init];
-    CGRect labelFrame = CGRectMake(80, 20, 400, 20);
+    CGRect labelFrame = CGRectMake(80, 10, 400, 20);
     label_test.frame = labelFrame;
-    label_test.text = self.name;
-    [self addSubview:label_test];
+    //label_test.text = @"mmmmmm";
+    //[self addSubview:label_test];
     UIImageView *image_view_test = [[UIImageView alloc] init];
-    CGRect image_view_frame = CGRectMake(10, 10, 50, 50);
+    CGRect image_view_frame = CGRectMake(0, 0, 50, 50);
     image_view_test.frame = image_view_frame;
-    NSURL *nsURL = [[NSURL alloc] initWithString:self.avatar_url];
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:nsURL];
+    
+    NSString *wb_url_string = [NSString stringWithFormat:@"/business/bs_weibo_list/%d/", _bs_id];
+    NSURL *nsURL = [[NSURL alloc] initWithString:URL];
+    NSURL *bsURL = [NSURL URLWithString:wb_url_string relativeToURL:nsURL];
+    ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:bsURL];
+    __weak ASIFormDataRequest *request = _request;
+    [request setPostValue:@"ios" forKey:@"mobile"];
     [request setCompletionBlock:^{
-        UIImage *image = [[UIImage alloc] initWithData:[request responseData]];
-        [image_view_test setImage:image];
+        NSData *responseData = [request responseData];
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        label_test.text = [json objectForKey:@"name"];
+        NSURL *imageURL = [NSURL URLWithString:[json objectForKey:@"avatar_url"]];
+        [image_view_test setImageWithURL:imageURL];
+        [self addSubview:label_test];
         [self addSubview:image_view_test];
     }];
     [request setFailedBlock:^{
-        NSLog(@"%@", @"ppppp");
+        
     }];
+    
     [request startAsynchronous];
+     
 }
 
 - (void)setNameLabel:(UILabel *)nameLabel

@@ -1,0 +1,165 @@
+{% extends "business/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load theme_tags %}
+{% load business_tags %}
+{% load theme_tags %}
+{% load business_sina_tags %}
+
+{% block head_title %}{% blocktrans %}Your Collection{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% if your_collection %}
+	    {% for business in your_collection %}
+	        {% business_detail_info business %}
+	        <form method="POST" action="{% url toggle_follow_business business.id %}">
+                 <input type="hidden" name="action" value="unfollow" /><input type="submit" value="{% trans "delete this business from your collection" %}"/>
+            </form>
+            {% business_recommend_info business %}
+	    {% endfor %}	
+    {% else %}
+        {% trans "No collection yet." %}
+    {% endif %}
+    {% if bs_admin_or_not %}
+        <h2>{{business_count}}</h2>
+        <a href="{% url bs_location %}">{% trans "New Businss from Sina Microblog" %}</a>
+        <form method="POST" action="" > 
+                <input type="hidden" name="action" value="reset" />
+                <input type="submit" value="{% trans 'reset the unlocated business' %}" />
+        </form>
+        <form method="POST" action="" > 
+                <input type="hidden" name="action" value="recover" />
+                <input type="submit" value="{% trans 'recover the located business' %}" />
+        </form>
+    {% if business_sina_list_negative %}
+        <h2>Here are the not approved local business from sina({{business_negative_count}})</h2>
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="100%">
+            {% for instance in business_sina_list_negative %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b><a class="row_number"></a></b><br /></td>
+                    <td><b><a href="{{ instance.sina_url }}">{{ instance.name }}</a></b><br />
+                        <a>{{instance.introduction}}</a>
+                    </td>
+                    {% if instance.location %}
+                        <td><b><a>{{instance.location}}</a></b><br /></td>
+                    {% endif %}
+                    <td>
+                        <form method="POST" action="" id= "{{instance.id}}"> 
+                            <div class="form_input"><a>New Name:</a><input name="new_name" class="textinput"><br></div>
+                            <div class="form_input"><a>Address:</a><input name="address" class="textinput"><br></div>
+                            <input type="hidden" name="city" class="textinput" value={% get_city_id instance.id %}>
+                            <input  name="lat" class="textinput" >
+                            <input  name="lng" class="textinput" >
+                            <div class="form_block">
+                                <input type="hidden" name="next" value="edit name and address" />
+                                <input type="submit" value="{% trans 'Edit' %}" />
+                            </div>
+                        </form>
+                    </td>
+                    <td width="50px" align="center">
+                        <a href="{% url bs_edit instance.id %}">
+                            {% silk "pencil" %}
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{% url bs_del instance.id %}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Post" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                       </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if business_sina_list_active %}
+        <h2>Here are the approved local business from sina({{business_active_count}})</h2>
+        <table cellpadding="5" cellspacing="0" border="0" class="blog-list" width="100%">
+            {% for instance in business_sina_list_active %}
+                <tr class="{% cycle odd,even %}">
+                    <td><b><a>{{ instance.id }}</a></b><br /></td>
+                    <td><b><a href="{{ instance.get_absolute_url }}">{{ instance.name }}</a></b><br />
+                        <a>{{instance.introduction}}</a>
+                    </td>
+                    {% if instance.location %}
+                        <td><b><a>{{ instance.location }}</a></b><br /></td>
+                    {% endif %}
+                    <td><b><a>{{ instance.latitude }}</a>   <a>{{instance.longitude}}</a></b><br /></td>
+                    <td>
+                        <form method="POST" action="" id= "{{instance.id}}"> 
+                            <div><a>New Name:</a><input name="new_name" class="textinput"><br></div>
+                            <div><a>Address:</a><input name="address" class="textinput"><br></div>
+                            <div class="form_block">
+                                <input type="hidden" name="next" value="edit name and address" />
+                                <input type="submit" value="{% trans 'Edit' %}" />
+                            </div>
+                        </form>
+                    </td>
+                    <td width="50px" align="center">
+                        <a href="{% url bs_edit instance.id %}">
+                            {% silk "pencil" %}
+                        </a>
+                    </td>
+                    <td align="right">
+                        <form action="{% url bs_del instance.id %}" method="POST">
+                            {# @@@ still can't replace this with a silk tag yet #}
+                            <input type="image" src="{{ STATIC_URL }}pinax/images/silk/icons/delete.png" border="0" title="{% trans "Delete Post" %}" />
+                            <input type="hidden" name="action" value="delete"/>
+                       </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+    $(document).ready(function(i){
+        $(".row_number").each(function(i){
+        	$(this).append(i+1);
+        });
+    })
+        var done_for_edit=function(data, textStatus){
+        	if(textStatus=="success"){}
+        	else{
+        		alert("Some error happens.");
+        	}
+        }
+        $(".form_block").click(function() {
+        	 var business_id       = $(this).parent('form').attr("id");
+             var business_new_name = $(this).parent('form').find("input:eq(0)").val();
+             var business_address  = $(this).parent('form').find("input:eq(1)").val();
+             var lat = $(this).parent('form').find("input:eq(3)").val();
+             var lng = $(this).parent('form').find("input:eq(4)").val();
+    	     $(this).parent('form').hide();
+             var business_edit_info = {"business_id":business_id, "business_new_name":business_new_name, "business_address":business_address, "lat":lat, "lng":lng};
+             var args = {type:"POST",
+                        url:"",
+                        data:business_edit_info,
+                        complete:done_for_edit};
+             $.ajax(args);
+             return false;
+           });
+        $(".form_input").keyup(function(){
+            var business_new_name = $(this).parent('form').find("input:eq(0)").val();
+            var business_address  = $(this).parent('form').find("input:eq(1)").val();
+            var city = $(this).parent('form').find("input:eq(2)").val();
+            var lat = $(this).parent('form').find("input:eq(3)");
+            var lng = $(this).parent('form').find("input:eq(4)");
+            if (business_address)
+		     {
+		        keyword=business_address;
+		     }
+	         else if (business_new_name)
+		     {
+		        keyword=business_new_name;
+		     }
+		     //alert(keyword);
+		     //new_test(city);
+       	     get_lat_and_lng(city, keyword, lat, lng);
+        });
+    </script>
+{% endblock %}

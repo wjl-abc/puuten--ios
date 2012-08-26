@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-22 21:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: base.html:17 your_projects.html:7 your_projects.html.py:11
+msgid "Your Projects"
+msgstr "您的项目"
+
+#: base.html:18
+msgid "Create a Project"
+msgstr "创建一个项目"
+
+#: base.html:20
+msgid "All Projects"
+msgstr "所有的项目"
+
+#: create.html:11 create.html.py:14
+msgid "Create Project"
+msgstr "创建项目"
+
+#: create.html:16
+msgid ""
+"A <b>project</b> is a group of people working together on a common set of "
+"tasks."
+msgstr "<b>项目</b> 是由一群的人共同完成的任务集。"
+
+#: create.html:23
+msgid "create"
+msgstr "新建"
+
+#: create.html:30 projects.html:23
+#, python-format
+msgid ""
+"<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
+"</a> to create your own project or join an existing one."
+msgstr ""
+"<a href=\"%(signup_url)s\">注册</a> 并且 <a href=\"%(login_url)s\">登陆 </a> "
+"以创建您的项目或者加入已有项目。"
+
+
+#: project.html:22
+msgid "Members"
+msgstr "成员"
+
+#: project.html:40
+msgid "Project"
+msgstr "项目"
+
+#: project.html:43
+msgid "Slug:"
+msgstr ""
+
+#: project.html:44
+msgid "Creator:"
+msgstr "创建者"
+
+#: project.html:45
+msgid "Created:"
+msgstr "创建日期："
+
+#: project.html:54
+msgid "Edit details"
+msgstr "编辑详情"
+
+#: project.html:61
+msgid "updated"
+msgstr "已更新"
+
+#: project.html:76
+msgid "Add new member"
+msgstr "添加一个新成员"
+
+#: project.html:83
+msgid "add"
+msgstr "添加"
+
+#: project.html:89
+msgid "Delete project"
+msgstr "删除项目"
+
+#: project.html:91
+msgid "Delete Project"
+msgstr "删除项目"
+
+#: project.html:103
+msgid "Discussion Topics"
+msgstr "讨论区话题"
+
+#: project.html:111 project.html.py:127
+msgid "more..."
+msgstr "更多..."
+
+#: project.html:114
+#, python-format
+msgid "None yet. <a href=\"%(new_topic_url)s\">Start one...</a>"
+msgstr "无。 <a href=\"%(new_topic_url)s\">我想尝试一下……</a>"
+
+#: project.html:119
+msgid "Wiki Articles"
+msgstr "维基文章"
+
+#: project.html:131
+#, python-format
+msgid ""
+"\n"
+"                        None yet. Go to the <a href=\"%(wiki_url)s\" title="
+"\"wiki\">wiki</a> to start a new article.\n"
+"                    "
+msgstr ""
+"\n"
+"                        无。转到<a href=\"%(wiki_url)s\" title=\"wiki\">维基"
+"</a> 创建新文章。\n"
+"                    "
+
+#: project.html:137
+msgid "Tasks"
+msgstr "任务"
+
+#: project_item.html:7
+msgid "Members:"
+msgstr "成员"
+
+#: project_item.html:9
+msgid "Topics:"
+msgstr "话题"
+
+#: projects.html:12 projects.html.py:15
+msgid "Projects"
+msgstr "项目"
+
+#: projects.html:17
+msgid "A <b>project</b> is a group of people working on a common set of tasks."
+msgstr "<b>项目</b> 是由一群的人共同完成的任务集。"
+
+#: projects.html:36
+msgid "Order by:"
+msgstr "排序"
+
+#: your_projects.html:13
+msgid "These are the projects you participate in."
+msgstr "这是您所参与的项目。"

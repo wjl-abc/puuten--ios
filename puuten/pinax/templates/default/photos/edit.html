@@ -1,0 +1,46 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load tagging_tags %}
+{% load comments_tag %}
+{% load photo_tags %}
+{% load flagtags %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Editing Photo Details{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+    $(document).ready(function(){  
+    	$('#div_id_latitude').hide();
+        $('#div_id_longitude').hide();
+        $('#div_id_owner_id').hide();
+        if({{photo.owner_type}}==1){
+            var map = initialize({{photo.latitude}},{{photo.longitude}},10);
+            set_marker($('#id_latitude'), $('#id_longitude'), {{photo.latitude}},{{photo.longitude}}, map);
+        }
+      });
+    </script>
+    <div class="right_panel">
+        {% include "photos/photo_right_panel.html" %}
+    </div>
+    
+    <h1>{% trans "Photo Details" %}</h1>
+    
+    <div class="gallery-photo">
+        <img src="{{ photo_url }}" alt="{{ photo.title }}"/>
+    </div>
+    
+    {% ifequal photo.member request.user %}
+        <form method="POST" action="">
+                {{ photo_form|as_uni_form }}       
+                {% ifequal photo.owner_type 1 %}
+                    <div id="map_canvas" style="width:600px; height:500px"></div>
+                {% endifequal %}
+                <tr><td></td><td><input type="hidden" name="action" value="update" /><input type="submit" value="update" /></td></tr>
+        </form>
+    {% else %}
+        <p>You are not the author of this photo.</p>
+    {% endifequal %}
+    
+{% endblock %}

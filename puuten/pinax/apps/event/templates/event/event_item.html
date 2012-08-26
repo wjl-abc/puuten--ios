@@ -1,0 +1,45 @@
+{% load switchcase %}
+{% load restructuredtext %}
+{% load wiki_tags %}
+{% load markup %}
+{% load gravatar %}
+{% load extra_tagging_tags %}
+
+<div class="event clearfix">
+    <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+    <div class="event-tease">
+        {% if event.tease %}
+             {% with event.tease as body %}
+                {% if event.markup %}
+                    {% switch event.markup %}
+                        {% case 'rst' %} {{ body|restructuredtext|wikiwords|safe }} {% endcase %}
+                        {% case 'mrk' %} {{ body|force_escape|markdown|wikiwords }} {% endcase %}
+                        {% case 'txl' %} {{ body|force_escape|textile|wikiwords }} {% endcase %}
+                    {% endswitch %}
+                {% else %}
+                    {{ body|force_escape|wikiwords|linebreaks|safe }}
+                {% endif %}
+            {% endwith %}
+        {% else %}
+            {% with event.body|truncatewords:"150" as body %}
+                {% if event.markup %}
+                    {% switch event.markup %}
+                        {% case 'rst' %} {{ body|restructuredtext|wikiwords|safe }} {% endcase %}
+                        {% case 'mrk' %} {{ body|force_escape|markdown|wikiwords }} {% endcase %}
+                        {% case 'txl' %} {{ body|force_escape|textile|wikiwords }} {% endcase %}
+                    {% endswitch %}
+                {% else %}
+                    {{ body|force_escape|wikiwords|linebreaks|safe }}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+    </div>
+    <div class="event-meta">
+        {% gravatar event.author 40 %}
+        <p><b>Posted:</b><br />
+            <a href="{% url profile_detail event.author.id %}">{{ event.author.username }}</a> on {{ event.publish|date }}</p>
+        <div class="blog-tags">
+            <p>{% show_tags_for event %}</p>
+        </div>
+    </div>
+</div>

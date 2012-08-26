@@ -1,0 +1,80 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+{% load uni_form %}
+{% load recommend_tags %}
+
+{% block head_title %}{% blocktrans %}Write a Blog Post{% endblocktrans %}{% endblock %}
+
+{% block body %}
+   
+    {# @@@ not sure how to bring back teaser toggle with uni_form #} 
+    <script type="text/javascript">
+   	    $(document).ready(function(){
+   	    	$('#div_id_latitude').hide();
+   	        $('#div_id_longitude').hide();
+   	      //  $('#div_id_tags').hide();
+   	        $('#div_id_owner_id').hide();
+    	    if("{{something}}"=="None"){
+    	    	$('#id_latitude').val({{profile.latitude}});
+    	        $('#id_longitude').val({{profile.longitude}});
+                var map = initialize({{profile.latitude}},{{profile.longitude}},{{profile.scale}});
+		        set_marker($('#id_latitude'), $('#id_longitude'), {{profile.latitude}},{{profile.longitude}}, map);
+            }
+        });
+    </script>
+    {% if is_manager %}
+        <form class="uniForm" id="new_blog" method="POST" action="">
+            <fieldset class="inlineLabels">
+                {{ blog_form|as_uni_form }}
+                
+                {% if not something%}
+                    <div id="map_canvas" style="width:600px; height:500px"></div>
+                {% endif %}
+                <div class="form_block">
+                    <input type="hidden" name="action" value="create" />
+                    <input id= "create" type="submit" value="{% trans 'create' %}" />
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+        <h2>{% trans "You are not permitted to visit this page" %}</h2>
+    {% endif %}
+    
+    
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="{{ STATIC_URL }}/kindeditor/lang/zh_CN.js"></script>
+	<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('#id_body');
+					togglemenu();
+			});
+			function togglemenu() 
+			{
+			    if($(".ke-toolbar").data('allbutton')=="" || $(".ke-toolbar").data('allbutton')==null || $(".ke-toolbar").data('allbutton')== undefined)
+			    {
+			    	$(".ke-toolbar").data('allbutton',$(".ke-toolbar").html());
+			    }
+			    var newstr = $(".ke-toolbar").data('allbutton').split('<br>')[0];
+			    if($(".ke-toolbar").html().length < $(".ke-toolbar").data('allbutton').length )
+			    {
+			    	$(".ke-toolbar").html($(".ke-toolbar").data('allbutton'));
+			    }
+			    else
+			    {
+			    	$(".ke-toolbar").html(newstr);
+			    }             
+			}
+	</script>
+    <script type="text/javascript">
+        $(function(){
+            $('#blog_form').validate('{% url blog_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}

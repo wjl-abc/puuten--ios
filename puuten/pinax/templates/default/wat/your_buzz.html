@@ -1,0 +1,16 @@
+{% extends "profiles/base_new.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load theme_tags %}
+{% load extra_tagging_tags %}
+{% load wat_tag %}
+
+{% block head_title %}{% blocktrans %}My Buzz{% endblocktrans %}{% endblock %}
+
+{% block body %}
+        {% for instance in buzzship %}
+            {% show_buzz instance.buzz %}
+        {% endfor %}
+
+{% endblock %}

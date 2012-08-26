@@ -1,0 +1,33 @@
+{% extends "site_base_business.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load tagging_tags %}
+{% load group_tags %}
+{% load threadedcommentstags %}
+{% load theme_tags %}
+
+{% block head_title %}{% blocktrans %}Photos{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <a href="{% url business_new_photo business.id %}">{% trans "New Photo"%}</a><br />    
+    {% if photos %}
+    {% autopaginate photos %}
+        <div class="thumb-row clearfix">
+        {% for photo in photos %}
+        <div class="gallery-photo-thumb">
+            <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a><br />
+            from <a href="{% url profile_detail photo.member.id %}">{{ photo.member.username }}</a><br />
+            {% silk "comment" %}<a href="{% groupurl photo_details group id=photo.id %}/#photocomments">{% get_comment_count for photo as commentcount %} {{ commentcount }} Comments</a><br />
+        </div>
+        {% endfor %}
+        </div>
+        {% paginate %}
+    {% else %}
+    <p>{% trans "No photos were found." %}</p>
+    {% endif %}
+    
+    
+{% endblock %}
