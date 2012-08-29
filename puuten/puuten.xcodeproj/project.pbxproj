@@ -15,6 +15,7 @@
 		FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC449D2F15DE52A000B0BF90 /* LibViewController.m */; };
 		FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */; };
 		FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */; };
+		FCBA959A15EA594B0079A7C6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBA959915EA594B0079A7C6 /* ProfileViewController.m */; };
 		FCCD876615E0E9F0001EF8CE /* tab_feed.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD876515E0E9F0001EF8CE /* tab_feed.png */; };
 		FCCD876915E0F450001EF8CE /* Wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD876815E0F450001EF8CE /* Wallet.png */; };
 		FCCD876B15E0F915001EF8CE /* tab-me.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD876A15E0F915001EF8CE /* tab-me.png */; };
@@ -82,6 +83,8 @@
 		FC449D2F15DE52A000B0BF90 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
 		FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_check.png; sourceTree = "<group>"; };
 		FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_checked.png; sourceTree = "<group>"; };
+		FCBA959815EA594B0079A7C6 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		FCBA959915EA594B0079A7C6 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		FCCD876515E0E9F0001EF8CE /* tab_feed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_feed.png; sourceTree = "<group>"; };
 		FCCD876815E0F450001EF8CE /* Wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wallet.png; sourceTree = "<group>"; };
 		FCCD876A15E0F915001EF8CE /* tab-me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me.png"; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				FC03895B15DA6C47004B998B /* FriendsTableCell.m */,
 				FC449D2E15DE52A000B0BF90 /* LibViewController.h */,
 				FC449D2F15DE52A000B0BF90 /* LibViewController.m */,
+				FCBA959815EA594B0079A7C6 /* ProfileViewController.h */,
+				FCBA959915EA594B0079A7C6 /* ProfileViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				FC03895C15DA6C47004B998B /* FriendsTableCell.m in Sources */,
 				FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */,
 				FCF8B21815E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m in Sources */,
+				FCBA959A15EA594B0079A7C6 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

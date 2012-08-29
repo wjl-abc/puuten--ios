@@ -63,7 +63,6 @@
         bs_id = [[bsdata objectForKey:@"bs_id"] intValue];
         self.bsHeader.bs_id=bs_id;
         int type = [[bsdata objectForKey:@"type"] intValue];
-        NSLog(@"type is %i", type);
         if (type==1) {
             NSURL *pic_URL = [NSURL URLWithString:[bsdata objectForKey:@"pic_url"]];
             NSData* data = [[NSData alloc] initWithContentsOfURL:pic_URL];
@@ -76,7 +75,6 @@
             NSString *re_wb_body = [bsdata objectForKey:@"re_wb_body"];
             NSString *re_wb_name = [bsdata objectForKey:@"re_wb_name"];
             NSString *re_wb_for_display = [NSString stringWithFormat:@"%@: %@", re_wb_name, re_wb_body];
-            NSLog(@"%@", re_wb_for_display);
             CGSize constraint = CGSizeMake(260.0f, 400.0f);
             CGSize size_re_wb = [re_wb_for_display sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
             re_wb.lineBreakMode = UILineBreakModeWordWrap;
@@ -95,7 +93,6 @@
             NSString *re_wb_body = [bsdata objectForKey:@"re_wb_body"];
             NSString *re_wb_name = [bsdata objectForKey:@"re_wb_name"];
             NSString *re_wb_for_display = [NSString stringWithFormat:@"%@: %@", re_wb_name, re_wb_body];
-            NSLog(@"%@", re_wb_for_display);
             CGSize constraint = CGSizeMake(260.0f, 400.0f);
             CGSize size_re_wb = [re_wb_for_display sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
             re_wb.lineBreakMode = UILineBreakModeWordWrap;

@@ -18,6 +18,7 @@
 
     int _columnCount;   //列数
     int _cellsTotal;    //总的数据项
+    int tag;
     float _cellWidth;   //每列的宽度
 
     UIActivityIndicatorView *activityViewLoad;

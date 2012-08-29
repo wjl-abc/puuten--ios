@@ -162,7 +162,7 @@
     return waterFlowView.cellWidth*height_width_ratio+58;
 }
 
-- (void)waterFlowView:(WaterFlowView *)waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{
+- (void)waterFlowView:(WaterFlowView * )waterFlowView didSelectRowAtIndexPath:(IndexPath *)indexPath{
     
     NSLog(@"indexpath row == %d,column == %d",indexPath.row,indexPath.column);
 }

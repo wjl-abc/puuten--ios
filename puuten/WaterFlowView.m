@@ -80,7 +80,7 @@
             tableView.showsVerticalScrollIndicator = NO;
             tableView.scrollEnabled = NO;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.backgroundColor = [UIColor clearColor];
+            tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];
             [self addSubview:tableView];
             [tableView release];
             
