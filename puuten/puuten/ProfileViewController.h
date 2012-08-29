@@ -14,7 +14,7 @@
 @interface ProfileViewController : UIViewController<WaterFlowViewDelegate, WaterFlowViewDataSource>
 {
     NSMutableArray *arrayData;
-    NSMutableArray *testData;
+    //NSMutableArray *testData;
     WaterFlowView  *waterFlow_wat;
     WaterFlowView  *waterFlow_wish;
     int selected_cell;

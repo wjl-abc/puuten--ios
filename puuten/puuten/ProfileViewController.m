@@ -31,25 +31,24 @@
 
 - (void)loadInternetData {
     NSURL *nsURL = [[NSURL alloc] initWithString:URL];
-    //NSURL *libURL = [NSURL URLWithString:@"/wishing_list/" relativeToURL:nsURL];
-    NSURL *libURL = [NSURL URLWithString:@"/wat/your_buzz/" relativeToURL:nsURL];
-    ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
-    __weak ASIFormDataRequest *request = _request;
-    [request setPostValue:@"ios" forKey:@"mobile"];
-    [request setCompletionBlock:^{
-        NSData *responseData = [request responseData];
+    NSURL *buzz_URL = [NSURL URLWithString:@"/profiles/mobile/" relativeToURL:nsURL];
+    
+    ASIFormDataRequest *_request_buzz = [ASIFormDataRequest requestWithURL:buzz_URL];
+    __weak ASIFormDataRequest *request_buzz = _request_buzz;
+    
+    [request_buzz setPostValue:@"ios" forKey:@"mobile"];
+    [request_buzz setCompletionBlock:^{
+        NSData *responseData = [request_buzz responseData];
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        arrayData = json;
-        [testData addObject:arrayData];
-        [testData addObject:arrayData];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        [arrayData addObject:[json objectForKey:@"wish"]];
+        [arrayData addObject:[json objectForKey:@"buzz"]];
         [self dataSourceDidLoad];
     }];
-    [request setFailedBlock:^{
+    [request_buzz setFailedBlock:^{
         [self dataSourceDidError];
     }];
-    
-    [request startAsynchronous];
+    [request_buzz startAsynchronous];
     
 }
 
@@ -87,16 +86,12 @@
 
 #pragma mark WaterFlowViewDataSource
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
-    if (waterFlowView.tag) {
-        return 2;
-    }
-    else
-        return 3;
+    return 2;
 }
 
 - (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView{
-    if([testData count])
-        return [[testData objectAtIndex:waterFlowView.tag] count];
+    if([arrayData count])
+        return [[arrayData objectAtIndex:waterFlowView.tag] count];
     else
         return 0;
     
@@ -115,8 +110,7 @@
     //arrIndex是某个数据在总数组中的索引
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
     
-    NSMutableArray *test = [testData objectAtIndex:0];
-    NSDictionary *object = [test objectAtIndex:arrIndex];
+    NSDictionary *object = [[arrayData objectAtIndex:waterFlowView.tag] objectAtIndex:arrIndex];
     
     NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
     int wb_id = [[object objectForKey:@"wb_id"] intValue];
@@ -133,7 +127,8 @@
 - (CGFloat)waterFlowView:(WaterFlowView *)waterFlowView heightForRowAtIndexPath:(IndexPath *)indexPath{
     
     int arrIndex = indexPath.row * waterFlowView.columnCount + indexPath.column;
-    NSDictionary *dict = [arrayData objectAtIndex:arrIndex];
+    //NSMutableArray *test = [testData objectAtIndex:waterFlowView.tag];
+    NSDictionary *dict = [[arrayData objectAtIndex:waterFlowView.tag] objectAtIndex:arrIndex];
     float height_width_ratio = [[dict objectForKey:@"ratio"] floatValue];
     return waterFlowView.cellWidth*height_width_ratio;
 }
@@ -150,11 +145,10 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    arrayData = [[NSMutableArray alloc] init];
-    testData = [[NSMutableArray alloc] initWithCapacity:2];
-    for (int i=0; i<[testData count]; i++) {
+    arrayData = [[NSMutableArray alloc] initWithCapacity:2];
+    for (int i=0; i<[arrayData count]; i++) {
         NSMutableArray *test = [[NSMutableArray alloc] init];
-        [testData addObject:test];
+        [arrayData addObject:test];
     }
    // self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
     
