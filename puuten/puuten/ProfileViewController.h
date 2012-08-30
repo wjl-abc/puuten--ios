@@ -19,7 +19,11 @@
     WaterFlowView  *waterFlow_wish;
     int selected_cell;
 }
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *name;
 
+@property (strong, nonatomic) IBOutlet UIButton *wishButton;
+@property (strong, nonatomic) IBOutlet UIButton *watButton;
 - (void)dataSourceDidLoad;
 - (void)dataSourceDidError;
 - (IBAction)click1:(id)sender;

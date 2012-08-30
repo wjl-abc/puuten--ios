@@ -60,13 +60,13 @@
         [avatar release];
         
         name = [[UILabel alloc] init];
-        name.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
+        name.font = [UIFont fontWithName:@"Baskerville" size:10];
         name.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
         [self addSubview:name];
         [name release];
         
         info = [[UILabel alloc] init];
-        info.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
+        info.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:10];
         info.numberOfLines = 2;
         [self addSubview:info];
         [info release];

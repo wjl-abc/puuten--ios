@@ -181,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qui-wj-1Jy">
-                                <rect key="frame" x="37" y="8" width="72" height="37"/>
+                                <rect key="frame" x="43" y="91" width="72" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="b1">
@@ -196,7 +196,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9DT-rX-ENJ">
-                                <rect key="frame" x="168" y="8" width="72" height="37"/>
+                                <rect key="frame" x="171" y="91" width="72" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="b2">
@@ -210,10 +210,27 @@
                                     <action selector="click2:" destination="FtG-m0-zNq" eventType="touchUpInside" id="G4D-ic-axZ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="OoK-AB-pXq">
+                                <rect key="frame" x="43" y="12" width="69" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="bkK-vi-VoZ">
+                                <rect key="frame" x="120" y="20" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="我" image="tab-me.png" id="hcE-qC-Hkj"/>
+                    <connections>
+                        <outlet property="avatar" destination="OoK-AB-pXq" id="090-cT-Bjb"/>
+                        <outlet property="name" destination="bkK-vi-VoZ" id="ua1-6l-pyG"/>
+                        <outlet property="watButton" destination="9DT-rX-ENJ" id="B7i-Ie-rvS"/>
+                        <outlet property="wishButton" destination="Qui-wj-1Jy" id="JE7-cP-OK6"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="533" y="776"/>

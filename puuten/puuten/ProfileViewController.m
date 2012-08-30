@@ -17,6 +17,10 @@
 @end
 
 @implementation ProfileViewController
+@synthesize avatar;
+@synthesize name;
+@synthesize wishButton;
+@synthesize watButton;
 
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +47,8 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         [arrayData addObject:[json objectForKey:@"wish"]];
         [arrayData addObject:[json objectForKey:@"buzz"]];
+        [avatar setImageWithURL:[[NSURL alloc] initWithString:@"http://tp3.sinaimg.cn/2553864062/180/5628731486/0"]];
+        name.text = [json objectForKey:@"name"];
         [self dataSourceDidLoad];
     }];
     [request_buzz setFailedBlock:^{
@@ -63,12 +69,12 @@
 }
 
 - (IBAction)click1:(id)sender {
-    waterFlow_wat.frame = CGRectMake(0, 100, 320, 460-100-44);
+    waterFlow_wat.frame = CGRectMake(0, 115, 320, 460-44-115);
     waterFlow_wish.frame = CGRectZero;
 }
 
 - (IBAction)click2:(id)sender {
-    waterFlow_wish.frame = CGRectMake(0, 100, 320, 460-100-44);
+    waterFlow_wish.frame = CGRectMake(0, 115, 320, 460-44-115);
     waterFlow_wat.frame = CGRectZero;
 }
 
@@ -140,11 +146,25 @@
 
 - (void)viewDidUnload
 {
+    [self setWishButton:nil];
+    [self setWatButton:nil];
+    [self setAvatar:nil];
+    [self setName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+    avatar.frame = CGRectMake(10, 35, 50, 50);
+    name.frame = CGRectMake(70, 35, 50, 25);
+    wishButton.frame = CGRectMake(0, 90, 160, 25);
+    wishButton.titleLabel.frame = CGRectMake(0, 90, 160, 25);
+    [wishButton setTitle:@"愿望单" forState:UIControlStateNormal];
+    wishButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    watButton.frame = CGRectMake(160, 90, 160, 25);
+    watButton.titleLabel.frame = CGRectMake(160, 90, 160, 25);
+    [watButton setTitle:@"活动专辑" forState:UIControlStateNormal];
+    watButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     arrayData = [[NSMutableArray alloc] initWithCapacity:2];
     for (int i=0; i<[arrayData count]; i++) {
         NSMutableArray *test = [[NSMutableArray alloc] init];
@@ -152,13 +172,13 @@
     }
    // self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
     
-    waterFlow_wat = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 70, 320, 460-44-70)];
+    waterFlow_wat = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 115, 320, 460-44-115)];
     waterFlow_wat.waterFlowViewDelegate = self;
     waterFlow_wat.waterFlowViewDatasource = self;
     waterFlow_wat.tag = 0;
     waterFlow_wat.backgroundColor = [UIColor whiteColor];
     
-     waterFlow_wish = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 70, 320, 460-44-70)];
+     waterFlow_wish = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 115, 320, 460-44-115)];
      waterFlow_wish.waterFlowViewDelegate = self;
      waterFlow_wish.waterFlowViewDatasource = self;
      waterFlow_wish.tag = 1;
