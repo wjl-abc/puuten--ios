@@ -35,6 +35,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"bsdetails"]) {
+        NSLog(@"nnnn");
         BSViewController *bs = (BSViewController *)segue.destinationViewController;
         bs.bs_id = bs_id;
     }
@@ -170,13 +171,16 @@
     name_string = [bsdata objectForKey:@"name"];
     avatar_url = [bsdata objectForKey:@"avatar_url"];
 }
+//[self.delegate bsHeader:self clickedBS:_bs_id];
+- (void)bsHeader:(BSHeader *)sender
+       clickedBS:(int)BS_id{
+    NSLog(@"mmmmm");
+    //[self performSegueWithIdentifier:@"bsdetails" sender:self];
+}
 
 - (IBAction)click:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
     //[self performSegueWithIdentifier:@"bsdetails" sender:self];
 }
 
-- (IBAction)bs_detail_click:(id)sender {
-    [self performSegueWithIdentifier:@"bsdetails" sender:self];
-}
 @end

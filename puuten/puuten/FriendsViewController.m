@@ -54,6 +54,8 @@
 {
     
     [super viewDidLoad];
+    self.title = @"好友";
+    //[signupBarItem release];
     [self loadInternetData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

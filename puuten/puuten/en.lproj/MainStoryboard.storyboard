@@ -282,22 +282,6 @@
                                             <segue destination="Qex-Ds-qa5" kind="modal" id="Cgq-pC-eSZ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wcb-4i-kes">
-                                        <rect key="frame" x="21" y="38" width="279" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="bs_detail_click:" destination="cqI-so-lGx" eventType="touchUpInside" id="ode-Xg-rJD"/>
-                                            <segue destination="Zcg-OR-fNz" kind="modal" identifier="bsdetails" id="rzA-hu-JwY"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" id="BEN-Ed-9f4" customClass="BSHeader">
                                         <rect key="frame" x="18" y="38" width="285" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

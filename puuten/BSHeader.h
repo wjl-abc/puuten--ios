@@ -13,6 +13,8 @@
 - (void)bSHeader:(BSHeader *)sender
          setName:(NSString *)name_string
    setAvatar_url:(NSString *)avatar_url;
+- (void)bsHeader:(BSHeader *)sender
+       clickedBS:(int)BS_id;
 
 @end
 

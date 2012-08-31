@@ -10,8 +10,10 @@
 #import "Constance.h"
 #import "UIImageView+WebCache.h"
 #import "ASIHTTPRequest.h"
+#import "JMWhenTapped.h"
 
 @implementation BSHeader
+@synthesize delegate;
 @synthesize bs_id = _bs_id;
 @synthesize name = _name;
 @synthesize avatar_url = _avatar_url;
@@ -73,6 +75,12 @@
     }];
     
     [request startAsynchronous];
+    [image_view_test whenTapped:^{
+        [self.delegate bsHeader:self clickedBS:_bs_id];
+    }];
+    [label_test whenTapped:^{
+        [self.delegate bsHeader:self clickedBS:_bs_id];
+    }];
      
 }
 
