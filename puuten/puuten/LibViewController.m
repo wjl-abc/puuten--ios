@@ -81,7 +81,7 @@
 #pragma mark WaterFlowViewDataSource
 - (NSInteger)numberOfColumsInWaterFlowView:(WaterFlowView *)waterFlowView{
     
-    return 3;
+    return 2;
 }
 
 - (NSInteger)numberOfAllWaterFlowView:(WaterFlowView *)waterFlowView{

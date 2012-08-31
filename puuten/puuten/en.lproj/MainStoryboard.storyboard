@@ -52,12 +52,42 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="aOZ-kx-cR1">
-                                <rect key="frame" x="20" y="161" width="280" height="128"/>
+                                <rect key="frame" x="26" y="195" width="280" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8RT-YT-u3m">
+                                <rect key="frame" x="26" y="150" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="b1">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="click1:" destination="Zcg-OR-fNz" eventType="touchUpInside" id="5GV-qd-pQ9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R8Q-Rf-lGc">
+                                <rect key="frame" x="195" y="150" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="b2">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="click2:" destination="Zcg-OR-fNz" eventType="touchUpInside" id="yhe-Qv-Ooc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -65,6 +95,8 @@
                         <outlet property="avatar" destination="eJE-uS-dG2" id="lGZ-sG-E42"/>
                         <outlet property="introduction" destination="aOZ-kx-cR1" id="3E9-tq-UBa"/>
                         <outlet property="name" destination="jl0-vu-DZh" id="qAW-oO-SY1"/>
+                        <outlet property="othersButton" destination="R8Q-Rf-lGc" id="hOo-xi-E64"/>
+                        <outlet property="selfButton" destination="8RT-YT-u3m" id="hdO-ZO-zQq"/>
                         <outlet property="tags" destination="uHl-5f-Duy" id="SNQ-ZF-YLj"/>
                     </connections>
                 </viewController>
@@ -306,6 +338,21 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Im-9g-1kN">
+                                        <rect key="frame" x="114" y="0.0" width="72" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="click">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="go_bs:" destination="cqI-so-lGx" eventType="touchUpInside" id="s4B-JC-8eo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DaV-i1-aMC">
@@ -359,6 +406,7 @@
                         <outlet property="pic" destination="2Z6-ll-CPz" id="9Dr-B3-ZF8"/>
                         <outlet property="re_view" destination="iqS-j7-WTm" id="Rb6-Je-xg3"/>
                         <outlet property="re_wb" destination="1gN-RW-r7U" id="hBo-hy-N50"/>
+                        <segue destination="Zcg-OR-fNz" kind="modal" identifier="bsdetails" id="ORL-ge-95z"/>
                     </connections>
                 </viewController>
             </objects>
@@ -477,6 +525,71 @@
         <image name="tab-me.png" width="34" height="27"/>
         <image name="tab_feed.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="BSHeader" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BSHeader.h"/>
+        </class>
+        <class className="BSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BSViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click1:"/>
+                <relationship kind="action" name="click2:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="introduction" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="othersButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="selfButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="FriendsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendsViewController.h"/>
+        </class>
+        <class className="LibViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click1:"/>
+                <relationship kind="action" name="click2:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="watButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wishButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+        <class className="WBCommentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBCommentViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submit:"/>
+                <relationship kind="outlet" name="commentField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="WBViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click:"/>
+                <relationship kind="action" name="go_bs:"/>
+                <relationship kind="outlet" name="bodyField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bsHeader" candidateClass="BSHeader"/>
+                <relationship kind="outlet" name="pic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="re_view" candidateClass="UIView"/>
+                <relationship kind="outlet" name="re_wb" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIView *re_view;
 
 - (IBAction)click:(id)sender;
+- (IBAction)go_bs:(id)sender;
 
 @end

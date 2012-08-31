@@ -180,7 +180,10 @@
 
 - (IBAction)click:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
-    //[self performSegueWithIdentifier:@"bsdetails" sender:self];
+}
+
+- (IBAction)go_bs:(id)sender {
+    [self performSegueWithIdentifier:@"bsdetails" sender:self];
 }
 
 @end
