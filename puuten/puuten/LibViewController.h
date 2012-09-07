@@ -16,6 +16,7 @@
     NSMutableArray *arrayData;
     WaterFlowView  *waterFlow;
     int selected_cell;
+    UIImage *selected_img;
 }
 
 - (void)dataSourceDidLoad;

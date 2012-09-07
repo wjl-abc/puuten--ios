@@ -14,6 +14,9 @@
 @class ImageViewCell;
 @protocol ImageViewCellDelegate <NSObject>
 - (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+           clickedImg:(UIImage *)img;
+- (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id;
 @end
 

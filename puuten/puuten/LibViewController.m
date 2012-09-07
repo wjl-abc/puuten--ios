@@ -24,6 +24,7 @@
     if ([segue.identifier isEqualToString:@"details"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
+        wb.img = selected_img;
     }
 }
 
@@ -166,6 +167,13 @@
     [self performSegueWithIdentifier:@"details" sender:self];
 }
 
-
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+           clickedImg:(UIImage *)img
+{
+    selected_cell = cell_id;
+    selected_img = img;
+    [self performSegueWithIdentifier:@"details" sender:self];
+}
 
 @end

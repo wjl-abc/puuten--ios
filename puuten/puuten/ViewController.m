@@ -29,6 +29,7 @@
     if ([segue.identifier isEqualToString:@"detail"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
+        wb.img = selected_img;
         //BSHeader *bs = [[BSHeader alloc] init];
         //wb.name_string = @"mmmmm";
         //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
@@ -207,6 +208,15 @@
 }
 
 - (void)imageViewCell:(ImageViewCell *)sender 
+          clickedCell:(int)cell_id
+           clickedImg:(UIImage *)img
+{
+    selected_cell = cell_id;
+    selected_img = img;
+    [self performSegueWithIdentifier:@"detail" sender:self];
+}
+
+- (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id
 {
     selected_cell = cell_id;

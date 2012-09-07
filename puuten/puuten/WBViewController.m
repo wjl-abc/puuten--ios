@@ -10,6 +10,10 @@
 #import "ASIFormDataRequest.h"
 #import "Constance.h"
 #import "BSViewController.h"
+#import "JMWhenTapped.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "PupupViewController.h"
+#import "GradientView.h"
 @interface WBViewController ()
 
 @end
@@ -20,6 +24,7 @@
 @synthesize wb_id=_wb_id;
 @synthesize avatar_url = _avatar_url;
 @synthesize bs_id;
+@synthesize img = _img;
 
 - (void)setWb_id:(int)wb_id
 {
@@ -29,6 +34,10 @@
 - (void)setAvatar_url:(NSURL *)avatar_url
 {
     _avatar_url = avatar_url;
+}
+
+- (void)setImg:(UIImage *)img{
+    _img = img;
 }
 
 - (void)loadData
@@ -47,7 +56,7 @@
         float ratio = [[json objectForKey:@"ratio"] floatValue];
         int delta = 0;
         float image_x, image_width, image_height;
-        if(ratio>1.43)
+        if(ratio>=1.4375)
         {
             self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
             delta = 0;
@@ -55,19 +64,19 @@
             image_width = 320.0;
             image_height = 320*ratio;
         }
-        else if (ratio<=1.43 && ratio>1.3){
+        else if (ratio<1.4375 && ratio>=1.3){
             delta = -44;
             image_x = 0.0;
             image_width = 320.0;
             image_height = 320*ratio;
         }
-        else if (ratio<=1.3 && ratio>1.125){
+        else if (ratio<1.3 && ratio>=1.125){
             delta = -44;
             image_height = 416.0;
             image_width = image_height/ratio;
             image_x = (320.0-image_width)/2;
         }
-        else if (ratio<=1.125 && ratio>0.9375){
+        else if (ratio<1.125 && ratio>=0.9375){
             delta = -44;
             image_height = 354.0;
             image_width = image_height/ratio;
@@ -79,15 +88,26 @@
             image_width = image_height/ratio;
             image_x = (320.0-image_width)/2;
         }
-        NSURL *pic_url = [[NSURL alloc] initWithString:[json objectForKey:@"pic_url"]];
-        NSData *data = [[NSData alloc] initWithContentsOfURL:pic_url];
-        UIImage *image = [[UIImage alloc] initWithData:data];
+       // NSURL *pic_url = [[NSURL alloc] initWithString:[json objectForKey:@"pic_url"]];
+       // NSData *data = [[NSData alloc] initWithContentsOfURL:pic_url];
+       // UIImage *image = [[UIImage alloc] initWithData:data];
         //self.view.layer.contents = (id)[image CGImage];
         //UIImage *image = [[UIImage alloc] initWithData:data];
         CGRect image_frame = CGRectMake(image_x, 0, image_width, image_height);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:image_frame];
-        [imageView setImage:image];
+        //[imageView setImage:image];
+        [imageView setImage:_img];
         [self.view addSubview:imageView];
+        if(ratio>=1.125){
+            CGRect gra_frame = CGRectMake(0, 300+delta, 320, 160);
+            GradientView *gradientView = [[GradientView alloc] initWithFrame:gra_frame];
+            [self.view addSubview:gradientView];
+        }
+        if(ratio<1.125 && ratio>=0.937){
+            CGRect gra_frame = CGRectMake(0, 300+delta, 320, 100);
+            GradientView *gradientView = [[GradientView alloc] initWithFrame:gra_frame];
+            [self.view addSubview:gradientView];
+        }
 
         CGRect label_frame = CGRectMake(10, 400+delta, 300, 1);
         UILabel *test = [[UILabel alloc] initWithFrame:label_frame];
@@ -106,7 +126,8 @@
         bs_name_label.backgroundColor = [UIColor clearColor];
         bs_name_label.text = bs_name;
         if(ratio>1.3){
-            bs_name_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
+            //bs_name_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
+            bs_name_label.textColor = [UIColor whiteColor];
         }
         else{
             bs_name_label.textColor = [UIColor blackColor];
@@ -124,7 +145,8 @@
         body_label.font = [UIFont fontWithName:@"GillSans-Bold" size:14];
         body_label.numberOfLines = 3;
         if (ratio>0.9375) {
-            body_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
+            //body_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
+            body_label.textColor = [UIColor whiteColor];
         }
         else{
             body_label.textColor = [UIColor blackColor];
@@ -132,6 +154,31 @@
         //body_label.textColor = [UIColor whiteColor];
         body_label.text = body;
         [self.view addSubview:body_label];
+        
+        CGRect button_frame = CGRectMake(265, 344+delta, 40, 40);
+        UIButton *add_to_wish = [[UIButton alloc] initWithFrame:button_frame];
+        if (ratio>=0.9375) {
+            [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star4.png"] forState:UIControlStateNormal];
+        }
+        else{
+            [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+        }
+        [self.view addSubview: add_to_wish];
+        
+        [bs_name_label whenTapped:^{
+            NSLog(@"business name has been tapped");
+            //PupupViewController *pupView = [[PupupViewController alloc] initWithNibName:@"PupupViewController.xib" bundle:nil];
+            //[self presentPopupViewController:pupView animationType:MJPopupViewAnimationFade];
+        }];
+        [avatar whenTapped:^{
+            NSLog(@"business avatar has been tapped");
+        }];
+        [body_label whenTapped:^{
+            NSLog(@"business body has been tapped");
+        }];
+        [imageView whenTapped:^{
+            NSLog(@"imageView has been tapped");
+        }];
         
     }];
     [request setFailedBlock:^{}];
@@ -175,6 +222,7 @@
 //    [self setName:nil]
     [super viewDidUnload];
     [self setAvatar_url:nil];
+    [self setImg:nil];
     // Release any retained subviews of the main view.
 }
 

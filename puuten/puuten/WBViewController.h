@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 @interface WBViewController : UIViewController
 @property (assign, nonatomic) int wb_id;
+@property (assign, nonatomic) UIImage *img;
 @property (assign, nonatomic) NSURL *avatar_url;
 @property (assign, nonatomic) int bs_id;
+
+
 
 @end

@@ -162,7 +162,8 @@
         imageView.frame = CGRectMake( originX, originY,width, height-58);
     }
     [imageView whenTapped:^{
-		[self.delegate imageViewCell:self clickedCell:WB_ID];
+        //[self.delegate imageViewCell:self clickedCell:WB_ID];
+		[self.delegate imageViewCell:self clickedCell:WB_ID clickedImg:imageView.image];
 	}];
     [super relayoutViews];
 

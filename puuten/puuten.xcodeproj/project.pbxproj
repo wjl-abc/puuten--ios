@@ -26,6 +26,16 @@
 		FCCD877C15E11DDE001EF8CE /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877A15E11DDD001EF8CE /* comment.png */; };
 		FCCD877D15E11DDE001EF8CE /* invite.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877B15E11DDE001EF8CE /* invite.png */; };
 		FCCD877F15E11EA5001EF8CE /* bag_red.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877E15E11EA5001EF8CE /* bag_red.png */; };
+		FCE21CE715FA02BC00D22766 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE21CE415FA02BC00D22766 /* MJPopupBackgroundView.m */; };
+		FCE21CE815FA02BC00D22766 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE21CE615FA02BC00D22766 /* UIViewController+MJPopupViewController.m */; };
+		FCE21CEC15FA032C00D22766 /* PupupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE21CEA15FA032C00D22766 /* PupupViewController.m */; };
+		FCE21CED15FA032C00D22766 /* PupupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE21CEB15FA032C00D22766 /* PupupViewController.xib */; };
+		FCE21CF315FA0A5D00D22766 /* CMGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE21CF015FA0A5D00D22766 /* CMGradientLayer.m */; };
+		FCE21CF415FA0A5D00D22766 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE21CF215FA0A5D00D22766 /* GradientView.m */; };
+		FCE21CF915FA11DC00D22766 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE21CF515FA11DC00D22766 /* star1.png */; };
+		FCE21CFA15FA11DC00D22766 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE21CF615FA11DC00D22766 /* star2.png */; };
+		FCE21CFB15FA11DC00D22766 /* star3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE21CF715FA11DC00D22766 /* star3.png */; };
+		FCE21CFC15FA11DC00D22766 /* star4.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE21CF815FA11DC00D22766 /* star4.png */; };
 		FCE2AE3315DA0C62000FD85B /* WBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */; };
 		FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467015DEB301006EAF2E /* concrete_wall_3.png */; };
 		FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467715DEB8A1006EAF2E /* capture-button.png */; };
@@ -96,6 +106,21 @@
 		FCCD877A15E11DDD001EF8CE /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		FCCD877B15E11DDE001EF8CE /* invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite.png; sourceTree = "<group>"; };
 		FCCD877E15E11EA5001EF8CE /* bag_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag_red.png; sourceTree = "<group>"; };
+		FCE21CE315FA02BC00D22766 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		FCE21CE415FA02BC00D22766 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		FCE21CE515FA02BC00D22766 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		FCE21CE615FA02BC00D22766 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		FCE21CE915FA032C00D22766 /* PupupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PupupViewController.h; sourceTree = "<group>"; };
+		FCE21CEA15FA032C00D22766 /* PupupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PupupViewController.m; sourceTree = "<group>"; };
+		FCE21CEB15FA032C00D22766 /* PupupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PupupViewController.xib; sourceTree = "<group>"; };
+		FCE21CEF15FA0A5D00D22766 /* CMGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMGradientLayer.h; sourceTree = "<group>"; };
+		FCE21CF015FA0A5D00D22766 /* CMGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMGradientLayer.m; sourceTree = "<group>"; };
+		FCE21CF115FA0A5D00D22766 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		FCE21CF215FA0A5D00D22766 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		FCE21CF515FA11DC00D22766 /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
+		FCE21CF615FA11DC00D22766 /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
+		FCE21CF715FA11DC00D22766 /* star3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star3.png; sourceTree = "<group>"; };
+		FCE21CF815FA11DC00D22766 /* star4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star4.png; sourceTree = "<group>"; };
 		FCE2AE3115DA0C62000FD85B /* WBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCommentViewController.h; sourceTree = "<group>"; };
 		FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCommentViewController.m; sourceTree = "<group>"; };
 		FCEC467015DEB301006EAF2E /* concrete_wall_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall_3.png; sourceTree = "<group>"; };
@@ -204,6 +229,10 @@
 		FC61F8EC15DBB35E000E3178 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				FCE21CF515FA11DC00D22766 /* star1.png */,
+				FCE21CF615FA11DC00D22766 /* star2.png */,
+				FCE21CF715FA11DC00D22766 /* star3.png */,
+				FCE21CF815FA11DC00D22766 /* star4.png */,
 				FC8ACEEB15F8BE630014AAB4 /* 111.jpeg */,
 				FCED8B8815E4E07100BEA2C0 /* back.png */,
 				FCCD877E15E11EA5001EF8CE /* bag_red.png */,
@@ -221,6 +250,28 @@
 				FCCD876815E0F450001EF8CE /* Wallet.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		FCE21CE115FA012000D22766 /* MJPopup */ = {
+			isa = PBXGroup;
+			children = (
+				FCE21CE315FA02BC00D22766 /* MJPopupBackgroundView.h */,
+				FCE21CE415FA02BC00D22766 /* MJPopupBackgroundView.m */,
+				FCE21CE515FA02BC00D22766 /* UIViewController+MJPopupViewController.h */,
+				FCE21CE615FA02BC00D22766 /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopup;
+			sourceTree = "<group>";
+		};
+		FCE21CEE15FA0A2600D22766 /* gradient background */ = {
+			isa = PBXGroup;
+			children = (
+				FCE21CEF15FA0A5D00D22766 /* CMGradientLayer.h */,
+				FCE21CF015FA0A5D00D22766 /* CMGradientLayer.m */,
+				FCE21CF115FA0A5D00D22766 /* GradientView.h */,
+				FCE21CF215FA0A5D00D22766 /* GradientView.m */,
+			);
+			name = "gradient background";
 			sourceTree = "<group>";
 		};
 		FCF7DAC715C012A9005A6586 = {
@@ -282,6 +333,9 @@
 				FC449D2F15DE52A000B0BF90 /* LibViewController.m */,
 				FCBA959815EA594B0079A7C6 /* ProfileViewController.h */,
 				FCBA959915EA594B0079A7C6 /* ProfileViewController.m */,
+				FCE21CE915FA032C00D22766 /* PupupViewController.h */,
+				FCE21CEA15FA032C00D22766 /* PupupViewController.m */,
+				FCE21CEB15FA032C00D22766 /* PupupViewController.xib */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -329,6 +383,8 @@
 		FCF7DB2A15C0246D005A6586 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				FCE21CEE15FA0A2600D22766 /* gradient background */,
+				FCE21CE115FA012000D22766 /* MJPopup */,
 				FCF8B21315E33CC10059C0A0 /* JMWhenTapped */,
 				FC61F8EC15DBB35E000E3178 /* images */,
 				FCF7DAF315C012F1005A6586 /* ASIHTTPRequest */,
@@ -474,6 +530,11 @@
 				FCCD877F15E11EA5001EF8CE /* bag_red.png in Resources */,
 				FCED8B8915E4E07100BEA2C0 /* back.png in Resources */,
 				FC8ACEEC15F8BE630014AAB4 /* 111.jpeg in Resources */,
+				FCE21CED15FA032C00D22766 /* PupupViewController.xib in Resources */,
+				FCE21CF915FA11DC00D22766 /* star1.png in Resources */,
+				FCE21CFA15FA11DC00D22766 /* star2.png in Resources */,
+				FCE21CFB15FA11DC00D22766 /* star3.png in Resources */,
+				FCE21CFC15FA11DC00D22766 /* star4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +576,11 @@
 				FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */,
 				FCF8B21815E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m in Sources */,
 				FCBA959A15EA594B0079A7C6 /* ProfileViewController.m in Sources */,
+				FCE21CE715FA02BC00D22766 /* MJPopupBackgroundView.m in Sources */,
+				FCE21CE815FA02BC00D22766 /* UIViewController+MJPopupViewController.m in Sources */,
+				FCE21CEC15FA032C00D22766 /* PupupViewController.m in Sources */,
+				FCE21CF315FA0A5D00D22766 /* CMGradientLayer.m in Sources */,
+				FCE21CF415FA0A5D00D22766 /* GradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
