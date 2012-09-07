@@ -174,6 +174,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.parentViewController.tabBarController.tabBar.hidden  = NO;
     if (!login_or_not) {
         [self performSegueWithIdentifier:@"login" sender:self];
     }
