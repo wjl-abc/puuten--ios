@@ -30,6 +30,9 @@
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
         wb.img = selected_img;
+        wb.arrayData = arrayData;
+        wb.order = selected_cell_index;
+        wb.arrayImg = arrayImg;
         //BSHeader *bs = [[BSHeader alloc] init];
         //wb.name_string = @"mmmmm";
         //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
@@ -150,7 +153,10 @@
         default:
             break;
     }
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [arrayImg addObject:image];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
 
@@ -213,6 +219,17 @@
 {
     selected_cell = cell_id;
     selected_img = img;
+    [self performSegueWithIdentifier:@"detail" sender:self];
+}
+
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+         clickerOrder:(int)cell_order
+           clickedImg:(UIImage *)img
+{
+    selected_cell = cell_id;
+    selected_img = img;
+    selected_cell_index = cell_order;
     [self performSegueWithIdentifier:@"detail" sender:self];
 }
 

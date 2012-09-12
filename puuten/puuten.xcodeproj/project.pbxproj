@@ -11,7 +11,7 @@
 		FC03895C15DA6C47004B998B /* FriendsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC03895B15DA6C47004B998B /* FriendsTableCell.m */; };
 		FC0A0CAA15CE6CE400AC80F6 /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0A0CA915CE6CE400AC80F6 /* BSViewController.m */; };
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
-		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
+		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC449D2F15DE52A000B0BF90 /* LibViewController.m */; };
 		FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */; };
 		FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */; };
@@ -76,6 +76,7 @@
 		FCF7DB5115C02724005A6586 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF7DB4F15C02724005A6586 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCF7DB5515C027AE005A6586 /* LoadingMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF7DB5415C027AE005A6586 /* LoadingMoreFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCF8B21815E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF8B21715E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m */; };
+		FCFB40B215FB6EE0002D20E8 /* AFKPageFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFB40B115FB6EE0002D20E8 /* AFKPageFlipper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,6 +197,8 @@
 		FCF8B21515E33CFE0059C0A0 /* JMWhenTapped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMWhenTapped.h; sourceTree = "<group>"; };
 		FCF8B21615E33CFE0059C0A0 /* UIView+WhenTappedBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WhenTappedBlocks.h"; sourceTree = "<group>"; };
 		FCF8B21715E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WhenTappedBlocks.m"; sourceTree = "<group>"; };
+		FCFB40B015FB6EE0002D20E8 /* AFKPageFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFKPageFlipper.h; sourceTree = "<group>"; };
+		FCFB40B115FB6EE0002D20E8 /* AFKPageFlipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFKPageFlipper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +386,7 @@
 		FCF7DB2A15C0246D005A6586 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				FCFB40AE15FB6EAD002D20E8 /* AFKPageFlipper */,
 				FCE21CEE15FA0A2600D22766 /* gradient background */,
 				FCE21CE115FA012000D22766 /* MJPopup */,
 				FCF8B21315E33CC10059C0A0 /* JMWhenTapped */,
@@ -458,6 +462,15 @@
 				FCF8B21715E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m */,
 			);
 			name = JMWhenTapped;
+			sourceTree = "<group>";
+		};
+		FCFB40AE15FB6EAD002D20E8 /* AFKPageFlipper */ = {
+			isa = PBXGroup;
+			children = (
+				FCFB40B015FB6EE0002D20E8 /* AFKPageFlipper.h */,
+				FCFB40B115FB6EE0002D20E8 /* AFKPageFlipper.m */,
+			);
+			name = AFKPageFlipper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +594,7 @@
 				FCE21CEC15FA032C00D22766 /* PupupViewController.m in Sources */,
 				FCE21CF315FA0A5D00D22766 /* CMGradientLayer.m in Sources */,
 				FCE21CF415FA0A5D00D22766 /* GradientView.m in Sources */,
+				FCFB40B215FB6EE0002D20E8 /* AFKPageFlipper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

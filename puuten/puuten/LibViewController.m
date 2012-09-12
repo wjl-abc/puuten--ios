@@ -25,6 +25,9 @@
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
         wb.img = selected_img;
+        wb.arrayData = arrayData;
+        wb.order = selected_cell_index;
+        wb.arrayImg = arrayImg;
     }
 }
 
@@ -47,8 +50,9 @@
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
+        NSLog(@"the length of arrayData is %i", [json count]);
         [self dataSourceDidLoad];
     }];
     [request setFailedBlock:^{
@@ -113,7 +117,10 @@
     imageViewCell.columnCount = waterFlowView.columnCount;
     imageViewCell.tt=1;
     [imageViewCell relayoutViews];
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [arrayImg addObject:image];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 
@@ -174,6 +181,17 @@
     selected_cell = cell_id;
     selected_img = img;
     [self performSegueWithIdentifier:@"details" sender:self];
+}
+
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+         clickerOrder:(int)cell_order
+           clickedImg:(UIImage *)img
+{
+    selected_cell = cell_id;
+    selected_img = img;
+    selected_cell_index = cell_order;
+    [self performSegueWithIdentifier:@"detail" sender:self];
 }
 
 @end

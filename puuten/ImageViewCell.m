@@ -91,6 +91,22 @@
     delegate = Delegate;
 }
 
+-(void)setImageWithImg:(UIImage *)image withWB_ID:(int)wb_id withBS:(NSString *)BSinfo withType:(int)Type withDelegate:(id)Delegate{
+    
+    [imageView setImage:image];
+    WB_ID = wb_id;
+    bsName.text = BSinfo;
+    if (!_tt) {
+        bsName.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height, imageView.frame.size.width, 50);
+    }
+    else
+    {
+        bsName.frame = CGRectZero;
+    }
+    type=Type;
+    delegate = Delegate;
+}
+
 -(void)setImage:(UIImage *)image withWB_ID:(int)wb_id withBS:(NSString *)BSinfo{
 
     imageView.image = image;
@@ -125,6 +141,95 @@
     type=Type;
     delegate = Delegate;
 }
+
+-(void)setImageWithImg:(UIImage *)image
+             withWB_ID:(int)wb_id
+                withBS:(NSString *)BSinfo
+              withType:(int)Type
+            withAvatar:(NSURL *)avatarUrl
+              withName:(NSString *)Name
+              withInfo:(NSString *)Info
+          withDelegate:(id)Delegate{
+    [imageView setImage:image];
+    WB_ID = wb_id;
+    bsName.text = BSinfo;
+    [avatar setImageWithURL:avatarUrl];
+    name.text = Name;
+    info.text = Info;
+    if (!_tt) {
+        bsName.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height, imageView.frame.size.width, 12);
+        avatar.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height+15, 43, 43);
+        name.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+15, imageView.frame.size.width-45, 12);
+        info.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+30, imageView.frame.size.width-45, 28);
+    }
+    else
+    {
+        bsName.frame = CGRectZero;
+    }
+    type=Type;
+    delegate = Delegate;
+}
+
+-(void)setImageWithURL:(NSURL *)imageUrl
+             withWB_ID:(int)wb_id
+             withOrder:(int)Order
+                withBS:(NSString *)BSinfo
+              withType:(int)Type
+            withAvatar:(NSURL *)avatarUrl
+              withName:(NSString *)Name
+              withInfo:(NSString *)Info
+          withDelegate:(id)Delegate{
+    [imageView setImageWithURL:imageUrl];
+    WB_ID = wb_id;
+    order = Order;
+    bsName.text = BSinfo;
+    [avatar setImageWithURL:avatarUrl];
+    name.text = Name;
+    info.text = Info;
+    if (!_tt) {
+        bsName.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height, imageView.frame.size.width, 12);
+        avatar.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height+15, 43, 43);
+        name.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+15, imageView.frame.size.width-45, 12);
+        info.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+30, imageView.frame.size.width-45, 28);
+    }
+    else
+    {
+        bsName.frame = CGRectZero;
+    }
+    type=Type;
+    delegate = Delegate;
+}
+
+-(void)setImageWithImg:(UIImage *)image
+             withWB_ID:(int)wb_id
+             withOrder:(int)Order
+                withBS:(NSString *)BSinfo
+              withType:(int)Type
+            withAvatar:(NSURL *)avatarUrl
+              withName:(NSString *)Name
+              withInfo:(NSString *)Info
+          withDelegate:(id)Delegate{
+    [imageView setImage:image];
+    WB_ID = wb_id;
+    order = Order;
+    bsName.text = BSinfo;
+    [avatar setImageWithURL:avatarUrl];
+    name.text = Name;
+    info.text = Info;
+    if (!_tt) {
+        bsName.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height, imageView.frame.size.width, 12);
+        avatar.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y+imageView.frame.size.height+15, 43, 43);
+        name.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+15, imageView.frame.size.width-45, 12);
+        info.frame = CGRectMake(imageView.frame.origin.x+45, imageView.frame.origin.y+imageView.frame.size.height+30, imageView.frame.size.width-45, 28);
+    }
+    else
+    {
+        bsName.frame = CGRectZero;
+    }
+    type=Type;
+    delegate = Delegate;
+}
+
 /*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -163,7 +268,8 @@
     }
     [imageView whenTapped:^{
         //[self.delegate imageViewCell:self clickedCell:WB_ID];
-		[self.delegate imageViewCell:self clickedCell:WB_ID clickedImg:imageView.image];
+		//[self.delegate imageViewCell:self clickedCell:WB_ID clickedImg:imageView.image];
+        [self.delegate imageViewCell:self clickedCell:WB_ID clickerOrder:order clickedImg:imageView.image];
 	}];
     [super relayoutViews];
 

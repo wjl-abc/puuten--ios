@@ -14,6 +14,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "PupupViewController.h"
 #import "GradientView.h"
+#import "AFKPageFlipper.h"
 @interface WBViewController ()
 
 @end
@@ -25,6 +26,8 @@
 @synthesize avatar_url = _avatar_url;
 @synthesize bs_id;
 @synthesize img = _img;
+@synthesize arrayData = _arrayData;
+@synthesize arrayImg = _arrayImg;
 
 - (void)setWb_id:(int)wb_id
 {
@@ -40,20 +43,26 @@
     _img = img;
 }
 
-- (void)loadData
-{
-    NSString *wb_url_string = [NSString stringWithFormat:@"/business/wb/%d/", _wb_id];
-    NSURL *nsURL = [[NSURL alloc] initWithString:URL];
-    NSURL *wbURL = [NSURL URLWithString:wb_url_string relativeToURL:nsURL];
-    ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:wbURL];
-    __weak ASIFormDataRequest *request = _request;
-    [request setPostValue:@"ios" forKey:@"mobile"];
-    [request setCompletionBlock:^{
-        NSData *responseData = [request responseData];
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        
-        float ratio = [[json objectForKey:@"ratio"] floatValue];
+- (void)setArrayData:(NSMutableArray *)arrayData{
+    _arrayData = arrayData;
+}
+
+- (void)setArrayImg:(NSMutableArray *)arrayImg{
+    _arrayImg = arrayImg;
+}
+
+
+- (NSInteger) numberOfPagesForPageFlipper:(AFKPageFlipper *)pageFlipper {
+	return 4;
+}
+
+- (UIView *) viewForPage:(NSInteger) page inFlipper:(AFKPageFlipper *) pageFlipper {
+    //self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    NSDictionary *dic_data = [_arrayData objectAtIndex:page-1];
+  	CGRect frame = self.view.bounds;
+    UIView * newView = [[UIView alloc] initWithFrame:frame];
+    
+    float ratio = [[dic_data objectForKey:@"ratio"] floatValue];
         int delta = 0;
         float image_x, image_width, image_height;
         if(ratio>=1.4375)
@@ -88,39 +97,33 @@
             image_width = image_height/ratio;
             image_x = (320.0-image_width)/2;
         }
-       // NSURL *pic_url = [[NSURL alloc] initWithString:[json objectForKey:@"pic_url"]];
-       // NSData *data = [[NSData alloc] initWithContentsOfURL:pic_url];
-       // UIImage *image = [[UIImage alloc] initWithData:data];
-        //self.view.layer.contents = (id)[image CGImage];
-        //UIImage *image = [[UIImage alloc] initWithData:data];
         CGRect image_frame = CGRectMake(image_x, 0, image_width, image_height);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:image_frame];
-        //[imageView setImage:image];
-        [imageView setImage:_img];
-        [self.view addSubview:imageView];
+        [imageView setImage:[_arrayImg objectAtIndex:page-1]];
+        [newView addSubview:imageView];
         if(ratio>=1.125){
             CGRect gra_frame = CGRectMake(0, 300+delta, 320, 160);
             GradientView *gradientView = [[GradientView alloc] initWithFrame:gra_frame];
-            [self.view addSubview:gradientView];
+            [newView addSubview:gradientView];
         }
         if(ratio<1.125 && ratio>=0.937){
             CGRect gra_frame = CGRectMake(0, 300+delta, 320, 100);
             GradientView *gradientView = [[GradientView alloc] initWithFrame:gra_frame];
-            [self.view addSubview:gradientView];
+            [newView addSubview:gradientView];
         }
-
+        
         CGRect label_frame = CGRectMake(10, 400+delta, 300, 1);
         UILabel *test = [[UILabel alloc] initWithFrame:label_frame];
         test.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
-        [self.view addSubview:test];
+        [newView addSubview:test];
         
-        NSString *avatar_str = [json objectForKey:@"avatar_url"];
+        NSString *avatar_str = [dic_data objectForKey:@"bs_avatar"];
         CGRect avatar_frame = CGRectMake(10, 410+delta, 40, 40);
         UIImageView *avatar = [[UIImageView alloc] initWithFrame:avatar_frame];
         [avatar setImageWithURL:[[NSURL alloc] initWithString:avatar_str]];
-        [self.view addSubview:avatar];
+        [newView addSubview:avatar];
         
-        NSString *bs_name = [json objectForKey:@"name"];
+        NSString *bs_name = [dic_data objectForKey:@"name"];
         CGRect name_label_frame  = CGRectMake(65, 410+delta, 200, 20);
         UILabel *bs_name_label = [[UILabel alloc] initWithFrame:name_label_frame];
         bs_name_label.backgroundColor = [UIColor clearColor];
@@ -133,12 +136,12 @@
             bs_name_label.textColor = [UIColor blackColor];
         }
         bs_name_label.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:14];
-        [self.view addSubview:bs_name_label];
+        [newView addSubview:bs_name_label];
         
-        NSString *body = [json objectForKey:@"body"];
-        NSString *re_wb_name = [json objectForKey:@"re_wb_name"];
-        NSString *re_wb_body = [json objectForKey:@"re_wb_body"];
-        body = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@ // %@:%@", body, re_wb_name, re_wb_body]];
+        NSString *body = [dic_data objectForKey:@"body"];
+        //NSString *re_wb_name = [dic_data objectForKey:@"re_wb_name"];
+        //NSString *re_wb_body = [dic_data objectForKey:@"re_wb_body"];
+        //body = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@ // %@:%@", body, re_wb_name, re_wb_body]];
         CGRect body_frame = CGRectMake(25, 344+delta, 230, 50);
         UILabel *body_label = [[UILabel alloc] initWithFrame:body_frame];
         body_label.backgroundColor = [UIColor clearColor];
@@ -153,7 +156,7 @@
         }
         //body_label.textColor = [UIColor whiteColor];
         body_label.text = body;
-        [self.view addSubview:body_label];
+        [newView addSubview:body_label];
         
         CGRect button_frame = CGRectMake(265, 344+delta, 40, 40);
         UIButton *add_to_wish = [[UIButton alloc] initWithFrame:button_frame];
@@ -163,35 +166,15 @@
         else{
             [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         }
-        [self.view addSubview: add_to_wish];
-        
-        [bs_name_label whenTapped:^{
-            NSLog(@"business name has been tapped");
-            //PupupViewController *pupView = [[PupupViewController alloc] initWithNibName:@"PupupViewController.xib" bundle:nil];
-            //[self presentPopupViewController:pupView animationType:MJPopupViewAnimationFade];
-        }];
-        [avatar whenTapped:^{
-            NSLog(@"business avatar has been tapped");
-        }];
-        [body_label whenTapped:^{
-            NSLog(@"business body has been tapped");
-        }];
-        [imageView whenTapped:^{
-            NSLog(@"imageView has been tapped");
-        }];
-        
-    }];
-    [request setFailedBlock:^{}];
-    
-    [request startAsynchronous];
+        [newView addSubview: add_to_wish];
+    return newView;
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+     //   [self loadData];
     }
     return self;
 }
@@ -228,14 +211,20 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-   // ((UITabBarController *)self.parentViewController).tabBar.hidden = YES;
+    //((UITabBarController *)self.parentViewController).tabBar.hidden = YES;
     [self loadData];
+    flipper = [[[AFKPageFlipper alloc] initWithFrame:self.view.bounds] autorelease];
+    flipper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    flipper.dataSource = self;
+    
+    [self.view addSubview:flipper];
     [super viewDidAppear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.parentViewController.tabBarController.tabBar.hidden  = YES;
+    //[self loadData];
     //[self.navigationController.navigationBar setAlpha:0];
     //self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:1 saturation:0 brightness:1 alpha:0] ;
     //[self.navigationController.navigationBar setTintColor:[UIColor clearColor]];
