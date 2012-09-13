@@ -50,6 +50,15 @@
         NSError* error;
         NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
+        for( int i=0 ; i<[arrayData count]; i++){
+            NSDictionary* instance = [[NSDictionary alloc] init];
+            instance = [arrayData objectAtIndex:i];
+            NSURL *img_url = [[NSURL alloc] initWithString:[instance objectForKey:@"thumbnail_pic"]];
+            NSData *data = [[NSData alloc] initWithContentsOfURL:img_url];
+            UIImage *image = [[UIImage alloc] initWithData:data];
+            [arrayImg addObject:image];
+            NSLog(@"the length of arrayImg is %i", [arrayImg count]);
+        }
         [self dataSourceDidLoad];
     }];
     [request setFailedBlock:^{
@@ -107,18 +116,17 @@
     
     NSDictionary *object = [arrayData objectAtIndex:arrIndex];
     
-    NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
+    //NSURL *nsURL = [[NSURL alloc] initWithString:[object objectForKey:@"thumbnail_pic"]];
     int wb_id = [[object objectForKey:@"wb_id"] intValue];
     ImageViewCell *imageViewCell = (ImageViewCell *)view;
     imageViewCell.indexPath = indexPath;
     imageViewCell.columnCount = waterFlowView.columnCount;
     imageViewCell.tt=1;
     [imageViewCell relayoutViews];
-    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
-    UIImage *image = [[UIImage alloc] initWithData:data];
-    [arrayImg addObject:image];
-    NSLog(@"the length of the arrayimg is %i", [arrayImg count]);
-    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
+    //NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    //UIImage *image = [[UIImage alloc] initWithData:data];
+    //[arrayImg addObject:image];
+    [(ImageViewCell *)view setImageWithImg:[arrayImg objectAtIndex:arrIndex] withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 

@@ -115,11 +115,6 @@
             re_wb.frame = CGRectMake(30, size_body.height+100, 260, size_re_wb.height);
             [re_wb setFont:[UIFont systemFontOfSize:14.0f]];
             re_wb.text = re_wb_for_display;
-            //NSURL *pic_URL = [NSURL URLWithString:[bsdata objectForKey:@"pic_url"]];
-            //NSData* data = [[NSData alloc] initWithContentsOfURL:pic_URL];
-            //UIImage *image = [[UIImage alloc] initWithData:data];
-            NSLog(@"the clicked order is %i", _order);
-            NSLog(@"the length of arrayImg is %i", [_arrayImg count]);
             UIImage *image = [_arrayImg objectAtIndex:_order];
             _pic.frame = CGRectMake(40, 100+size_body.height+size_re_wb.height, 240, 240*image.size.height/image.size.width);
             [_pic setImage:image];
