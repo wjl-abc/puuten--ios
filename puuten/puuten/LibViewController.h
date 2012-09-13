@@ -14,8 +14,10 @@
 @interface LibViewController : UIViewController<WaterFlowViewDelegate, WaterFlowViewDataSource>
 {
     NSMutableArray *arrayData;
+    NSMutableArray *arrayImg;
     WaterFlowView  *waterFlow;
     int selected_cell;
+    int selected_order;
 }
 
 - (void)dataSourceDidLoad;

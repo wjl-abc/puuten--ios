@@ -29,6 +29,8 @@
     if ([segue.identifier isEqualToString:@"detail"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
+        wb.arrayImg = arrayImg;
+        wb.order = selected_order;
         //BSHeader *bs = [[BSHeader alloc] init];
         //wb.name_string = @"mmmmm";
         //wb.url_string = @"http://tp2.sinaimg.cn/2105912065/180/5619589260/0";
@@ -151,6 +153,7 @@
     }
     NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     UIImage *image = [[UIImage alloc] initWithData:data];
+    [arrayImg addObject:image];
     [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
@@ -206,11 +209,20 @@
     self.login_or_not = YES;
     [self dismissModalViewControllerAnimated:YES];
 }
-
-- (void)imageViewCell:(ImageViewCell *)sender 
+/*
+- (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id
 {
     selected_cell = cell_id;
+    [self performSegueWithIdentifier:@"detail" sender:self];
+}*/
+
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+         clickedOrder:(int)cell_order
+{
+    selected_cell = cell_id;
+    selected_order = cell_order;
     [self performSegueWithIdentifier:@"detail" sender:self];
 }
 

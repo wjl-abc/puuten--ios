@@ -24,6 +24,8 @@
     if ([segue.identifier isEqualToString:@"details"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
+        wb.order = selected_order;
+        wb.arrayImg = arrayImg;
     }
 }
 
@@ -114,6 +116,8 @@
     [imageViewCell relayoutViews];
     NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     UIImage *image = [[UIImage alloc] initWithData:data];
+    [arrayImg addObject:image];
+    NSLog(@"the length of the arrayimg is %i", [arrayImg count]);
     [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
@@ -140,6 +144,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     arrayData = [[NSMutableArray alloc] init];
+    arrayImg = [[NSMutableArray alloc] init];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];
@@ -163,8 +168,10 @@
 
 - (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id
+         clickedOrder:(int)cell_order
 {
     selected_cell = cell_id;
+    selected_order = cell_order;
     [self performSegueWithIdentifier:@"details" sender:self];
 }
 

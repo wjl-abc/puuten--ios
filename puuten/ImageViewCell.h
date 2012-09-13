@@ -13,8 +13,13 @@
 
 @class ImageViewCell;
 @protocol ImageViewCellDelegate <NSObject>
+/*
 - (void)imageViewCell:(ImageViewCell *)sender
           clickedCell:(int)cell_id;
+ */
+- (void)imageViewCell:(ImageViewCell *)sender
+          clickedCell:(int)cell_id
+         clickedOrder:(int)cell_order;
 @end
 
 @interface ImageViewCell : WaterFlowViewCell
