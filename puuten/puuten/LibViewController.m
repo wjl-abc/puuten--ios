@@ -60,7 +60,7 @@
             [ele4wb setValue:image forKey:@"image"];
             [ele4wb setValue:[instance objectForKey:@"ratio"] forKey:@"ratio"];
             [ele4wb setValue:[instance objectForKey:@"body"] forKey:@"body"];
-            [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"avatar"];
+            [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"bs_avatar"];
             [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
             
             [array4wb addObject:ele4wb];

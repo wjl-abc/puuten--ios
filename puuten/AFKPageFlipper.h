@@ -38,15 +38,15 @@ typedef enum {
 	
 	CALayer *backgroundAnimationLayer;
 	CALayer *flipAnimationLayer;
-  
-  CALayer *revealedLayer;
-  CALayer *coveredLayer;
+    
+    CALayer *revealedLayer;
+    CALayer *coveredLayer;
 	
 	AFKPageFlipperDirection flipDirection;
 	float startFlipAngle;
 	float endFlipAngle;
 	float currentAngle;
-
+    
 	BOOL setNextViewOnCompletion;
 	BOOL animating;
 	

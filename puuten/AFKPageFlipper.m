@@ -13,7 +13,7 @@
 #pragma mark UIView helpers
 
 
-@interface UIView(Extended) 
+@interface UIView(Extended)
 
 - (UIImage *)imageByRenderingView;
 
@@ -24,13 +24,13 @@
 
 
 - (UIImage *)imageByRenderingView {
-  CGFloat oldAlpha = self.alpha;
-  self.alpha = 1.0f;
-  UIGraphicsBeginImageContext(self.bounds.size);
+    CGFloat oldAlpha = self.alpha;
+    self.alpha = 1.0f;
+    UIGraphicsBeginImageContext(self.bounds.size);
 	[self.layer renderInContext:UIGraphicsGetCurrentContext()];
 	UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
-  self.alpha = oldAlpha;
+    self.alpha = oldAlpha;
 	return resultingImage;
 }
 
@@ -70,7 +70,7 @@
 	// Hide existing views
 	self.currentView.alpha = 0.0f;
 	self.nextView.alpha = 0.0f;
-  self.prevView.alpha = 0.0f;
+    self.prevView.alpha = 0.0f;
 	
 	// Create representational layers
 	CGRect rect = self.bounds;
@@ -98,16 +98,16 @@
 	
 	if (flipDirection == AFKPageFlipperDirectionDown) {
 		topLayer.contents = (id) [prevImage CGImage];
-    revealedLayer = topLayer;
+        revealedLayer = topLayer;
 		bottomLayer.contents = (id) [currentImage CGImage];
-    coveredLayer = bottomLayer;
+        coveredLayer = bottomLayer;
 	} else {
 		topLayer.contents = (id) [currentImage CGImage];
-    coveredLayer = topLayer;
+        coveredLayer = topLayer;
 		bottomLayer.contents = (id) [nextImage CGImage];
-    revealedLayer = bottomLayer;
+        revealedLayer = bottomLayer;
 	}
-
+    
 	[self.layer addSublayer:backgroundAnimationLayer];
 	
 	rect.origin.y = 0;
@@ -171,44 +171,44 @@
 	
 	backgroundAnimationLayer = Nil;
 	flipAnimationLayer = Nil;
-  revealedLayer = Nil;
-  coveredLayer = Nil;
+    revealedLayer = Nil;
+    coveredLayer = Nil;
 	
 	
-//  NSLog(@"setNextViewOnCompletion %i", (int)setNextViewOnCompletion);
-//  NSLog(@"animating               %i", (int)animating);
+    //  NSLog(@"setNextViewOnCompletion %i", (int)setNextViewOnCompletion);
+    //  NSLog(@"animating               %i", (int)animating);
 	if (setNextViewOnCompletion) {
 		[self.currentView removeFromSuperview];
-    if (flipDirection == AFKPageFlipperDirectionUp) {
-      if (self.nextView) {
-        self.currentView = self.nextView;
-      }
-    } else {
-      if (self.prevView) {
-        self.currentView = self.prevView;
-      }
-    }
+        if (flipDirection == AFKPageFlipperDirectionUp) {
+            if (self.nextView) {
+                self.currentView = self.nextView;
+            }
+        } else {
+            if (self.prevView) {
+                self.currentView = self.prevView;
+            }
+        }
 		self.nextView = currentPage+1 <= [self.dataSource numberOfPagesForPageFlipper:self] ? [self.dataSource viewForPage:self.currentPage+1 inFlipper:self] : nil;
-    self.prevView = currentPage-1 > 0 ? [self.dataSource viewForPage:self.currentPage-1 inFlipper:self] : nil;
+        self.prevView = currentPage-1 > 0 ? [self.dataSource viewForPage:self.currentPage-1 inFlipper:self] : nil;
 	} else {
 		[self.nextView removeFromSuperview];
-    [self.prevView removeFromSuperview];
+        [self.prevView removeFromSuperview];
 	}
-
+    
 	self.currentView.alpha = 1.0f;
 	animating = NO;
 }
 
 
 - (void)setFlipProgress:(float)progress setDelegate:(BOOL)setDelegate animate:(BOOL)animate {
-  if (animating) return;
-  if (animate) animating = YES;
-  
-  float newAngle = startFlipAngle + progress * (endFlipAngle - startFlipAngle);
+    if (animating) return;
+    if (animate) animating = YES;
+    
+    float newAngle = startFlipAngle + progress * (endFlipAngle - startFlipAngle);
 	float duration = fabs((newAngle - currentAngle) / (endFlipAngle - startFlipAngle));
-  if (endFlipAngle == startFlipAngle) duration = 1.0f;
+    if (endFlipAngle == startFlipAngle) duration = 1.0f;
 	duration = animate ? MAX(0.2f, duration) : 0.0f;
-  
+    
 	currentAngle = newAngle;
 	
 	CATransform3D endTransform = CATransform3DIdentity;
@@ -216,15 +216,15 @@
 	endTransform = CATransform3DRotate(endTransform, newAngle, 1.0, 0.0, 0.0);
 	
 	[flipAnimationLayer removeAllAnimations];
-							
+    
 	[CATransaction begin];
 	[CATransaction setAnimationDuration:duration];
 	[CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-  
+    
 	flipAnimationLayer.transform = endTransform;
-  revealedLayer.opacity = MIN(1.0f, sqrtf(2.0f*progress));
-  coveredLayer.opacity = MIN(1.0, sqrtf(2.0f*(1.0f-progress)));
-
+    revealedLayer.opacity = MIN(1.0f, sqrtf(2.0f*progress));
+    coveredLayer.opacity = MIN(1.0, sqrtf(2.0f*(1.0f-progress)));
+    
 	[CATransaction commit];
 	
 	if (setDelegate) {
@@ -238,18 +238,18 @@
 }
 
 - (void)animateFirstPage {
-  [self initFlip];
-  double delayInSeconds = 0.01;
-  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self setFlipProgress:0.5f setDelegate:NO animate:NO];
-    double delayInSeconds = 0.3;
+    [self initFlip];
+    double delayInSeconds = 0.01;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-      setNextViewOnCompletion = NO;
-      [self setFlipProgress:0.0f setDelegate:YES animate:YES];
+        [self setFlipProgress:0.5f setDelegate:NO animate:NO];
+        double delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            setNextViewOnCompletion = NO;
+            [self setFlipProgress:0.0f setDelegate:YES animate:YES];
+        });
     });
-  });
 }
 
 
@@ -269,9 +269,9 @@
 
 
 - (void)setCurrentView:(UIView *)value {
-  [currentView release];
+    [currentView release];
 	currentView = [value retain];
-  self.currentImage = [currentView imageByRenderingView];
+    self.currentImage = [currentView imageByRenderingView];
 }
 
 
@@ -279,9 +279,9 @@
 
 
 - (void)setNextView:(UIView *)value {
-  [nextView release];
+    [nextView release];
 	nextView = [value retain];
-  self.nextImage = [nextView imageByRenderingView];
+    self.nextImage = [nextView imageByRenderingView];
 }
 
 
@@ -289,9 +289,9 @@
 
 
 - (void)setPrevView:(UIView *)value {
-  [prevView release];
+    [prevView release];
 	prevView = [value retain];
-  self.prevImage = [prevView imageByRenderingView];
+    self.prevImage = [prevView imageByRenderingView];
 }
 
 
@@ -305,17 +305,17 @@
 	
 	flipDirection = value < currentPage ? AFKPageFlipperDirectionDown : AFKPageFlipperDirectionUp;
 	
-  if (flipDirection == AFKPageFlipperDirectionDown) {
-    if (currentPage == 0) self.prevView = [self.dataSource viewForPage:value inFlipper:self];
-    [self addSubview:self.prevView];
-  } else {
-    if (currentPage == 0) self.nextView = [self.dataSource viewForPage:value inFlipper:self];
-    [self addSubview:self.nextView];
-  }
+    if (flipDirection == AFKPageFlipperDirectionDown) {
+        if (currentPage == 0) self.prevView = [self.dataSource viewForPage:value inFlipper:self];
+        [self addSubview:self.prevView];
+    } else {
+        if (currentPage == 0) self.nextView = [self.dataSource viewForPage:value inFlipper:self];
+        [self addSubview:self.nextView];
+    }
 	
 	currentPage = value;
 	return TRUE;
-}	
+}
 
 - (void)setCurrentPage:(NSInteger) value {
 	if (![self doSetCurrentPage:value]) {
@@ -325,13 +325,13 @@
 	setNextViewOnCompletion = YES;
 	animating = NO;
 	
-  if (flipDirection == AFKPageFlipperDirectionDown) {
-    self.prevView.alpha = 1.0f;
-  } else {
-    self.nextView.alpha = 1.0f;
-  }
-  [self cleanupFlip];
-} 
+    if (flipDirection == AFKPageFlipperDirectionDown) {
+        self.prevView.alpha = 1.0f;
+    } else {
+        self.nextView.alpha = 1.0f;
+    }
+    [self cleanupFlip];
+}
 
 
 - (void) setCurrentPage:(NSInteger) value animated:(BOOL) animated {
@@ -348,7 +348,7 @@
 	} else {
 		[self animationDidStop:Nil finished:[NSNumber numberWithBool:NO] context:Nil];
 	}
-
+    
 }
 
 
@@ -386,13 +386,13 @@
 
 - (void) panned:(UIPanGestureRecognizer *) recognizer {
 	static BOOL hasFailed;
-  if (animating) {
-    hasFailed = YES;
-    return;
-  }
-  
+    if (animating) {
+        hasFailed = YES;
+        return;
+    }
+    
 	static NSInteger oldPage;
-
+    
 	float translation = [recognizer translationInView:self].y;
 	float progress = translation*1.5f / self.bounds.size.height;
 	
@@ -405,9 +405,9 @@
 	switch (recognizer.state) {
 		case UIGestureRecognizerStateBegan:
 			hasFailed = FALSE;
-
-      oldPage = self.currentPage;
-      
+            
+            oldPage = self.currentPage;
+            
 			if (translation > 0) {
 				if (self.currentPage > 1) {
 					[self doSetCurrentPage:self.currentPage - 1];
@@ -435,7 +435,7 @@
 			break;
 			
 		case UIGestureRecognizerStateFailed:
-      setNextViewOnCompletion = NO;
+            setNextViewOnCompletion = NO;
 			[self setFlipProgress:0.0 setDelegate:YES animate:YES];
 			currentPage = oldPage;
 			break;
@@ -447,7 +447,7 @@
 				currentPage = oldPage;
 				return;
 			}
-      float velocity = [recognizer velocityInView:self].y;
+            float velocity = [recognizer velocityInView:self].y;
 			if (fabsf(velocity) > 1000.0f || fabsf(progress) > 0.5f) {
 				setNextViewOnCompletion = YES;
 				[self setFlipProgress:1.0f setDelegate:YES animate:YES];
@@ -456,7 +456,7 @@
 				currentPage = oldPage;
 			}
 			break;
-
+            
 		default:
 			break;
 	}
@@ -469,7 +469,7 @@
 
 - (void) setFrame:(CGRect) value {
 	super.frame = value;
-
+    
 	numberOfPages = [dataSource numberOfPagesForPageFlipper:self];
 	
 	if (self.currentPage > numberOfPages) {
@@ -490,7 +490,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		_panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
-    [self addGestureRecognizer:_panRecognizer];
+        [self addGestureRecognizer:_panRecognizer];
     }
     return self;
 }
@@ -499,21 +499,21 @@
 - (void)dealloc {
 	[dataSource release];
 	[currentView release];
-  [currentImage release];
+    [currentImage release];
 	[nextView release];
-  [nextImage release];
-  [prevView release];
-  [prevImage release];
+    [nextImage release];
+    [prevView release];
+    [prevImage release];
 	[_panRecognizer release];
-  
+    
 	
 	[backgroundAnimationLayer release];
 	[flipAnimationLayer release];
-  
-  [revealedLayer release];
-  [coveredLayer release];
-  
-  [super dealloc];
+    
+    [revealedLayer release];
+    [coveredLayer release];
+    
+    [super dealloc];
 }
 
 
