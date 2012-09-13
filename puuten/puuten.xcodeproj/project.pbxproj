@@ -25,6 +25,7 @@
 		FCCD877C15E11DDE001EF8CE /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877A15E11DDD001EF8CE /* comment.png */; };
 		FCCD877D15E11DDE001EF8CE /* invite.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877B15E11DDE001EF8CE /* invite.png */; };
 		FCCD877F15E11EA5001EF8CE /* bag_red.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877E15E11EA5001EF8CE /* bag_red.png */; };
+		FCD8DC091601DA8000A7DA4C /* AFKPageFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD8DC081601DA8000A7DA4C /* AFKPageFlipper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCE2AE3315DA0C62000FD85B /* WBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */; };
 		FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467015DEB301006EAF2E /* concrete_wall_3.png */; };
 		FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467715DEB8A1006EAF2E /* capture-button.png */; };
@@ -94,6 +95,8 @@
 		FCCD877A15E11DDD001EF8CE /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		FCCD877B15E11DDE001EF8CE /* invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite.png; sourceTree = "<group>"; };
 		FCCD877E15E11EA5001EF8CE /* bag_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag_red.png; sourceTree = "<group>"; };
+		FCD8DC071601DA8000A7DA4C /* AFKPageFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFKPageFlipper.h; sourceTree = "<group>"; };
+		FCD8DC081601DA8000A7DA4C /* AFKPageFlipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFKPageFlipper.m; sourceTree = "<group>"; };
 		FCE2AE3115DA0C62000FD85B /* WBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBCommentViewController.h; sourceTree = "<group>"; };
 		FCE2AE3215DA0C62000FD85B /* WBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBCommentViewController.m; sourceTree = "<group>"; };
 		FCEC467015DEB301006EAF2E /* concrete_wall_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall_3.png; sourceTree = "<group>"; };
@@ -220,6 +223,15 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		FCD8DC051601DA5900A7DA4C /* AFKPageFlipper */ = {
+			isa = PBXGroup;
+			children = (
+				FCD8DC071601DA8000A7DA4C /* AFKPageFlipper.h */,
+				FCD8DC081601DA8000A7DA4C /* AFKPageFlipper.m */,
+			);
+			name = AFKPageFlipper;
+			sourceTree = "<group>";
+		};
 		FCF7DAC715C012A9005A6586 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +338,7 @@
 		FCF7DB2A15C0246D005A6586 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				FCD8DC051601DA5900A7DA4C /* AFKPageFlipper */,
 				FCF8B21315E33CC10059C0A0 /* JMWhenTapped */,
 				FC61F8EC15DBB35E000E3178 /* images */,
 				FCF7DAF315C012F1005A6586 /* ASIHTTPRequest */,
@@ -511,6 +524,7 @@
 				FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */,
 				FCF8B21815E33CFE0059C0A0 /* UIView+WhenTappedBlocks.m in Sources */,
 				FCBA959A15EA594B0079A7C6 /* ProfileViewController.m in Sources */,
+				FCD8DC091601DA8000A7DA4C /* AFKPageFlipper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

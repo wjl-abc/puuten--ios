@@ -29,7 +29,7 @@
     if ([segue.identifier isEqualToString:@"detail"]){
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
-        wb.arrayImg = arrayImg;
+        wb.arrayData = array4wb;
         wb.order = selected_order;
         //BSHeader *bs = [[BSHeader alloc] init];
         //wb.name_string = @"mmmmm";
@@ -153,7 +153,7 @@
     }
     NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     UIImage *image = [[UIImage alloc] initWithData:data];
-    [arrayImg addObject:image];
+    [array4wb addObject:image];
     [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
@@ -185,6 +185,7 @@
     else {
         //self.navigationController.title = @"home";
         arrayData = [[NSMutableArray alloc] init];
+        array4wb = [[NSMutableArray alloc] init];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
         waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];

@@ -25,7 +25,7 @@
 @synthesize bsdata;
 @synthesize wb_id=_wb_id;
 @synthesize bs_id;
-@synthesize arrayImg = _arrayImg;
+@synthesize arrayData = _arrayData;
 @synthesize order = _order;
 
 - (void)setWb_id:(int)wb_id
@@ -33,9 +33,9 @@
     _wb_id = wb_id;
 }
 
-- (void)setArrayImg:(NSMutableArray *)arrayImg{
-    _arrayImg = [[NSMutableArray alloc] init];
-    _arrayImg = arrayImg;
+- (void)setArrayData:(NSMutableArray *)arrayData{
+    _arrayData = [[NSMutableArray alloc] init];
+    _arrayData = arrayData;
 }
 
 - (void)setOrder:(int)order{
@@ -79,8 +79,8 @@
             //NSData* data = [[NSData alloc] initWithContentsOfURL:pic_URL];
             //UIImage *image = [[UIImage alloc] initWithData:data];
             NSLog(@"the clicked order is %i", _order);
-            NSLog(@"the length of arrayImg is %i", [_arrayImg count]);
-            UIImage *image = [_arrayImg objectAtIndex:_order];
+            NSLog(@"the length of arrayImg is %i", [_arrayData count]);
+            UIImage *image = [[_arrayData objectAtIndex:_order] objectForKey:@"image"];
             _pic.frame = CGRectMake(40, 100+size_body.height, 240, 240*image.size.height/image.size.width);
             [_pic setImage:image];
         }
@@ -115,7 +115,7 @@
             re_wb.frame = CGRectMake(30, size_body.height+100, 260, size_re_wb.height);
             [re_wb setFont:[UIFont systemFontOfSize:14.0f]];
             re_wb.text = re_wb_for_display;
-            UIImage *image = [_arrayImg objectAtIndex:_order];
+            UIImage *image = [[_arrayData objectAtIndex:_order] objectForKey:@"image"];
             _pic.frame = CGRectMake(40, 100+size_body.height+size_re_wb.height, 240, 240*image.size.height/image.size.width);
             [_pic setImage:image];
             re_view.frame = CGRectZero;
@@ -160,7 +160,7 @@
     [self setBsHeader:nil];
     [self setRe_wb:nil];
     [self setRe_view:nil];
-    [self setArrayImg:nil];
+    [self setArrayData:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

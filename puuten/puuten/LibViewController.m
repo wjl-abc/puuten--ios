@@ -25,7 +25,7 @@
         WBViewController *wb = (WBViewController *)segue.destinationViewController;
         wb.wb_id=selected_cell;
         wb.order = selected_order;
-        wb.arrayImg = arrayImg;
+        wb.arrayData = array4wb;
     }
 }
 
@@ -56,8 +56,15 @@
             NSURL *img_url = [[NSURL alloc] initWithString:[instance objectForKey:@"thumbnail_pic"]];
             NSData *data = [[NSData alloc] initWithContentsOfURL:img_url];
             UIImage *image = [[UIImage alloc] initWithData:data];
-            [arrayImg addObject:image];
-            NSLog(@"the length of arrayImg is %i", [arrayImg count]);
+            NSMutableDictionary* ele4wb = [[NSMutableDictionary alloc] init];
+            [ele4wb setValue:image forKey:@"image"];
+            [ele4wb setValue:[instance objectForKey:@"ratio"] forKey:@"ratio"];
+            [ele4wb setValue:[instance objectForKey:@"body"] forKey:@"body"];
+            [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"avatar"];
+            [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
+            
+            [array4wb addObject:ele4wb];
+            NSLog(@"the length of arrayImg is %i", [array4wb count]);
         }
         [self dataSourceDidLoad];
     }];
@@ -126,7 +133,7 @@
     //NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     //UIImage *image = [[UIImage alloc] initWithData:data];
     //[arrayImg addObject:image];
-    [(ImageViewCell *)view setImageWithImg:[arrayImg objectAtIndex:arrIndex] withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
+    [(ImageViewCell *)view setImageWithImg:[[array4wb objectAtIndex:arrIndex] objectForKey:@"image"] withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 
@@ -152,7 +159,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     arrayData = [[NSMutableArray alloc] init];
-    arrayImg = [[NSMutableArray alloc] init];
+    array4wb = [[NSMutableArray alloc] init];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];

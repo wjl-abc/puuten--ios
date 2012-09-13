@@ -12,7 +12,7 @@
 @property (assign, nonatomic) int wb_id;
 @property (assign, nonatomic) int bs_id;
 @property (assign, nonatomic) int order;
-@property (assign, nonatomic) NSMutableArray *arrayImg;
+@property (assign, nonatomic) NSMutableArray *arrayData;
 @property (weak, nonatomic) NSDictionary *bsdata;
 @property (weak, nonatomic) IBOutlet UILabel *bodyField;
 @property (strong, nonatomic) IBOutlet UIImageView *pic;
