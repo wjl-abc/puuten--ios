@@ -58,7 +58,7 @@
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
         [self dataSourceDidLoad];
     }];
@@ -151,7 +151,7 @@
     }
     NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     UIImage *image = [[UIImage alloc] initWithData:data];
-    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
 

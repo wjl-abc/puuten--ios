@@ -114,7 +114,7 @@
     [imageViewCell relayoutViews];
     NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
     UIImage *image = [[UIImage alloc] initWithData:data];
-    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withOrder:arrIndex withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 

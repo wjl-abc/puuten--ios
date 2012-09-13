@@ -36,7 +36,7 @@
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
         NSLog(@"count of arrayData is %i", [arrayData count]);
         [[self tableView] reloadData];

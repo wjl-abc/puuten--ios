@@ -27,31 +27,20 @@
     NSString *partnerName;
     UILabel *info;
     int WB_ID;
+    int Order;
 }
 @property (assign, nonatomic) int tt;
 @property (nonatomic, assign) id <ImageViewCellDelegate> delegate;
-/*-(void)setImageWithURL:(NSURL *)imageUrl
-             withWB_ID:(int)wb_id
-                withBS:(NSString *)BSinfo
-              withType:(int)Type
-          withDelegate:(id)Delegate;
--(void)setImageWithURL:(NSURL *)imageUrl
-             withWB_ID:(int)wb_id
-                withBS:(NSString *)BSinfo
-              withType:(int)Type
-            withAvatar:(NSURL *)avatarUrl
-              withName:(NSString *)Name
-              withInfo:(NSString *)Info
-          withDelegate:(id)Delegate;
-*/
 
 -(void)setImageWithImg:(UIImage *)image
              withWB_ID:(int)wb_id
+             withOrder:(int)order
                 withBS:(NSString *)BSinfo
               withType:(int)Type
           withDelegate:(id)Delegate;
 -(void)setImageWithImg:(UIImage *)image
              withWB_ID:(int)wb_id
+             withOrder:(int)order
                 withBS:(NSString *)BSinfo
               withType:(int)Type
             withAvatar:(NSURL *)avatarUrl
