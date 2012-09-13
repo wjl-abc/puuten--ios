@@ -46,7 +46,7 @@
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = json;
         [self dataSourceDidLoad];
     }];
@@ -112,7 +112,9 @@
     imageViewCell.columnCount = waterFlowView.columnCount;
     imageViewCell.tt=1;
     [imageViewCell relayoutViews];
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 

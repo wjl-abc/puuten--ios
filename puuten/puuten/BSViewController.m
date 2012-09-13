@@ -122,7 +122,9 @@
     imageViewCell.columnCount = waterFlowView.columnCount;
     imageViewCell.tt=1;
     [imageViewCell relayoutViews];
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:@"mmmm" withType:0 withDelegate:self];
 }
 
 

@@ -149,7 +149,9 @@
         default:
             break;
     }
-    [(ImageViewCell *)view setImageWithURL:nsURL withWB_ID:wb_id withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:nsURL];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [(ImageViewCell *)view setImageWithImg:image withWB_ID:wb_id withBS:bsName withType:type withAvatar:nsURL withName:name withInfo:info withDelegate:self];
 }
 
 
