@@ -139,7 +139,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     arrayData = [[NSMutableArray alloc] init];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];
     waterFlow.waterFlowViewDelegate = self;
@@ -148,7 +149,7 @@
     
     [self.view addSubview:waterFlow];
         //[waterFlow release];
-        
+    
     [self loadInternetData];
     
     [super viewDidAppear:animated];
