@@ -169,10 +169,17 @@
     
     [self.view addSubview:waterFlow];
         //[waterFlow release];
-        
+    //self.parentViewController.tabBarController.tabBar.hidden  = NO;
     [self loadInternetData];
     
     [super viewDidAppear:animated];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+    //self.parentViewController.tabBarController.tabBar.hidden  = NO;
+    [super viewWillAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
