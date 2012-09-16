@@ -24,6 +24,7 @@
 @synthesize bs_id = _bs_id;
 @synthesize arrayData = _arrayData;
 @synthesize order = _order;
+@synthesize dicData = _dicData;
 
 -(void)setWb_id:(int)wb_id{
     _wb_id = wb_id;
@@ -42,14 +43,52 @@
     _arrayData = arrayData;
 }
 
+- (void)setDicData:(NSMutableDictionary *)dicData
+{
+    _dicData = [[NSMutableDictionary alloc] init];
+    _dicData = dicData;
+    _arrayData = [_dicData objectForKey:@"data"];
+}
+
 - (NSInteger) numberOfPagesForPageFlipper:(AFKPageFlipper *)pageFlipper {
-    return 15;
-	
+    //return 15;
+	return [[_dicData objectForKey:@"len"] integerValue];
 }
 
 
 - (UIView *) viewForPage:(NSInteger) page inFlipper:(AFKPageFlipper *) pageFlipper {
-    //self.parentViewController.tabBarController.tabBar.hidden  = YES;
+    
+    if (page==([_arrayData count]-1)) {
+        NSURL *libURL = [_dicData objectForKey:@"URL"];
+        ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
+        __weak ASIFormDataRequest *request = _request;
+        [request setPostValue:@"ios" forKey:@"mobile"];
+        [request setPostValue:[NSNumber numberWithInt:[_arrayData count]] forKey:@"from"];
+        [request setCompletionBlock:^{
+            NSData *responseData = [request responseData];
+            NSError* error;
+            NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            NSLog(@"the length of json is %i", [json count]);
+            for( int i=0 ; i<[json count]; i++){
+                NSDictionary* instance = [[NSDictionary alloc] init];
+                instance = [json objectAtIndex:i];
+                NSURL *img_url = [[NSURL alloc] initWithString:[instance objectForKey:@"thumbnail_pic"]];
+                NSData *data = [[NSData alloc] initWithContentsOfURL:img_url];
+                UIImage *image = [[UIImage alloc] initWithData:data];
+                NSMutableDictionary* ele4wb = [[NSMutableDictionary alloc] init];
+                [ele4wb setValue:image forKey:@"image"];
+                [ele4wb setValue:[instance objectForKey:@"ratio"] forKey:@"ratio"];
+                [ele4wb setValue:[instance objectForKey:@"body"] forKey:@"body"];
+                [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"bs_avatar"];
+                [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
+                
+                [_arrayData addObject:ele4wb];
+            }
+        }];
+        [request setFailedBlock:^{}];
+        [request startAsynchronous];
+    }
+     
 	CGRect frame = self.view.bounds;
     UIView * newView = [[UIView alloc] initWithFrame:frame];
     NSDictionary *dic_data = [_arrayData objectAtIndex:page-1];
@@ -136,13 +175,11 @@
     body_label.font = [UIFont fontWithName:@"GillSans-Bold" size:14];
     body_label.numberOfLines = 3;
     if (ratio>0.9375) {
-        //body_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
         body_label.textColor = [UIColor whiteColor];
     }
     else{
         body_label.textColor = [UIColor blackColor];
     }
-    //body_label.textColor = [UIColor whiteColor];
     body_label.text = body;
     [newView addSubview:body_label];
     
@@ -155,7 +192,6 @@
         [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
     }
     [newView addSubview: add_to_wish];
-    NSLog(@"the height of flipper view is %f", newView.bounds.size.height);
     return newView;
 }
 

@@ -26,6 +26,7 @@
         wb.wb_id=selected_cell;
         wb.order = selected_order;
         wb.arrayData = array4wb;
+        wb.dicData = dic4wb;
     }
 }
 
@@ -48,8 +49,9 @@
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        arrayData = json;
+        //NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        NSMutableDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        arrayData = [json objectForKey:@"data"];
         for( int i=0 ; i<[arrayData count]; i++){
             NSDictionary* instance = [[NSDictionary alloc] init];
             instance = [arrayData objectAtIndex:i];
@@ -65,6 +67,10 @@
             
             [array4wb addObject:ele4wb];
         }
+        [dic4wb setValue:array4wb forKey:@"data"];
+        [dic4wb setValue:[json objectForKey:@"len"] forKey:@"len"];
+        [dic4wb setValue:libURL forKey:@"URL"];
+        
         [self dataSourceDidLoad];
     }];
     [request setFailedBlock:^{
@@ -159,6 +165,7 @@
 {
     arrayData = [[NSMutableArray alloc] init];
     array4wb = [[NSMutableArray alloc] init];
+    dic4wb = [[NSMutableDictionary alloc] init];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(loadMore)];
         
     waterFlow = [[WaterFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 460-44)];

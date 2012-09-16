@@ -15,6 +15,8 @@
 {
     NSMutableArray *arrayData;
     NSMutableArray *array4wb;
+    NSMutableDictionary *dicData;
+    NSMutableDictionary *dic4wb;
     WaterFlowView  *waterFlow;
     int selected_cell;
     int selected_order;
