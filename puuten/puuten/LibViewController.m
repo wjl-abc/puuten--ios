@@ -64,7 +64,6 @@
             [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
             
             [array4wb addObject:ele4wb];
-            NSLog(@"the length of arrayImg is %i", [array4wb count]);
         }
         [self dataSourceDidLoad];
     }];
@@ -177,7 +176,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     //self.parentViewController.tabBarController.tabBar.hidden  = NO;
     [super viewWillAppear:animated];
 }

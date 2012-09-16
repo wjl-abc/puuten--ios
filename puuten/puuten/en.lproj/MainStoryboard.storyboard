@@ -201,9 +201,9 @@
         <scene sceneID="Zop-Fs-qPR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsn-SO-fiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="cqI-so-lGx" customClass="WBViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="cqI-so-lGx" customClass="WBViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Rs-Eg-sXu">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -391,6 +391,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yUl-Z7-7jb"/>
+        <segue reference="Cee-ia-Brg"/>
     </inferredMetricsTieBreakers>
 </document>

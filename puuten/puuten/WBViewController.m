@@ -43,67 +43,45 @@
 }
 
 - (NSInteger) numberOfPagesForPageFlipper:(AFKPageFlipper *)pageFlipper {
-    return 8;
+    return 15;
 	
 }
 
 
 - (UIView *) viewForPage:(NSInteger) page inFlipper:(AFKPageFlipper *) pageFlipper {
-    self.parentViewController.tabBarController.tabBar.hidden  = YES;
+    //self.parentViewController.tabBarController.tabBar.hidden  = YES;
 	CGRect frame = self.view.bounds;
     UIView * newView = [[UIView alloc] initWithFrame:frame];
-    NSLog(@"mmmmmmmmm");
-    NSLog(@"the page is %i", page);
     NSDictionary *dic_data = [_arrayData objectAtIndex:page-1];
-    
     float ratio = [[dic_data objectForKey:@"ratio"] floatValue];
-    NSLog(@"the ratio is %f", ratio);
-    if(page==4){
-        [viewControlerStack addObject:@"eeee"];
-        [viewControlerStack addObject:@"ffff"];
-        [viewControlerStack addObject:@"ggggg"];
-        [viewControlerStack addObject:@"hhh"];
-    }
-	//CGRect frame = self.view.bounds;
-    //UIView * newView = [[UIView alloc] initWithFrame:frame];
-    NSString *text = [viewControlerStack objectAtIndex:(page-1)];
-    UILabel *test = [[UILabel alloc] initWithFrame:CGRectMake(200, 100, 60, 90)];
-    test.backgroundColor = [UIColor redColor];
-    test.text = text;
-    [newView addSubview:test];
-/*    int delta = 0;
+    int delta = 0;
     float image_x, image_width, image_height;
     if(ratio>=1.4375)
     {
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-        delta = 0;
+        delta = -44;
         image_x = 0.0;
         image_width = 320.0;
         image_height = 320*ratio;
     }
     else if (ratio<1.4375 && ratio>=1.3){
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
         delta = -44;
         image_x = 0.0;
         image_width = 320.0;
         image_height = 320*ratio;
     }
     else if (ratio<1.3 && ratio>=1.125){
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
         delta = -44;
         image_height = 416.0;
         image_width = image_height/ratio;
         image_x = (320.0-image_width)/2;
     }
     else if (ratio<1.125 && ratio>=0.9375){
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
         delta = -44;
         image_height = 354.0;
         image_width = image_height/ratio;
         image_x = (320.0-image_width)/2;
     }
     else{
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
         delta = -44;
         image_height = 300.0;
         image_width = image_height/ratio;
@@ -177,7 +155,7 @@
         [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
     }
     [newView addSubview: add_to_wish];
-    */
+    NSLog(@"the height of flipper view is %f", newView.bounds.size.height);
     return newView;
 }
 
@@ -189,7 +167,7 @@
 	flipper = [[AFKPageFlipper alloc] initWithFrame:self.view.bounds];
 	flipper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [flipper setDataSource:self withPage:frontPage];
-    [flipper setCurrentPage:frontPage];
+    //[flipper setCurrentPage:frontPage];
 	[self.view addSubview:flipper];
 }
 
@@ -205,7 +183,6 @@
 - (void)viewDidLoad
 {
     [self loadView:_order+1];
-    viewControlerStack = [[NSMutableArray alloc] initWithObjects:@"aaa", @"bbb", @"cccc", @"ddd", nil];
     [super viewDidLoad];
 }
 
@@ -224,8 +201,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //self.tabBarController.tabBar.hidden  = YES;
     [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.parentViewController.tabBarController.tabBar.hidden = NO;
 }
 
 
