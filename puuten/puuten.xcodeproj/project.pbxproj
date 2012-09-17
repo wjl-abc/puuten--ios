@@ -36,6 +36,10 @@
 		FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467015DEB301006EAF2E /* concrete_wall_3.png */; };
 		FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467715DEB8A1006EAF2E /* capture-button.png */; };
 		FCED8B8915E4E07100BEA2C0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FCED8B8815E4E07100BEA2C0 /* back.png */; };
+		FCF15A5516073E600039F00A /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5316073E600039F00A /* MJDetailViewController.m */; };
+		FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF15A5416073E600039F00A /* MJDetailViewController.xib */; };
+		FCF15A5D16073F550039F00A /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */; };
+		FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5C16073F550039F00A /* UIViewController+MJPopupViewController.m */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
 		FCF7DAD915C012AA005A6586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD815C012AA005A6586 /* Foundation.framework */; };
 		FCF7DADB15C012AA005A6586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DADA15C012AA005A6586 /* CoreGraphics.framework */; };
@@ -116,6 +120,13 @@
 		FCEC467015DEB301006EAF2E /* concrete_wall_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall_3.png; sourceTree = "<group>"; };
 		FCEC467715DEB8A1006EAF2E /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button.png"; sourceTree = "<group>"; };
 		FCED8B8815E4E07100BEA2C0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		FCF15A5216073E600039F00A /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDetailViewController.h; sourceTree = "<group>"; };
+		FCF15A5316073E600039F00A /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDetailViewController.m; sourceTree = "<group>"; };
+		FCF15A5416073E600039F00A /* MJDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJDetailViewController.xib; sourceTree = "<group>"; };
+		FCF15A5916073F550039F00A /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		FCF15A5B16073F550039F00A /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		FCF15A5C16073F550039F00A /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		FCF7DAD215C012AA005A6586 /* puuten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puuten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7DAD615C012AA005A6586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCF7DAD815C012AA005A6586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -261,6 +272,17 @@
 			name = AFKPageFlipper;
 			sourceTree = "<group>";
 		};
+		FCF15A5816073EF40039F00A /* MJPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				FCF15A5916073F550039F00A /* MJPopupBackgroundView.h */,
+				FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */,
+				FCF15A5B16073F550039F00A /* UIViewController+MJPopupViewController.h */,
+				FCF15A5C16073F550039F00A /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopupView;
+			sourceTree = "<group>";
+		};
 		FCF7DAC715C012A9005A6586 = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +342,9 @@
 				FC449D2F15DE52A000B0BF90 /* LibViewController.m */,
 				FCBA959815EA594B0079A7C6 /* ProfileViewController.h */,
 				FCBA959915EA594B0079A7C6 /* ProfileViewController.m */,
+				FCF15A5216073E600039F00A /* MJDetailViewController.h */,
+				FCF15A5316073E600039F00A /* MJDetailViewController.m */,
+				FCF15A5416073E600039F00A /* MJDetailViewController.xib */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -367,6 +392,7 @@
 		FCF7DB2A15C0246D005A6586 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				FCF15A5816073EF40039F00A /* MJPopupView */,
 				FC89B9681601EF58004CC0C0 /* Gradient */,
 				FCD8DC051601DA5900A7DA4C /* AFKPageFlipper */,
 				FCF8B21315E33CC10059C0A0 /* JMWhenTapped */,
@@ -517,6 +543,7 @@
 				FC89B9791601FD05004CC0C0 /* star2.png in Resources */,
 				FC89B97A1601FD05004CC0C0 /* star3.png in Resources */,
 				FC89B97B1601FD05004CC0C0 /* star4.png in Resources */,
+				FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +588,9 @@
 				FCD8DC091601DA8000A7DA4C /* AFKPageFlipper.m in Sources */,
 				FC89B96E1601EFB5004CC0C0 /* CMGradientLayer.m in Sources */,
 				FC89B96F1601EFB5004CC0C0 /* GradientView.m in Sources */,
+				FCF15A5516073E600039F00A /* MJDetailViewController.m in Sources */,
+				FCF15A5D16073F550039F00A /* MJPopupBackgroundView.m in Sources */,
+				FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

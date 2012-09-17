@@ -15,6 +15,8 @@
 //#import "PupupViewController.h"
 #import "GradientView.h"
 #import "AFKPageFlipper.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "MJDetailViewController.h"
 @interface WBViewController ()
 
 @end
@@ -159,7 +161,6 @@
     bs_name_label.backgroundColor = [UIColor clearColor];
     bs_name_label.text = bs_name;
     if(ratio>1.3){
-        //bs_name_label.textColor = [UIColor colorWithRed:0.003 green:0.1098 blue:0.2863 alpha:1.0];
         bs_name_label.textColor = [UIColor whiteColor];
     }
     else{
@@ -182,6 +183,11 @@
     }
     body_label.text = body;
     [newView addSubview:body_label];
+    [body_label whenTapped:^{
+        MJDetailViewController *detailViewController = [[MJDetailViewController alloc] initWithNibName:@"MJDetailViewController" bundle:nil];
+        detailViewController.wbBody = body;
+        [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationFade];
+    }];
     
     CGRect button_frame = CGRectMake(265, 344+delta, 40, 40);
     UIButton *add_to_wish = [[UIButton alloc] initWithFrame:button_frame];
