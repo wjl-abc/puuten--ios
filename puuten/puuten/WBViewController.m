@@ -17,6 +17,7 @@
 #import "AFKPageFlipper.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "MJDetailViewController.h"
+#import "show_img_ViewController.h"
 @interface WBViewController ()
 
 @end
@@ -51,6 +52,16 @@
     _dicData = dicData;
     _arrayData = [_dicData objectForKey:@"data"];
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"show_img"]){
+        show_img_ViewController *imgPage = (show_img_ViewController *)segue.destinationViewController;
+        imgPage.img = clickImg;
+    }
+}
+
 
 - (NSInteger) numberOfPagesForPageFlipper:(AFKPageFlipper *)pageFlipper {
     //return 15;
@@ -132,7 +143,10 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:image_frame];
     [imageView setImage:[dic_data objectForKey:@"image"]];
     [newView addSubview:imageView];
-    
+    [imageView whenTapped:^{
+        clickImg = [dic_data objectForKey:@"image"];
+        [self performSegueWithIdentifier:@"show_img" sender:self];
+    }];
     if(ratio>=1.125){
         CGRect gra_frame = CGRectMake(0, 300+delta, 320, 160);
         GradientView *gradientView = [[GradientView alloc] initWithFrame:gra_frame];

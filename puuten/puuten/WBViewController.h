@@ -11,12 +11,13 @@
 @interface WBViewController : UIViewController<AFKPageFlipperDataSource>{
     AFKPageFlipper *flipper;
     NSMutableArray* viewControlerStack;
+    UIImage *clickImg;
 }
 @property (assign, nonatomic) int wb_id;
 @property (assign, nonatomic) int bs_id;
 @property (assign, nonatomic) int order;
-@property (assign, nonatomic) NSMutableArray *arrayData;
-@property (assign, nonatomic) NSMutableDictionary *dicData;
+@property (strong, nonatomic) NSMutableArray *arrayData;
+@property (strong, nonatomic) NSMutableDictionary *dicData;
 
 //@property (weak, nonatomic) NSDictionary *bsdata;
 

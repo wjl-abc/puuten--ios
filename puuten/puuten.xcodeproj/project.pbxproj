@@ -40,6 +40,8 @@
 		FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF15A5416073E600039F00A /* MJDetailViewController.xib */; };
 		FCF15A5D16073F550039F00A /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */; };
 		FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5C16073F550039F00A /* UIViewController+MJPopupViewController.m */; };
+		FCF17B4E1608401300EE3414 /* close-popup.png in Resources */ = {isa = PBXBuildFile; fileRef = FCF17B4D1608401300EE3414 /* close-popup.png */; };
+		FCF17B551608434000EE3414 /* show_img_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF17B541608434000EE3414 /* show_img_ViewController.m */; };
 		FCF7DAD715C012AA005A6586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD615C012AA005A6586 /* UIKit.framework */; };
 		FCF7DAD915C012AA005A6586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DAD815C012AA005A6586 /* Foundation.framework */; };
 		FCF7DADB15C012AA005A6586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7DADA15C012AA005A6586 /* CoreGraphics.framework */; };
@@ -127,6 +129,9 @@
 		FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		FCF15A5B16073F550039F00A /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		FCF15A5C16073F550039F00A /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		FCF17B4D1608401300EE3414 /* close-popup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-popup.png"; sourceTree = "<group>"; };
+		FCF17B531608434000EE3414 /* show_img_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = show_img_ViewController.h; sourceTree = "<group>"; };
+		FCF17B541608434000EE3414 /* show_img_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = show_img_ViewController.m; sourceTree = "<group>"; };
 		FCF7DAD215C012AA005A6586 /* puuten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = puuten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF7DAD615C012AA005A6586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCF7DAD815C012AA005A6586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -230,6 +235,7 @@
 		FC61F8EC15DBB35E000E3178 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				FCF17B4D1608401300EE3414 /* close-popup.png */,
 				FC89B9741601FD05004CC0C0 /* star1.png */,
 				FC89B9751601FD05004CC0C0 /* star2.png */,
 				FC89B9761601FD05004CC0C0 /* star3.png */,
@@ -345,6 +351,8 @@
 				FCF15A5216073E600039F00A /* MJDetailViewController.h */,
 				FCF15A5316073E600039F00A /* MJDetailViewController.m */,
 				FCF15A5416073E600039F00A /* MJDetailViewController.xib */,
+				FCF17B531608434000EE3414 /* show_img_ViewController.h */,
+				FCF17B541608434000EE3414 /* show_img_ViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -544,6 +552,7 @@
 				FC89B97A1601FD05004CC0C0 /* star3.png in Resources */,
 				FC89B97B1601FD05004CC0C0 /* star4.png in Resources */,
 				FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */,
+				FCF17B4E1608401300EE3414 /* close-popup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +600,7 @@
 				FCF15A5516073E600039F00A /* MJDetailViewController.m in Sources */,
 				FCF15A5D16073F550039F00A /* MJPopupBackgroundView.m in Sources */,
 				FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */,
+				FCF17B551608434000EE3414 /* show_img_ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
