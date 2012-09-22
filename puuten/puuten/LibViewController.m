@@ -17,6 +17,12 @@
 @end
 
 @implementation LibViewController
+@synthesize categ = _categ;
+
+- (void)setCateg:(NSString *)categ{
+    _categ = categ;
+    NSLog(@"%@", categ);
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -27,6 +33,7 @@
         wb.order = selected_order;
         wb.arrayData = array4wb;
         wb.dicData = dic4wb;
+        wb.categ = _categ;
     }
 }
 
@@ -46,10 +53,10 @@
     ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
     __weak ASIFormDataRequest *request = _request;
     [request setPostValue:@"ios" forKey:@"mobile"];
+    [request setPostValue:_categ forKey:@"class"];
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
-        //NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         NSMutableDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
         arrayData = [json objectForKey:@"data"];
         for( int i=0 ; i<[arrayData count]; i++){
@@ -92,7 +99,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	self.title = _categ;
 }
 
 -(void)loadMore{

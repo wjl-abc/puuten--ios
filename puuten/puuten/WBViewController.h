@@ -16,6 +16,7 @@
 @property (assign, nonatomic) int wb_id;
 @property (assign, nonatomic) int bs_id;
 @property (assign, nonatomic) int order;
+@property (assign, nonatomic) NSString* categ;
 @property (strong, nonatomic) NSMutableArray *arrayData;
 @property (strong, nonatomic) NSMutableDictionary *dicData;
 

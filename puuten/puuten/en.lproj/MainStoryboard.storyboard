@@ -22,7 +22,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="95" y="-659"/>
+            <point key="canvasLocation" x="-25" y="-999"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1i8-D2-Rme">
@@ -101,7 +101,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1053" y="-837"/>
+            <point key="canvasLocation" x="1789" y="-1133"/>
         </scene>
         <!--View Controller - 更多-->
         <scene sceneID="Z61-aR-SR9">
@@ -116,7 +116,7 @@
                     <tabBarItem key="tabBarItem" title="更多" image="ICN_more.png" id="nU1-Tq-OqX"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="432" y="608"/>
+            <point key="canvasLocation" x="1120" y="752"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="htW-ck-PcJ">
@@ -131,7 +131,7 @@
                     <tabBarItem key="tabBarItem" title="" image="Scanner.png" id="YFQ-gR-PLZ"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-339" y="712"/>
+            <point key="canvasLocation" x="125" y="752"/>
         </scene>
         <!--Profile View Controller - 我-->
         <scene sceneID="SEI-yz-Vuu">
@@ -195,7 +195,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="29" y="712"/>
+            <point key="canvasLocation" x="621" y="752"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zop-Fs-qPR">
@@ -207,13 +207,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Pdp-Qt-b9P"/>
                     <connections>
                         <segue destination="Zcg-OR-fNz" kind="modal" identifier="bsdetails" id="ORL-ge-95z"/>
                         <segue destination="eh4-sy-FdQ" kind="modal" identifier="show_img" id="eqK-xg-Tvw"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1058" y="-301"/>
+            <point key="canvasLocation" x="1294" y="-889"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="B7N-Ge-7LT">
@@ -274,7 +275,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="532" y="-964"/>
+            <point key="canvasLocation" x="468" y="-1300"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mkY-tj-gu2">
@@ -298,6 +299,24 @@
             </objects>
             <point key="canvasLocation" x="-339" y="105"/>
         </scene>
+        <!--Class View Controller-->
+        <scene sceneID="bRk-FW-5Us">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6e4-kc-Yk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController hidesBottomBarWhenPushed="YES" id="2NN-DF-491" customClass="classViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fre-kr-r20">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="65b-h4-D4W"/>
+                    <connections>
+                        <segue destination="3qB-bS-Izb" kind="push" identifier="wb_clasify" id="dsY-40-N13"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="552" y="30"/>
+        </scene>
         <!--Lib View Controller-->
         <scene sceneID="brw-Mj-eiC">
             <objects>
@@ -314,7 +333,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="621" y="30"/>
+            <point key="canvasLocation" x="1011" y="30"/>
         </scene>
         <!--Show img View Controller-->
         <scene sceneID="T5J-VZ-pv0">
@@ -337,7 +356,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1545" y="-216"/>
+            <point key="canvasLocation" x="1913" y="-284"/>
         </scene>
         <!--Navigation Controller - 逛逛-->
         <scene sceneID="Cnj-tn-Zxs">
@@ -352,7 +371,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3qB-bS-Izb" kind="relationship" relationship="rootViewController" id="4Vx-xv-rPt"/>
+                        <segue destination="2NN-DF-491" kind="relationship" relationship="rootViewController" id="pJB-A0-Wsp"/>
                     </connections>
                 </navigationController>
             </objects>
@@ -366,6 +385,58 @@
         <image name="tab-me.png" width="34" height="27"/>
         <image name="tab_feed.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="BSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BSViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click1:"/>
+                <relationship kind="action" name="click2:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="introduction" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="othersButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="selfButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="LibViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click1:"/>
+                <relationship kind="action" name="click2:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="watButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wishButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+        <class className="WBViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
+        </class>
+        <class className="classViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/classViewController.h"/>
+        </class>
+        <class className="show_img_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/show_img_ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

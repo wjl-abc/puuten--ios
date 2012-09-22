@@ -28,6 +28,7 @@
 @synthesize arrayData = _arrayData;
 @synthesize order = _order;
 @synthesize dicData = _dicData;
+@synthesize categ = _categ;
 
 -(void)setWb_id:(int)wb_id{
     _wb_id = wb_id;
@@ -39,6 +40,10 @@
 
 -(void)setOrder:(int)order{
     _order = order;
+}
+
+-(void)setCateg:(NSString *)categ{
+    _categ = categ;
 }
 
 - (void)setArrayData:(NSMutableArray *)arrayData{
@@ -76,6 +81,7 @@
         ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
         __weak ASIFormDataRequest *request = _request;
         [request setPostValue:@"ios" forKey:@"mobile"];
+        [request setPostValue:_categ forKey:@"class"];
         [request setPostValue:[NSNumber numberWithInt:[_arrayData count]] forKey:@"from"];
         [request setCompletionBlock:^{
             NSData *responseData = [request responseData];
