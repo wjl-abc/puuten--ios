@@ -17,6 +17,13 @@
 @end
 
 @implementation LibViewController
+@synthesize categ = _categ;
+
+- (void)setCateg:(NSString *)categ{
+    _categ = categ;
+    NSLog(@"%@", _categ);
+    NSLog(@"2222222");
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -46,6 +53,8 @@
     ASIFormDataRequest *_request=[ASIFormDataRequest requestWithURL:libURL];
     __weak ASIFormDataRequest *request = _request;
     [request setPostValue:@"ios" forKey:@"mobile"];
+    [request setPostValue:_categ forKey:@"class"];
+    NSLog(@"%@", _categ);
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;

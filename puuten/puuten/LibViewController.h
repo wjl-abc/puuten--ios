@@ -21,7 +21,7 @@
     int selected_cell;
     int selected_order;
 }
-
+@property (assign, nonatomic) NSString *categ;
 - (void)dataSourceDidLoad;
 - (void)dataSourceDidError;
 

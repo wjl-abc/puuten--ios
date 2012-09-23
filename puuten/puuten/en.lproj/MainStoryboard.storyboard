@@ -101,7 +101,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1053" y="-837"/>
+            <point key="canvasLocation" x="1237" y="-1397"/>
         </scene>
         <!--View Controller - 更多-->
         <scene sceneID="Z61-aR-SR9">
@@ -207,13 +207,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Xfq-uz-jw0"/>
                     <connections>
                         <segue destination="Zcg-OR-fNz" kind="modal" identifier="bsdetails" id="ORL-ge-95z"/>
                         <segue destination="eh4-sy-FdQ" kind="modal" identifier="show_img" id="eqK-xg-Tvw"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1058" y="-301"/>
+            <point key="canvasLocation" x="1242" y="-861"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="B7N-Ge-7LT">
@@ -298,6 +299,25 @@
             </objects>
             <point key="canvasLocation" x="-339" y="105"/>
         </scene>
+        <!--Categ View Controller-->
+        <scene sceneID="UuC-e3-hbw">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwe-PZ-plh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="KGB-hu-MKz" customClass="categViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yg3-Sx-XhT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="z1G-Nd-beo"/>
+                    <connections>
+                        <segue destination="3qB-bS-Izb" kind="push" identifier="wb_categ" id="Sle-CL-Bnp"/>
+                        <segue destination="hkp-wS-rK5" kind="modal" identifier="login_beta" id="6ON-8x-ap0"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="516" y="30"/>
+        </scene>
         <!--Lib View Controller-->
         <scene sceneID="brw-Mj-eiC">
             <objects>
@@ -314,7 +334,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="621" y="30"/>
+            <point key="canvasLocation" x="949" y="38"/>
         </scene>
         <!--Show img View Controller-->
         <scene sceneID="T5J-VZ-pv0">
@@ -337,7 +357,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1545" y="-216"/>
+            <point key="canvasLocation" x="1729" y="-776"/>
         </scene>
         <!--Navigation Controller - 逛逛-->
         <scene sceneID="Cnj-tn-Zxs">
@@ -352,7 +372,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3qB-bS-Izb" kind="relationship" relationship="rootViewController" id="4Vx-xv-rPt"/>
+                        <segue destination="KGB-hu-MKz" kind="relationship" relationship="rootViewController" id="OaR-r0-8Jz"/>
                     </connections>
                 </navigationController>
             </objects>
@@ -372,6 +392,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="6ON-8x-ap0"/>
         <segue reference="Cee-ia-Brg"/>
     </inferredMetricsTieBreakers>
 </document>
