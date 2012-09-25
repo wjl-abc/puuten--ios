@@ -7,7 +7,6 @@
 //
 
 #import "LibViewController.h"
-#import "LoginViewController.h"
 #import "ImageViewCell.h"
 #import "WBViewController.h"
 #import "BSHeader.h"
@@ -18,11 +17,14 @@
 
 @implementation LibViewController
 @synthesize categ = _categ;
+@synthesize type = _type;
 
 - (void)setCateg:(NSString *)categ{
     _categ = categ;
-    NSLog(@"%@", _categ);
-    NSLog(@"2222222");
+}
+
+- (void)setType:(NSString *)type{
+    _type = type;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -54,7 +56,7 @@
     __weak ASIFormDataRequest *request = _request;
     [request setPostValue:@"ios" forKey:@"mobile"];
     [request setPostValue:_categ forKey:@"class"];
-    NSLog(@"%@", _categ);
+    [request setPostValue:_type forKey:@"type"];
     [request setCompletionBlock:^{
         NSData *responseData = [request responseData];
         NSError* error;
@@ -101,7 +103,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	self.title = _categ;
 }
 
 -(void)loadMore{
@@ -168,6 +170,14 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+//    [array4wb release];
+    
+    array4wb = nil;
+    arrayData = nil;
+    dic4wb = nil;
+    dicData = nil;
+    waterFlow = nil;
+     
     // Release any retained subviews of the main view.
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -184,10 +194,9 @@
     
     [self.view addSubview:waterFlow];
         //[waterFlow release];
-    //self.parentViewController.tabBarController.tabBar.hidden  = NO;
     [self loadInternetData];
-    
     [super viewDidAppear:animated];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

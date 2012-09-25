@@ -10,5 +10,6 @@
 
 @interface categViewController : UIViewController 
 @property (assign) NSString *selected_tag;
-@property (assign) BOOL login_or_not;
+@property (strong, nonatomic) NSArray *classArray;
+
 @end

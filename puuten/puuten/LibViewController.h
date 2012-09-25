@@ -22,6 +22,7 @@
     int selected_order;
 }
 @property (assign, nonatomic) NSString *categ;
+@property (assign, nonatomic) NSString *type;
 - (void)dataSourceDidLoad;
 - (void)dataSourceDidError;
 
