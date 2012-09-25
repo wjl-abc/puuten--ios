@@ -11,6 +11,8 @@
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
 		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
 		FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC449D2F15DE52A000B0BF90 /* LibViewController.m */; };
+		FC5AC75F1611CA62009C6674 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5AC75D1611CA62009C6674 /* ContentViewController.m */; };
+		FC5AC7601611CA62009C6674 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5AC75E1611CA62009C6674 /* ContentViewController.xib */; };
 		FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */; };
 		FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */; };
 		FC89B96E1601EFB5004CC0C0 /* CMGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC89B96B1601EFB5004CC0C0 /* CMGradientLayer.m */; };
@@ -86,6 +88,9 @@
 		FC3E1E6515CB97AE00E185D5 /* Constance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constance.h; sourceTree = "<group>"; };
 		FC449D2E15DE52A000B0BF90 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
 		FC449D2F15DE52A000B0BF90 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
+		FC5AC75C1611CA62009C6674 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		FC5AC75D1611CA62009C6674 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		FC5AC75E1611CA62009C6674 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_check.png; sourceTree = "<group>"; };
 		FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_checked.png; sourceTree = "<group>"; };
 		FC89B96A1601EFB5004CC0C0 /* CMGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMGradientLayer.h; sourceTree = "<group>"; };
@@ -331,6 +336,9 @@
 				FCF17B541608434000EE3414 /* show_img_ViewController.m */,
 				FCFCF690160EC8CF0025B65C /* categViewController.h */,
 				FCFCF691160EC8CF0025B65C /* categViewController.m */,
+				FC5AC75C1611CA62009C6674 /* ContentViewController.h */,
+				FC5AC75D1611CA62009C6674 /* ContentViewController.m */,
+				FC5AC75E1611CA62009C6674 /* ContentViewController.xib */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -532,6 +540,7 @@
 				FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */,
 				FCF17B4E1608401300EE3414 /* close-popup.png in Resources */,
 				FCFCF695160ECB300025B65C /* 11.jpeg in Resources */,
+				FC5AC7601611CA62009C6674 /* ContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +584,7 @@
 				FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */,
 				FCF17B551608434000EE3414 /* show_img_ViewController.m in Sources */,
 				FCFCF692160EC8CF0025B65C /* categViewController.m in Sources */,
+				FC5AC75F1611CA62009C6674 /* ContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

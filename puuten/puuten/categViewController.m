@@ -9,6 +9,7 @@
 #import "categViewController.h"
 #import "JMWhentapped.h"
 #import "LibViewController.h"
+#import "ContentViewController.h"
 
 @implementation categViewController
 //@synthesize button1;
@@ -21,8 +22,9 @@
 {
     if ([segue.identifier isEqualToString:@"wb_categ"]) {
         LibViewController *lib = (LibViewController *)segue.destinationViewController;
+        //ContentViewController *lib = (ContentViewController *)segue.destinationViewController;
         lib.categ = selected_tag;
-        lib.type = @"6";
+        //lib.type = @"6";
     }
 }
 

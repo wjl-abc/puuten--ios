@@ -7,23 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WaterFlowView.h"
-#import "ImageViewCell.h"
-#import "Constance.h"
+#import "ContentViewController.h"
 
-@interface LibViewController : UIViewController<WaterFlowViewDelegate, WaterFlowViewDataSource>
+@interface LibViewController : UIViewController<UITabBarControllerDelegate>
 {
-    NSMutableArray *arrayData;
-    NSMutableArray *array4wb;
-    NSMutableDictionary *dicData;
-    NSMutableDictionary *dic4wb;
-    WaterFlowView  *waterFlow;
-    int selected_cell;
-    int selected_order;
+    UITabBarController *tabBarController;
 }
 @property (assign, nonatomic) NSString *categ;
-@property (assign, nonatomic) NSString *type;
-- (void)dataSourceDidLoad;
-- (void)dataSourceDidError;
 
 @end

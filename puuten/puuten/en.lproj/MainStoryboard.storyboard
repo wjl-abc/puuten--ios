@@ -185,6 +185,36 @@
     <resources>
         <image name="Wallet.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="BSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BSViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="click1:"/>
+                <relationship kind="action" name="click2:"/>
+                <relationship kind="outlet" name="avatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="introduction" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="othersButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="selfButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="LibViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibViewController.h"/>
+        </class>
+        <class className="WBViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
+        </class>
+        <class className="categViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/categViewController.h"/>
+        </class>
+        <class className="show_img_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/show_img_ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
