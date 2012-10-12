@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AFKPageFlipper.h"
-@interface WBViewController : UIViewController<AFKPageFlipperDataSource>{
+@interface WBViewController : UINavigationController<AFKPageFlipperDataSource>{
     AFKPageFlipper *flipper;
     NSMutableArray* viewControlerStack;
     UIImage *clickImg;

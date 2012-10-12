@@ -71,26 +71,6 @@
         [self.view addSubview:button];
     }
     
-    /*
-    CGRect frame1 = CGRectMake(20, 20, 130,75);
-    UIButton *button1 = [[UIButton alloc] initWithFrame:frame1];
-    button1.backgroundColor = [UIColor colorWithRed:0.2 green:0.4 blue:0.4 alpha:0.85];
-    [button1 setTitle:@"美食" forState:UIControlStateNormal];
-    [button1 addTarget:self action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button1];
-     
-    
-    
-    CGRect frame2 = CGRectMake(170, 20, 130,75);
-    UIButton *button2 = [[UIButton alloc] initWithFrame:frame2];
-    button2.backgroundColor = [UIColor colorWithRed:0.2 green:0.4 blue:0.4 alpha:0.85];
-    [button2 setTitle:@"饮品" forState:UIControlStateNormal];
-    [button2 addTarget:self action:@selector(buttonPressed:)
-      forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button2];
-     */
-    
 }
 
 -(IBAction)buttonPressed:(id)sender{

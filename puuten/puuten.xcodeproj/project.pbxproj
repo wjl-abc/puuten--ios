@@ -11,10 +11,9 @@
 		FC3E1E6115CB950E00E185D5 /* BSHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6015CB950E00E185D5 /* BSHeader.m */; };
 		FC3E1E6415CB960800E185D5 /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3E1E6315CB960800E185D5 /* WBViewController.m */; };
 		FC449D3015DE52A000B0BF90 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC449D2F15DE52A000B0BF90 /* LibViewController.m */; };
-		FC5AC75F1611CA62009C6674 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5AC75D1611CA62009C6674 /* ContentViewController.m */; };
-		FC5AC7601611CA62009C6674 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5AC75E1611CA62009C6674 /* ContentViewController.xib */; };
 		FC61F8EF15DBB3AB000E3178 /* com_btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */; };
 		FC61F8F015DBB3AB000E3178 /* com_btn_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */; };
+		FC6F64F4162037D500A654D7 /* content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6F64F3162037D500A654D7 /* content.storyboard */; };
 		FC89B96E1601EFB5004CC0C0 /* CMGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC89B96B1601EFB5004CC0C0 /* CMGradientLayer.m */; };
 		FC89B96F1601EFB5004CC0C0 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC89B96D1601EFB5004CC0C0 /* GradientView.m */; };
 		FC89B9781601FD05004CC0C0 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = FC89B9741601FD05004CC0C0 /* star1.png */; };
@@ -30,10 +29,13 @@
 		FCCD877C15E11DDE001EF8CE /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877A15E11DDD001EF8CE /* comment.png */; };
 		FCCD877D15E11DDE001EF8CE /* invite.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877B15E11DDE001EF8CE /* invite.png */; };
 		FCCD877F15E11EA5001EF8CE /* bag_red.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCD877E15E11EA5001EF8CE /* bag_red.png */; };
+		FCD6BB1116206F4B00595B32 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD6BB1016206F4B00595B32 /* ContentViewController.m */; };
 		FCD8DC091601DA8000A7DA4C /* AFKPageFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD8DC081601DA8000A7DA4C /* AFKPageFlipper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCEC467115DEB301006EAF2E /* concrete_wall_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467015DEB301006EAF2E /* concrete_wall_3.png */; };
 		FCEC467815DEB8A1006EAF2E /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FCEC467715DEB8A1006EAF2E /* capture-button.png */; };
 		FCED8B8915E4E07100BEA2C0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FCED8B8815E4E07100BEA2C0 /* back.png */; };
+		FCF0D57C1621703E003F97FD /* CMGradientLayerRev.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF0D57B1621703E003F97FD /* CMGradientLayerRev.m */; };
+		FCF0D5801621713B003F97FD /* GradientRevView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF0D57F1621713B003F97FD /* GradientRevView.m */; };
 		FCF15A5516073E600039F00A /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5316073E600039F00A /* MJDetailViewController.m */; };
 		FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF15A5416073E600039F00A /* MJDetailViewController.xib */; };
 		FCF15A5D16073F550039F00A /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF15A5A16073F550039F00A /* MJPopupBackgroundView.m */; };
@@ -88,11 +90,9 @@
 		FC3E1E6515CB97AE00E185D5 /* Constance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constance.h; sourceTree = "<group>"; };
 		FC449D2E15DE52A000B0BF90 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
 		FC449D2F15DE52A000B0BF90 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
-		FC5AC75C1611CA62009C6674 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		FC5AC75D1611CA62009C6674 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
-		FC5AC75E1611CA62009C6674 /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		FC61F8ED15DBB3AB000E3178 /* com_btn_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_check.png; sourceTree = "<group>"; };
 		FC61F8EE15DBB3AB000E3178 /* com_btn_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com_btn_checked.png; sourceTree = "<group>"; };
+		FC6F64F3162037D500A654D7 /* content.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = content.storyboard; sourceTree = "<group>"; };
 		FC89B96A1601EFB5004CC0C0 /* CMGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMGradientLayer.h; sourceTree = "<group>"; };
 		FC89B96B1601EFB5004CC0C0 /* CMGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMGradientLayer.m; sourceTree = "<group>"; };
 		FC89B96C1601EFB5004CC0C0 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
@@ -110,11 +110,17 @@
 		FCCD877A15E11DDD001EF8CE /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		FCCD877B15E11DDE001EF8CE /* invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite.png; sourceTree = "<group>"; };
 		FCCD877E15E11EA5001EF8CE /* bag_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag_red.png; sourceTree = "<group>"; };
+		FCD6BB0F16206F4B00595B32 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		FCD6BB1016206F4B00595B32 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		FCD8DC071601DA8000A7DA4C /* AFKPageFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFKPageFlipper.h; sourceTree = "<group>"; };
 		FCD8DC081601DA8000A7DA4C /* AFKPageFlipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFKPageFlipper.m; sourceTree = "<group>"; };
 		FCEC467015DEB301006EAF2E /* concrete_wall_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_wall_3.png; sourceTree = "<group>"; };
 		FCEC467715DEB8A1006EAF2E /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button.png"; sourceTree = "<group>"; };
 		FCED8B8815E4E07100BEA2C0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		FCF0D57A1621703E003F97FD /* CMGradientLayerRev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMGradientLayerRev.h; sourceTree = "<group>"; };
+		FCF0D57B1621703E003F97FD /* CMGradientLayerRev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMGradientLayerRev.m; sourceTree = "<group>"; };
+		FCF0D57E1621713B003F97FD /* GradientRevView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientRevView.h; sourceTree = "<group>"; };
+		FCF0D57F1621713B003F97FD /* GradientRevView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientRevView.m; sourceTree = "<group>"; };
 		FCF15A5216073E600039F00A /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDetailViewController.h; sourceTree = "<group>"; };
 		FCF15A5316073E600039F00A /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDetailViewController.m; sourceTree = "<group>"; };
 		FCF15A5416073E600039F00A /* MJDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJDetailViewController.xib; sourceTree = "<group>"; };
@@ -258,6 +264,10 @@
 				FC89B96B1601EFB5004CC0C0 /* CMGradientLayer.m */,
 				FC89B96C1601EFB5004CC0C0 /* GradientView.h */,
 				FC89B96D1601EFB5004CC0C0 /* GradientView.m */,
+				FCF0D57A1621703E003F97FD /* CMGradientLayerRev.h */,
+				FCF0D57B1621703E003F97FD /* CMGradientLayerRev.m */,
+				FCF0D57E1621713B003F97FD /* GradientRevView.h */,
+				FCF0D57F1621713B003F97FD /* GradientRevView.m */,
 			);
 			name = Gradient;
 			sourceTree = "<group>";
@@ -336,9 +346,9 @@
 				FCF17B541608434000EE3414 /* show_img_ViewController.m */,
 				FCFCF690160EC8CF0025B65C /* categViewController.h */,
 				FCFCF691160EC8CF0025B65C /* categViewController.m */,
-				FC5AC75C1611CA62009C6674 /* ContentViewController.h */,
-				FC5AC75D1611CA62009C6674 /* ContentViewController.m */,
-				FC5AC75E1611CA62009C6674 /* ContentViewController.xib */,
+				FC6F64F3162037D500A654D7 /* content.storyboard */,
+				FCD6BB0F16206F4B00595B32 /* ContentViewController.h */,
+				FCD6BB1016206F4B00595B32 /* ContentViewController.m */,
 			);
 			path = puuten;
 			sourceTree = "<group>";
@@ -540,7 +550,7 @@
 				FCF15A5616073E600039F00A /* MJDetailViewController.xib in Resources */,
 				FCF17B4E1608401300EE3414 /* close-popup.png in Resources */,
 				FCFCF695160ECB300025B65C /* 11.jpeg in Resources */,
-				FC5AC7601611CA62009C6674 /* ContentViewController.xib in Resources */,
+				FC6F64F4162037D500A654D7 /* content.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +594,9 @@
 				FCF15A5E16073F550039F00A /* UIViewController+MJPopupViewController.m in Sources */,
 				FCF17B551608434000EE3414 /* show_img_ViewController.m in Sources */,
 				FCFCF692160EC8CF0025B65C /* categViewController.m in Sources */,
-				FC5AC75F1611CA62009C6674 /* ContentViewController.m in Sources */,
+				FCD6BB1116206F4B00595B32 /* ContentViewController.m in Sources */,
+				FCF0D57C1621703E003F97FD /* CMGradientLayerRev.m in Sources */,
+				FCF0D5801621713B003F97FD /* GradientRevView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +674,7 @@
 				GCC_PREFIX_HEADER = "puuten/puuten-Prefix.pch";
 				INFOPLIST_FILE = "puuten/puuten-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -673,6 +686,7 @@
 				GCC_PREFIX_HEADER = "puuten/puuten-Prefix.pch";
 				INFOPLIST_FILE = "puuten/puuten-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

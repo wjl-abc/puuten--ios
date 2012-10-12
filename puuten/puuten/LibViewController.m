@@ -20,7 +20,6 @@
 
 - (void)setCateg:(NSString *)categ{
     _categ = categ;
-    NSLog(@"111111");
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,29 +41,35 @@
     // Build an array of controllers
     NSMutableArray *controllers = [NSMutableArray array];
     
-    ContentViewController *info = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
+    
+    UIStoryboard *info_board = [UIStoryboard storyboardWithName:@"content" bundle:nil];
+    ContentViewController *info = [info_board  instantiateInitialViewController];
     info.categ = _categ;
     info.type = @"4";
     info.title = @"资讯";
     [controllers addObject:info];
     
-    ContentViewController *display = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
+    UIStoryboard *display_board = [UIStoryboard storyboardWithName:@"content" bundle:nil];
+    ContentViewController *display = [display_board  instantiateInitialViewController];
     display.categ = _categ;
     display.type = @"5";
     display.title = @"逛街";
     [controllers addObject:display];
     
-    ContentViewController *feedback = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
+    UIStoryboard *feedback_board = [UIStoryboard storyboardWithName:@"content" bundle:nil];
+    ContentViewController *feedback = [feedback_board  instantiateInitialViewController];
     feedback.categ = _categ;
     feedback.type = @"6";
     feedback.title = @"点评";
     [controllers addObject:feedback];
+    
     tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = controllers;
     tabBarController.customizableViewControllers = controllers;
     tabBarController.delegate = self;
     
     [self.view addSubview: tabBarController.view];
+    self.navigationController.navigationBar.hidden = YES;
 	// Do any additional setup after loading the view.
 }
 

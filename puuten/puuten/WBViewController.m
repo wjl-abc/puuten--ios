@@ -14,6 +14,7 @@
 //#import "UIViewController+MJPopupViewController.h"
 //#import "PupupViewController.h"
 #import "GradientView.h"
+#import "GradientRevView.h"
 #import "AFKPageFlipper.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "MJDetailViewController.h"
@@ -77,11 +78,12 @@
         __weak ASIFormDataRequest *request = _request;
         [request setPostValue:@"ios" forKey:@"mobile"];
         [request setPostValue:[NSNumber numberWithInt:[_arrayData count]] forKey:@"from"];
+        [request setPostValue:[_dicData objectForKey:@"class"] forKey:@"class"];
+        [request setPostValue:[_dicData objectForKey:@"type"] forKey:@"type"];
         [request setCompletionBlock:^{
             NSData *responseData = [request responseData];
             NSError* error;
             NSMutableArray* json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-            NSLog(@"the length of json is %i", [json count]);
             for( int i=0 ; i<[json count]; i++){
                 NSDictionary* instance = [[NSDictionary alloc] init];
                 instance = [json objectAtIndex:i];
@@ -94,7 +96,7 @@
                 [ele4wb setValue:[instance objectForKey:@"body"] forKey:@"body"];
                 [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"bs_avatar"];
                 [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
-                
+                [ele4wb setValue:[instance objectForKey:@"middle_pic"] forKey:@"middle_pic"];
                 [_arrayData addObject:ele4wb];
             }
         }];
@@ -104,37 +106,38 @@
      
 	CGRect frame = self.view.bounds;
     UIView * newView = [[UIView alloc] initWithFrame:frame];
+    newView.backgroundColor = [UIColor whiteColor];
     NSDictionary *dic_data = [_arrayData objectAtIndex:page-1];
     float ratio = [[dic_data objectForKey:@"ratio"] floatValue];
     int delta = 0;
     float image_x, image_width, image_height;
     if(ratio>=1.4375)
     {
-        delta = -44;
+        delta = 22;
         image_x = 0.0;
         image_width = 320.0;
         image_height = 320*ratio;
     }
     else if (ratio<1.4375 && ratio>=1.3){
-        delta = -44;
+        delta = 22;
         image_x = 0.0;
         image_width = 320.0;
         image_height = 320*ratio;
     }
     else if (ratio<1.3 && ratio>=1.125){
-        delta = -44;
+        delta = 22;
         image_height = 416.0;
         image_width = image_height/ratio;
         image_x = (320.0-image_width)/2;
     }
     else if (ratio<1.125 && ratio>=0.9375){
-        delta = -44;
+        delta = 22;
         image_height = 354.0;
         image_width = image_height/ratio;
         image_x = (320.0-image_width)/2;
     }
     else{
-        delta = -44;
+        delta = 22;
         image_height = 300.0;
         image_width = image_height/ratio;
         image_x = (320.0-image_width)/2;
@@ -166,7 +169,10 @@
     NSString *avatar_str = [dic_data objectForKey:@"bs_avatar"];
     CGRect avatar_frame = CGRectMake(10, 410+delta, 40, 40);
     UIImageView *avatar = [[UIImageView alloc] initWithFrame:avatar_frame];
-    [avatar setImageWithURL:[[NSURL alloc] initWithString:avatar_str]];
+    NSData *avatar_data = [[NSData alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:avatar_str]];
+    UIImage *avatar_image = [[UIImage alloc] initWithData:avatar_data];
+    [avatar setImage:avatar_image];
+    //[avatar setImageWithURL:[[NSURL alloc] initWithString:avatar_str]];
     [newView addSubview:avatar];
     
     NSString *bs_name = [dic_data objectForKey:@"name"];
@@ -212,6 +218,11 @@
         [add_to_wish setBackgroundImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
     }
     [newView addSubview: add_to_wish];
+    NSURL *middle_url = [[NSURL alloc] initWithString:[dic_data objectForKey:@"middle_pic"]];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:middle_url];
+    UIImage *image = [[UIImage alloc] initWithData:data];
+    [imageView setImage:image];
+    
     return newView;
 }
 

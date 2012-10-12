@@ -2,7 +2,7 @@
 //  ContentViewController.m
 //  puuten
 //
-//  Created by wang jialei on 12-9-25.
+//  Created by wang jialei on 12-10-6.
 //
 //
 
@@ -10,7 +10,6 @@
 #import "ImageViewCell.h"
 #import "WBViewController.h"
 #import "BSHeader.h"
-
 @interface ContentViewController ()
 
 @end
@@ -75,12 +74,15 @@
             [ele4wb setValue:[instance objectForKey:@"body"] forKey:@"body"];
             [ele4wb setValue:[instance objectForKey:@"bs_avatar"] forKey:@"bs_avatar"];
             [ele4wb setValue:[instance objectForKey:@"name"] forKey:@"name"];
+            [ele4wb setValue:[instance objectForKey:@"middle_pic"] forKey:@"middle_pic"];
             
             [array4wb addObject:ele4wb];
         }
         [dic4wb setValue:array4wb forKey:@"data"];
         [dic4wb setValue:[json objectForKey:@"len"] forKey:@"len"];
         [dic4wb setValue:libURL forKey:@"URL"];
+        [dic4wb setValue:_categ forKey:@"class"];
+        [dic4wb setValue:_type forKey:@"type"];
         
         [self dataSourceDidLoad];
     }];
@@ -104,6 +106,7 @@
 {
     [super viewDidLoad];
 }
+
 
 -(void)loadMore{
     
